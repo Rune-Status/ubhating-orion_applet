@@ -1,6 +1,8 @@
 package client;
 
 
+import com.cache.ItemDefinition;
+
 public final class Player extends Entity {
 
    public int privelage;
@@ -14,9 +16,9 @@ public final class Player extends Entity {
    public String name;
    static MRUNodes mruNodes = new MRUNodes(260);
    public int combatLevel;
-   public int headIcon;
+   public int overhead_icon;
    public int skullIcon;
-   public int hintIcon;
+   public int hint_arrow_icon;
    public int anInt1707;
    int anInt1708;
    int anInt1709;
@@ -115,7 +117,7 @@ public final class Player extends Entity {
    public void updatePlayer(Stream stream) {
       stream.currentOffset = 0;
       this.anInt1702 = stream.readUnsignedByte();
-      this.headIcon = stream.readUnsignedByte();
+      this.overhead_icon = stream.readUnsignedByte();
       this.skullIcon = stream.readUnsignedByte();
       this.desc = null;
       this.team = 0;
@@ -150,8 +152,8 @@ public final class Player extends Entity {
 				isNpc = false;
 			}
 
-            if(this.equipment[i2] >= 512 && this.equipment[i2] - 512 < ItemDef.totalItems) {
-               int l1 = ItemDef.forID(this.equipment[i2] - 512).team;
+            if(this.equipment[i2] >= 512 && this.equipment[i2] - 512 < ItemDefinition.totalItems) {
+               int l1 = ItemDefinition.get(this.equipment[i2] - 512).team;
                if(l1 != 0) {
                   this.team = l1;
                }
@@ -301,7 +303,7 @@ public final class Player extends Entity {
                   model_2 = true;
                }
 
-               if(j3 >= 512 && !ItemDef.forID(j3 - 512).method195(this.anInt1702)) {
+               if(j3 >= 512 && !ItemDefinition.get(j3 - 512).method195(this.anInt1702)) {
                   model_2 = true;
                }
             }
@@ -340,7 +342,7 @@ public final class Player extends Entity {
                }
 
                if(i3 >= 512) {
-                  model_4 = ItemDef.forID(i3 - 512).method196(this.anInt1702);				  
+                  model_4 = ItemDefinition.get(i3 - 512).method196(this.anInt1702);
                   if(model_4 != null) {
                      var16[j2++] = model_4;
                   }
@@ -402,7 +404,7 @@ public final class Player extends Entity {
                flag = true;
             }
 
-            if(k >= 512 && !ItemDef.forID(k - 512).method192(this.anInt1702)) {
+            if(k >= 512 && !ItemDefinition.get(k - 512).method192(this.anInt1702)) {
                flag = true;
             }
          }
@@ -425,7 +427,7 @@ public final class Player extends Entity {
                }
 
                if(j1 >= 512) {
-                  model_2 = ItemDef.forID(j1 - 512).method194(this.anInt1702);
+                  model_2 = ItemDefinition.get(j1 - 512).method194(this.anInt1702);
                   if(model_2 != null) {
                      var7[k++] = model_2;
                   }

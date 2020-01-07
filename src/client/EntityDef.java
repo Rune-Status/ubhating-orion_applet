@@ -18,7 +18,7 @@ public final class EntityDef {
    private int[] anIntArray70;
    private static int[] streamIndices;
    private int[] anIntArray73;
-   public int anInt75 = -1;
+   public int headicon = -1;
    private int[] anIntArray76;
    public int anInt77 = -1;
    public long type = -1L;
@@ -44,8 +44,8 @@ public final class EntityDef {
 		// System.out.println("Sprite for: " + i);
 		/*if (k == 0) {
 			Sprite sprite = (Sprite) mruNodes.insertFromCache(i);
-			if (sprite != null && sprite.anInt1444 != j
-					&& sprite.anInt1444 != -1) {
+			if (sprite != null && sprite.max_width != j
+					&& sprite.max_width != -1) {
 				sprite.unlink();
 				sprite = null;
 			}
@@ -95,16 +95,16 @@ public final class EntityDef {
 		int k1 = Texture.textureInt1;
 		int l1 = Texture.textureInt2;
 		int ai[] = Texture.anIntArray1472;
-		int ai1[] = DrawingArea.pixels;
-		int i2 = DrawingArea.width;
-		int j2 = DrawingArea.height;
-		int k2 = DrawingArea.topX;
-		int l2 = DrawingArea.bottomX;
-		int i3 = DrawingArea.topY;
-		int j3 = DrawingArea.bottomY;
+		int ai1[] = Rasterizer2D.pixels;
+		int i2 = Rasterizer2D.width;
+		int j2 = Rasterizer2D.height;
+		int k2 = Rasterizer2D.topX;
+		int l2 = Rasterizer2D.bottomX;
+		int i3 = Rasterizer2D.topY;
+		int j3 = Rasterizer2D.bottomY;
 		Texture.aBoolean1464 = false;
-		DrawingArea.initDrawingArea(maxSize, maxSize, enabledSprite.myPixels);
-		DrawingArea.method336(maxSize, 0, 0, 0, maxSize);
+		Rasterizer2D.initDrawingArea(maxSize, maxSize, enabledSprite.myPixels);
+		Rasterizer2D.method336(maxSize, 0, 0, 0, maxSize);
 		Texture.method364();
 		double zoom = (520*Math.log(npc.aByte68))+520;
 		int k3 = (int) zoom;//zoom
@@ -178,14 +178,14 @@ public final class EntityDef {
 		}
 		if (k == 0)
 			mruNodes.removeFromCache(enabledSprite, i);
-		DrawingArea.initDrawingArea(j2, i2, ai1);
-		DrawingArea.setDrawingArea(j3, k2, l2, i3);
+		Rasterizer2D.initDrawingArea(j2, i2, ai1);
+		Rasterizer2D.set_clip(j3, k2, l2, i3);
 		Texture.textureInt1 = k1;
 		Texture.textureInt2 = l1;
 		Texture.anIntArray1472 = ai;
 		Texture.aBoolean1464 = true;
 		enabledSprite.anInt1445 = maxSize;
-		enabledSprite.anInt1444 = j;
+		enabledSprite.max_width = j;
 		return enabledSprite;
 	}
    
@@ -893,7 +893,7 @@ Model 8: 185//boots
          } else if(i == 101) {
             this.anInt92 = stream.readSignedByte() * 5;
          } else if(i == 102) {
-            this.anInt75 = stream.readUnsignedWord();
+            this.headicon = stream.readUnsignedWord();
          } else if(i == 103) {
             this.anInt79 = stream.readUnsignedWord();
          } else if(i == 106) {

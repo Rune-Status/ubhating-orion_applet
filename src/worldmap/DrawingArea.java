@@ -1,7 +1,7 @@
 package worldmap;
 
 /**
- * Class: DrawingArea.java
+ * Class: Rasterizer2D.java
  * Originally: Class1_Sub1_Sub1.java
  * */
 

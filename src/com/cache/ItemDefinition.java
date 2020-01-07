@@ -1,7 +1,9 @@
-package client;
+package com.cache;
 
 
-public final class ItemDef {
+import client.*;
+
+public final class ItemDefinition {
 
    private byte aByte154;
    public int value;
@@ -9,7 +11,7 @@ public final class ItemDef {
    private int[] alphaColor;
    private int[] alphaLevel;
    public int id = -1;
-   static MRUNodes mruNodes1 = new MRUNodes(100);
+   public static MRUNodes mruNodes1 = new MRUNodes(100);
    public static MRUNodes mruNodes2 = new MRUNodes(50);
    private int[] modifiedModelColors;
    public boolean membersObject;
@@ -22,7 +24,7 @@ public final class ItemDef {
    public String[] groundActions;
    private int modelOffset1;
    public String name;
-   private static ItemDef[] cache;
+   private static ItemDefinition[] cache;
    private int anInt173;
    private int modelID;
    private int anInt175;
@@ -101,10 +103,10 @@ public final class ItemDef {
          i += stream.readUnsignedWord();
       }
 
-      cache = new ItemDef[10];
+      cache = new ItemDefinition[10];
 
       for(k = 0; k < 10; ++k) {
-         cache[k] = new ItemDef();
+         cache[k] = new ItemDefinition();
       }
 
    }
@@ -273,7 +275,7 @@ public final class ItemDef {
 	  this.getModelValues = false;
    }
 
-   public static ItemDef forID(int i) {
+   public static ItemDefinition get(int i) {
       for(int itemDef = 0; itemDef < 10; ++itemDef) {
          if(cache[itemDef].id == i) {
             return cache[itemDef];
@@ -281,7 +283,7 @@ public final class ItemDef {
       }
 
       cacheIndex = (cacheIndex + 1) % 10;
-      ItemDef var2 = cache[cacheIndex];
+      ItemDefinition var2 = cache[cacheIndex];
       stream.currentOffset = streamIndices[i];
       var2.id = i;
       var2.setDefaults();
@@ -531,7 +533,7 @@ Alphas:
    }
 
    private void toNote() {
-      ItemDef itemDef = forID(this.certTemplateID);
+      ItemDefinition itemDef = get(this.certTemplateID);
       this.modelID = itemDef.modelID;
       this.modelZoom = itemDef.modelZoom;
       this.modelRotation1 = itemDef.modelRotation1;
@@ -543,7 +545,7 @@ Alphas:
       this.modifiedModelColors = itemDef.modifiedModelColors;
 	  this.alphaLevel = itemDef.alphaLevel;
       this.alphaColor = itemDef.alphaColor;
-      ItemDef itemDef_1 = forID(this.certID);
+      ItemDefinition itemDef_1 = get(this.certID);
       this.name = itemDef_1.name;
       this.membersObject = itemDef_1.membersObject;
       this.value = itemDef_1.value;
@@ -570,7 +572,7 @@ Alphas:
          }
       }
 
-      ItemDef var22 = forID(i);
+      ItemDefinition var22 = get(i);
       if(var22.stackIDs == null) {
          j = -1;
       }
@@ -585,7 +587,7 @@ Alphas:
          }
 
          if(model != -1) {
-            var22 = forID(model);
+            var22 = get(model);
          }
       }
 
@@ -605,16 +607,16 @@ Alphas:
          int k1 = Texture.textureInt1;
          int l1 = Texture.textureInt2;
          int[] ai = Texture.anIntArray1472;
-         int[] ai1 = DrawingArea.pixels;
-         int i2 = DrawingArea.width;
-         int j2 = DrawingArea.height;
-         int k2 = DrawingArea.topX;
-         int l2 = DrawingArea.bottomX;
-         int i3 = DrawingArea.topY;
-         int j3 = DrawingArea.bottomY;
+         int[] ai1 = Rasterizer2D.pixels;
+         int i2 = Rasterizer2D.width;
+         int j2 = Rasterizer2D.height;
+         int k2 = Rasterizer2D.topX;
+         int l2 = Rasterizer2D.bottomX;
+         int i3 = Rasterizer2D.topY;
+         int j3 = Rasterizer2D.bottomY;
          Texture.aBoolean1464 = false;
-         DrawingArea.initDrawingArea(32, 32, sprite2.myPixels);
-         DrawingArea.method336(32, 0, 0, 0, 32);
+         Rasterizer2D.initDrawingArea(32, 32, sprite2.myPixels);
+         Rasterizer2D.method336(32, 0, 0, 0, 32);
          Texture.method364();
          int k3 = var22.modelZoom;
          if(k == -1) {
@@ -674,12 +676,12 @@ Alphas:
          }
 
          if(var22.certTemplateID != -1) {
-            l5 = var24.anInt1444;
+            l5 = var24.max_width;
             j6 = var24.anInt1445;
-            var24.anInt1444 = 32;
+            var24.max_width = 32;
             var24.anInt1445 = 32;
             var24.drawSprite(0, 0);
-            var24.anInt1444 = l5;
+            var24.max_width = l5;
             var24.anInt1445 = j6;
          }
 
@@ -687,16 +689,16 @@ Alphas:
             mruNodes1.removeFromCache(sprite2, (long)i);
          }
 
-         DrawingArea.initDrawingArea(j2, i2, ai1);
-         DrawingArea.setDrawingArea(j3, k2, l2, i3);
+         Rasterizer2D.initDrawingArea(j2, i2, ai1);
+         Rasterizer2D.set_clip(j3, k2, l2, i3);
          Texture.textureInt1 = k1;
          Texture.textureInt2 = l1;
          Texture.anIntArray1472 = ai;
          Texture.aBoolean1464 = true;
          if(var22.stackable) {
-            sprite2.anInt1444 = 33;
+            sprite2.max_width = 33;
          } else {
-            sprite2.anInt1444 = 32;
+            sprite2.max_width = 32;
          }
 
          sprite2.anInt1445 = j;
@@ -716,7 +718,7 @@ Alphas:
          }
 
          if(model != -1) {
-            return forID(model).method201(1);
+            return get(model).method201(1);
          }
       }
 
@@ -762,7 +764,7 @@ Alphas:
          }
 
          if(model != -1) {
-            return forID(model).method202(1);
+            return get(model).method202(1);
          }
       }
 

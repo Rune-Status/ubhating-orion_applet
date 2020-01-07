@@ -12,12 +12,12 @@ public class Entity extends Animable {
    int anInt1503;
    int anInt1504 = 32;
    int anInt1505 = -1;
-   public String textSpoken;
+   public String entity_message;
    public int height = 200;
    public int turnDirection;
    int anInt1511 = -1;
    int anInt1512 = -1;
-   int anInt1513;
+   int message_color;
    final int[] hitArray = new int[4];
    final int[] hitMarkTypes = new int[4];
    final int[] hitsLoopCycle = new int[4];
@@ -35,11 +35,11 @@ public class Entity extends Animable {
    int anInt1528;
    int anInt1529;
    int anInt1530;
-   int anInt1531;
+   int message_effect;
    public int loopCycleStatus = -1000;
    public int currentHealth;
    public int maxHealth;
-   int textCycle = 100;
+   int message_cycle = 100;
    int anInt1537;
    int anInt1538;
    int anInt1539;

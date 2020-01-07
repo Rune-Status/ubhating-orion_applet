@@ -37,8 +37,8 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
    boolean awtFocus = true;
    int idleTime;
    int clickMode2;
-   public int mouseX;
-   public int mouseY;
+   public int cursor_x;
+   public int cursor_y;
    private int clickMode1;
    private int clickX;
    private int clickY;
@@ -343,8 +343,8 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
 
    public final void mouseExited(MouseEvent mouseevent) {
       this.idleTime = 0;
-      this.mouseX = -1;
-      this.mouseY = -1;
+      this.cursor_x = -1;
+      this.cursor_y = -1;
    }
    
 	void mouseWheelDragged(int param1, int param2) {
@@ -363,8 +363,8 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
 		}
 
 		idleTime = 0;
-		mouseX = x;
-		mouseY = y;
+		cursor_x = x;
+		cursor_y = y;
 		if (mouseWheelDown) {
 			y = mouseWheelX - e.getX();
 			int k = mouseWheelY - e.getY();
@@ -387,8 +387,8 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
       if (System.currentTimeMillis() - clickTime >= 250L
             || Math.abs(saveClickX - i) > 5 || Math.abs(saveClickY - j) > 5) {
             this.idleTime = 0;
-            this.mouseX = i;
-            this.mouseY = j;
+            this.cursor_x = i;
+            this.cursor_y = j;
         }
    }
 
@@ -403,8 +403,8 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
       if (System.currentTimeMillis() - clickTime >= 250L
             || Math.abs(saveClickX - i) > 5 || Math.abs(saveClickY - j) > 5) {
             this.idleTime = 0;
-            this.mouseX = i;
-            this.mouseY = j;
+            this.cursor_x = i;
+            this.cursor_y = j;
       }
    }
 
@@ -574,42 +574,42 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
 		/* Tab interface scrolling */
 		int tabInterfaceID = Client.tabInterfaceIDs[Client.tabID];
 		if (tabInterfaceID != -1) {
-			RSInterface tab = RSInterface.interfaceCache[tabInterfaceID];
+			Widget tab = Widget.cache[tabInterfaceID];
 			offsetX = 765 - 218;
 			offsetY = 503 - 298;
 			for (int index = 0; index < tab.children.length; index++) {
-				if (RSInterface.interfaceCache[tab.children[index]].scrollMax > 0) {
+				if (Widget.cache[tab.children[index]].scrollMax > 0) {
 					childID = index;
 					positionX = tab.childX[index];
 					positionY = tab.childY[index];
-					width = RSInterface.interfaceCache[tab.children[index]].width;
-					height = RSInterface.interfaceCache[tab.children[index]].height;
+					width = Widget.cache[tab.children[index]].width;
+					height = Widget.cache[tab.children[index]].height;
 					break;
 				}
 			}
-			if (mouseX > offsetX + positionX && mouseY > offsetY + positionY && mouseX < offsetX + positionX + width && mouseY < offsetY + positionY + height) {
-				RSInterface.interfaceCache[tab.children[childID]].scrollPosition += rotation * 30;
+			if (cursor_x > offsetX + positionX && cursor_y > offsetY + positionY && cursor_x < offsetX + positionX + width && cursor_y < offsetY + positionY + height) {
+				Widget.cache[tab.children[childID]].scroll_pos += rotation * 30;
 				Client.tabAreaAltered = true;
 				Client.needDrawTabArea = true;
 			}
 		}
 		/* Main interface scrolling */
 		if (Client.openInterfaceID != -1) {
-			RSInterface rsi = RSInterface.interfaceCache[Client.openInterfaceID];
+			Widget rsi = Widget.cache[Client.openInterfaceID];
 			offsetX = 4;
 			offsetY = 4;
 			for (int index = 0; index < rsi.children.length; index++) {
-				if (RSInterface.interfaceCache[rsi.children[index]].scrollMax > 0) {
+				if (Widget.cache[rsi.children[index]].scrollMax > 0) {
 					childID = index;
 					positionX = rsi.childX[index];
 					positionY = rsi.childY[index];
-					width = RSInterface.interfaceCache[rsi.children[index]].width;
-					height = RSInterface.interfaceCache[rsi.children[index]].height;
+					width = Widget.cache[rsi.children[index]].width;
+					height = Widget.cache[rsi.children[index]].height;
 					break;
 				}
 			}
-			if (mouseX > offsetX + positionX && mouseY > offsetY + positionY && mouseX < offsetX + positionX + width && mouseY < offsetY + positionY + height) {
-				RSInterface.interfaceCache[rsi.children[childID]].scrollPosition += rotation * 30;
+			if (cursor_x > offsetX + positionX && cursor_y > offsetY + positionY && cursor_x < offsetX + positionX + width && cursor_y < offsetY + positionY + height) {
+				Widget.cache[rsi.children[childID]].scroll_pos += rotation * 30;
 			}
 		}
 	}
@@ -617,7 +617,7 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
 	public void mouseWheelMoved(MouseWheelEvent event) {
 		int rotation = event.getWheelRotation();
 		handleInterfaceScrolling(event);
-		if(mouseX > 0 && mouseX < 512 && mouseY > 503 - 165 && mouseY < 503 - 25) {
+		if(cursor_x > 0 && cursor_x < 512 && cursor_y > 503 - 165 && cursor_y < 503 - 25) {
 			int scrollPos = Client.anInt1089;
 			scrollPos -= rotation * 30;
 			if(scrollPos < 0)

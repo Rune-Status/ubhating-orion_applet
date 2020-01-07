@@ -1,13 +1,13 @@
 package client;
 
 
-final class NodeSubList {
+final class LinkedList {
 
    private final NodeSub head = new NodeSub();
    private NodeSub current;
 
 
-   public NodeSubList() {
+   public LinkedList() {
       this.head.prevNodeSub = this.head;
       this.head.nextNodeSub = this.head;
    }

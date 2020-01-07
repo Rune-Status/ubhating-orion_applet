@@ -36,7 +36,7 @@ final class RSImageProducer implements ImageProducer, ImageObserver {
    }
 
    public void initDrawingArea() {
-      DrawingArea.initDrawingArea(this.anInt317, this.anInt316, this.anIntArray315);
+      Rasterizer2D.initDrawingArea(this.anInt317, this.anInt316, this.anIntArray315);
    }
 
    public void drawGraphics(int i, Graphics g, int k) {

@@ -1,7 +1,7 @@
 package client;
 
 
-public class DrawingArea extends NodeSub {
+public class Rasterizer2D extends NodeSub {
 
    public static int[] pixels;
    public static int width;
@@ -19,7 +19,7 @@ public class DrawingArea extends NodeSub {
       pixels = ai;
       width = j;
       height = i;
-      setDrawingArea(i, 0, j, 0);
+      set_clip(i, 0, j, 0);
    }
 
    public static void defaultDrawingAreaSize() {
@@ -32,7 +32,7 @@ public class DrawingArea extends NodeSub {
       centerY = bottomX / 2;
    }
 
-   public static void setDrawingArea(int i, int j, int k, int l) {
+   public static void set_clip(int i, int j, int k, int l) {
       if(j < 0) {
          j = 0;
       }

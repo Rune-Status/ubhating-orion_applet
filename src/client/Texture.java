@@ -1,7 +1,7 @@
 package client;
 
 
-final class Texture extends DrawingArea {
+public final class Texture extends Rasterizer2D {
 	
 	public final static int TEXTURE_COUNT = 51;
 
@@ -47,14 +47,14 @@ final class Texture extends DrawingArea {
    }
 
    public static void method364() {
-      anIntArray1472 = new int[DrawingArea.height];
+      anIntArray1472 = new int[Rasterizer2D.height];
 
-      for(int j = 0; j < DrawingArea.height; ++j) {
-         anIntArray1472[j] = DrawingArea.width * j;
+      for(int j = 0; j < Rasterizer2D.height; ++j) {
+         anIntArray1472[j] = Rasterizer2D.width * j;
       }
 
-      textureInt1 = DrawingArea.width / 2;
-      textureInt2 = DrawingArea.height / 2;
+      textureInt1 = Rasterizer2D.width / 2;
+      textureInt2 = Rasterizer2D.height / 2;
    }
 
    public static void method365(int j, int k) {
@@ -354,13 +354,13 @@ final class Texture extends DrawingArea {
       }
 
       if(i <= j && i <= k) {
-         if(i < DrawingArea.bottomY) {
-            if(j > DrawingArea.bottomY) {
-               j = DrawingArea.bottomY;
+         if(i < Rasterizer2D.bottomY) {
+            if(j > Rasterizer2D.bottomY) {
+               j = Rasterizer2D.bottomY;
             }
 
-            if(k > DrawingArea.bottomY) {
-               k = DrawingArea.bottomY;
+            if(k > Rasterizer2D.bottomY) {
+               k = Rasterizer2D.bottomY;
             }
 
             if(j < k) {
@@ -396,21 +396,21 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, i, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
+                           method375(Rasterizer2D.pixels, i, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
                            j1 += j3;
                            i1 += l2;
                            i2 += k3;
                            l1 += i3;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, i, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
+                     method375(Rasterizer2D.pixels, i, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
                      j1 += j3;
                      l += j2;
                      i2 += k3;
                      k1 += k2;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                } else {
                   k -= j;
@@ -426,21 +426,21 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, i, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
+                           method375(Rasterizer2D.pixels, i, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
                            j1 += j3;
                            i1 += l2;
                            i2 += k3;
                            l1 += i3;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, i, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
+                     method375(Rasterizer2D.pixels, i, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
                      j1 += j3;
                      l += j2;
                      i2 += k3;
                      k1 += k2;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                }
             } else {
@@ -476,21 +476,21 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, i, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
+                           method375(Rasterizer2D.pixels, i, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
                            j1 += l2;
                            l += j2;
                            i2 += i3;
                            k1 += k2;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, i, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
+                     method375(Rasterizer2D.pixels, i, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
                      i1 += j3;
                      l += j2;
                      l1 += k3;
                      k1 += k2;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                } else {
                   j -= k;
@@ -506,33 +506,33 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, i, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
+                           method375(Rasterizer2D.pixels, i, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
                            j1 += l2;
                            l += j2;
                            i2 += i3;
                            k1 += k2;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, i, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
+                     method375(Rasterizer2D.pixels, i, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
                      i1 += j3;
                      l += j2;
                      l1 += k3;
                      k1 += k2;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                }
             }
          }
       } else if(j <= k) {
-         if(j < DrawingArea.bottomY) {
-            if(k > DrawingArea.bottomY) {
-               k = DrawingArea.bottomY;
+         if(j < Rasterizer2D.bottomY) {
+            if(k > Rasterizer2D.bottomY) {
+               k = Rasterizer2D.bottomY;
             }
 
-            if(i > DrawingArea.bottomY) {
-               i = DrawingArea.bottomY;
+            if(i > Rasterizer2D.bottomY) {
+               i = Rasterizer2D.bottomY;
             }
 
             if(k < i) {
@@ -568,21 +568,21 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, j, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
+                           method375(Rasterizer2D.pixels, j, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
                            l += j2;
                            j1 += j3;
                            k1 += k2;
                            i2 += k3;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, j, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
+                     method375(Rasterizer2D.pixels, j, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
                      l += j2;
                      i1 += l2;
                      k1 += k2;
                      l1 += i3;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                } else {
                   i -= k;
@@ -598,21 +598,21 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, j, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
+                           method375(Rasterizer2D.pixels, j, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
                            l += j2;
                            j1 += j3;
                            k1 += k2;
                            i2 += k3;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, j, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
+                     method375(Rasterizer2D.pixels, j, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
                      l += j2;
                      i1 += l2;
                      k1 += k2;
                      l1 += i3;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                }
             } else {
@@ -648,21 +648,21 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, j, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
+                           method375(Rasterizer2D.pixels, j, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
                            l += j3;
                            i1 += l2;
                            k1 += k3;
                            l1 += i3;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, j, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
+                     method375(Rasterizer2D.pixels, j, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
                      j1 += j2;
                      i1 += l2;
                      i2 += k2;
                      l1 += i3;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                } else {
                   k -= i;
@@ -678,32 +678,32 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method375(DrawingArea.pixels, j, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
+                           method375(Rasterizer2D.pixels, j, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
                            l += j3;
                            i1 += l2;
                            k1 += k3;
                            l1 += i3;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method375(DrawingArea.pixels, j, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
+                     method375(Rasterizer2D.pixels, j, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
                      j1 += j2;
                      i1 += l2;
                      i2 += k2;
                      l1 += i3;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                }
             }
          }
-      } else if(k < DrawingArea.bottomY) {
-         if(i > DrawingArea.bottomY) {
-            i = DrawingArea.bottomY;
+      } else if(k < Rasterizer2D.bottomY) {
+         if(i > Rasterizer2D.bottomY) {
+            i = Rasterizer2D.bottomY;
          }
 
-         if(j > DrawingArea.bottomY) {
-            j = DrawingArea.bottomY;
+         if(j > Rasterizer2D.bottomY) {
+            j = Rasterizer2D.bottomY;
          }
 
          if(i < j) {
@@ -739,21 +739,21 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method375(DrawingArea.pixels, k, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
+                        method375(Rasterizer2D.pixels, k, i1 >> 16, l >> 16, l1 >> 7, k1 >> 7);
                         i1 += l2;
                         l += j2;
                         l1 += i3;
                         k1 += k2;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method375(DrawingArea.pixels, k, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
+                  method375(Rasterizer2D.pixels, k, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
                   i1 += l2;
                   j1 += j3;
                   l1 += i3;
                   i2 += k3;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             } else {
                j -= i;
@@ -769,21 +769,21 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method375(DrawingArea.pixels, k, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
+                        method375(Rasterizer2D.pixels, k, l >> 16, i1 >> 16, k1 >> 7, l1 >> 7);
                         i1 += l2;
                         l += j2;
                         l1 += i3;
                         k1 += k2;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method375(DrawingArea.pixels, k, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
+                  method375(Rasterizer2D.pixels, k, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
                   i1 += l2;
                   j1 += j3;
                   l1 += i3;
                   i2 += k3;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             }
          } else {
@@ -819,21 +819,21 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method375(DrawingArea.pixels, k, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
+                        method375(Rasterizer2D.pixels, k, i1 >> 16, j1 >> 16, l1 >> 7, i2 >> 7);
                         i1 += j2;
                         j1 += j3;
                         l1 += k2;
                         i2 += k3;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method375(DrawingArea.pixels, k, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
+                  method375(Rasterizer2D.pixels, k, l >> 16, j1 >> 16, k1 >> 7, i2 >> 7);
                   l += l2;
                   j1 += j3;
                   k1 += i3;
                   i2 += k3;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             } else {
                i -= j;
@@ -849,21 +849,21 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method375(DrawingArea.pixels, k, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
+                        method375(Rasterizer2D.pixels, k, j1 >> 16, i1 >> 16, i2 >> 7, l1 >> 7);
                         i1 += j2;
                         j1 += j3;
                         l1 += k2;
                         i2 += k3;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method375(DrawingArea.pixels, k, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
+                  method375(Rasterizer2D.pixels, k, j1 >> 16, l >> 16, i2 >> 7, k1 >> 7);
                   l += l2;
                   j1 += j3;
                   k1 += i3;
                   i2 += k3;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             }
          }
@@ -875,8 +875,8 @@ final class Texture extends DrawingArea {
 		int k;
 		int l1 = 0;
 		if (aBoolean1462) {
-			if (i1 > DrawingArea.centerX)
-				i1 = DrawingArea.centerX;
+			if (i1 > Rasterizer2D.centerX)
+				i1 = Rasterizer2D.centerX;
 			if (l < 0) {
 				j1 -= l * l1;
 				l = 0;
@@ -989,8 +989,8 @@ final class Texture extends DrawingArea {
                i2 = 0;
             }
 
-            if(i1 > DrawingArea.centerX) {
-               i1 = DrawingArea.centerX;
+            if(i1 > Rasterizer2D.centerX) {
+               i1 = Rasterizer2D.centerX;
             }
 
             if(l < 0) {
@@ -1077,8 +1077,8 @@ final class Texture extends DrawingArea {
       } else if(l < i1) {
          i2 = (k1 - j1) / (i1 - l);
          if(aBoolean1462) {
-            if(i1 > DrawingArea.centerX) {
-               i1 = DrawingArea.centerX;
+            if(i1 > Rasterizer2D.centerX) {
+               i1 = Rasterizer2D.centerX;
             }
 
             if(l < 0) {
@@ -1133,13 +1133,13 @@ final class Texture extends DrawingArea {
       }
 
       if(i <= j && i <= k) {
-         if(i < DrawingArea.bottomY) {
-            if(j > DrawingArea.bottomY) {
-               j = DrawingArea.bottomY;
+         if(i < Rasterizer2D.bottomY) {
+            if(j > Rasterizer2D.bottomY) {
+               j = Rasterizer2D.bottomY;
             }
 
-            if(k > DrawingArea.bottomY) {
-               k = DrawingArea.bottomY;
+            if(k > Rasterizer2D.bottomY) {
+               k = Rasterizer2D.bottomY;
             }
 
             if(j < k) {
@@ -1170,17 +1170,17 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, i, k1, i1 >> 16, j1 >> 16);
+                           method377(Rasterizer2D.pixels, i, k1, i1 >> 16, j1 >> 16);
                            j1 += j2;
                            i1 += i2;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, i, k1, l >> 16, j1 >> 16);
+                     method377(Rasterizer2D.pixels, i, k1, l >> 16, j1 >> 16);
                      j1 += j2;
                      l += l1;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                } else {
                   k -= j;
@@ -1196,17 +1196,17 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, i, k1, j1 >> 16, i1 >> 16);
+                           method377(Rasterizer2D.pixels, i, k1, j1 >> 16, i1 >> 16);
                            j1 += j2;
                            i1 += i2;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, i, k1, j1 >> 16, l >> 16);
+                     method377(Rasterizer2D.pixels, i, k1, j1 >> 16, l >> 16);
                      j1 += j2;
                      l += l1;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                }
             } else {
@@ -1237,17 +1237,17 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, i, k1, l >> 16, j1 >> 16);
+                           method377(Rasterizer2D.pixels, i, k1, l >> 16, j1 >> 16);
                            j1 += i2;
                            l += l1;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, i, k1, l >> 16, i1 >> 16);
+                     method377(Rasterizer2D.pixels, i, k1, l >> 16, i1 >> 16);
                      i1 += j2;
                      l += l1;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                } else {
                   j -= k;
@@ -1263,29 +1263,29 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, i, k1, j1 >> 16, l >> 16);
+                           method377(Rasterizer2D.pixels, i, k1, j1 >> 16, l >> 16);
                            j1 += i2;
                            l += l1;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, i, k1, i1 >> 16, l >> 16);
+                     method377(Rasterizer2D.pixels, i, k1, i1 >> 16, l >> 16);
                      i1 += j2;
                      l += l1;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                   }
                }
             }
          }
       } else if(j <= k) {
-         if(j < DrawingArea.bottomY) {
-            if(k > DrawingArea.bottomY) {
-               k = DrawingArea.bottomY;
+         if(j < Rasterizer2D.bottomY) {
+            if(k > Rasterizer2D.bottomY) {
+               k = Rasterizer2D.bottomY;
             }
 
-            if(i > DrawingArea.bottomY) {
-               i = DrawingArea.bottomY;
+            if(i > Rasterizer2D.bottomY) {
+               i = Rasterizer2D.bottomY;
             }
 
             if(k < i) {
@@ -1316,17 +1316,17 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, j, k1, j1 >> 16, l >> 16);
+                           method377(Rasterizer2D.pixels, j, k1, j1 >> 16, l >> 16);
                            l += l1;
                            j1 += j2;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, j, k1, i1 >> 16, l >> 16);
+                     method377(Rasterizer2D.pixels, j, k1, i1 >> 16, l >> 16);
                      l += l1;
                      i1 += i2;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                } else {
                   i -= k;
@@ -1342,17 +1342,17 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, j, k1, l >> 16, j1 >> 16);
+                           method377(Rasterizer2D.pixels, j, k1, l >> 16, j1 >> 16);
                            l += l1;
                            j1 += j2;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, j, k1, l >> 16, i1 >> 16);
+                     method377(Rasterizer2D.pixels, j, k1, l >> 16, i1 >> 16);
                      l += l1;
                      i1 += i2;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                }
             } else {
@@ -1383,17 +1383,17 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, j, k1, l >> 16, i1 >> 16);
+                           method377(Rasterizer2D.pixels, j, k1, l >> 16, i1 >> 16);
                            l += j2;
                            i1 += i2;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, j, k1, j1 >> 16, i1 >> 16);
+                     method377(Rasterizer2D.pixels, j, k1, j1 >> 16, i1 >> 16);
                      j1 += l1;
                      i1 += i2;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                } else {
                   k -= i;
@@ -1409,28 +1409,28 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method377(DrawingArea.pixels, j, k1, i1 >> 16, l >> 16);
+                           method377(Rasterizer2D.pixels, j, k1, i1 >> 16, l >> 16);
                            l += j2;
                            i1 += i2;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                         }
                      }
 
-                     method377(DrawingArea.pixels, j, k1, i1 >> 16, j1 >> 16);
+                     method377(Rasterizer2D.pixels, j, k1, i1 >> 16, j1 >> 16);
                      j1 += l1;
                      i1 += i2;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                   }
                }
             }
          }
-      } else if(k < DrawingArea.bottomY) {
-         if(i > DrawingArea.bottomY) {
-            i = DrawingArea.bottomY;
+      } else if(k < Rasterizer2D.bottomY) {
+         if(i > Rasterizer2D.bottomY) {
+            i = Rasterizer2D.bottomY;
          }
 
-         if(j > DrawingArea.bottomY) {
-            j = DrawingArea.bottomY;
+         if(j > Rasterizer2D.bottomY) {
+            j = Rasterizer2D.bottomY;
          }
 
          if(i < j) {
@@ -1461,17 +1461,17 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method377(DrawingArea.pixels, k, k1, i1 >> 16, l >> 16);
+                        method377(Rasterizer2D.pixels, k, k1, i1 >> 16, l >> 16);
                         i1 += i2;
                         l += l1;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method377(DrawingArea.pixels, k, k1, i1 >> 16, j1 >> 16);
+                  method377(Rasterizer2D.pixels, k, k1, i1 >> 16, j1 >> 16);
                   i1 += i2;
                   j1 += j2;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             } else {
                j -= i;
@@ -1487,17 +1487,17 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method377(DrawingArea.pixels, k, k1, l >> 16, i1 >> 16);
+                        method377(Rasterizer2D.pixels, k, k1, l >> 16, i1 >> 16);
                         i1 += i2;
                         l += l1;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method377(DrawingArea.pixels, k, k1, j1 >> 16, i1 >> 16);
+                  method377(Rasterizer2D.pixels, k, k1, j1 >> 16, i1 >> 16);
                   i1 += i2;
                   j1 += j2;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             }
          } else {
@@ -1528,17 +1528,17 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method377(DrawingArea.pixels, k, k1, i1 >> 16, j1 >> 16);
+                        method377(Rasterizer2D.pixels, k, k1, i1 >> 16, j1 >> 16);
                         i1 += l1;
                         j1 += j2;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method377(DrawingArea.pixels, k, k1, l >> 16, j1 >> 16);
+                  method377(Rasterizer2D.pixels, k, k1, l >> 16, j1 >> 16);
                   l += i2;
                   j1 += j2;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             } else {
                i -= j;
@@ -1554,17 +1554,17 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method377(DrawingArea.pixels, k, k1, j1 >> 16, i1 >> 16);
+                        method377(Rasterizer2D.pixels, k, k1, j1 >> 16, i1 >> 16);
                         i1 += l1;
                         j1 += j2;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                      }
                   }
 
-                  method377(DrawingArea.pixels, k, k1, j1 >> 16, l >> 16);
+                  method377(Rasterizer2D.pixels, k, k1, j1 >> 16, l >> 16);
                   l += i2;
                   j1 += j2;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                }
             }
          }
@@ -1573,8 +1573,8 @@ final class Texture extends DrawingArea {
 
    private static void method377(int[] ai, int i, int j, int l, int i1) {
       if(aBoolean1462) {
-         if(i1 > DrawingArea.centerX) {
-            i1 = DrawingArea.centerX;
+         if(i1 > Rasterizer2D.centerX) {
+            i1 = Rasterizer2D.centerX;
          }
 
          if(l < 0) {
@@ -1676,13 +1676,13 @@ final class Texture extends DrawingArea {
 
       int l9;
       if(i <= j && i <= k) {
-         if(i < DrawingArea.bottomY) {
-            if(j > DrawingArea.bottomY) {
-               j = DrawingArea.bottomY;
+         if(i < Rasterizer2D.bottomY) {
+            if(j > Rasterizer2D.bottomY) {
+               j = Rasterizer2D.bottomY;
             }
 
-            if(k > DrawingArea.bottomY) {
-               k = DrawingArea.bottomY;
+            if(k > Rasterizer2D.bottomY) {
+               k = Rasterizer2D.bottomY;
             }
 
             if(j < k) {
@@ -1722,24 +1722,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, i, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, i, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                            j1 += i8;
                            i1 += k7;
                            i2 += j8;
                            l1 += l7;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                      j1 += i8;
                      l += i7;
                      i2 += j8;
                      k1 += j7;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -1758,24 +1758,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, i, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, i, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                            j1 += i8;
                            i1 += k7;
                            i2 += j8;
                            l1 += l7;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                      j1 += i8;
                      l += i7;
                      i2 += j8;
                      k1 += j7;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -1818,24 +1818,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, i, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                            j1 += k7;
                            l += i7;
                            i2 += l7;
                            k1 += j7;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, i, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, i, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                      i1 += i8;
                      l += i7;
                      l1 += j8;
                      k1 += j7;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -1854,24 +1854,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, i, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                            j1 += k7;
                            l += i7;
                            i2 += l7;
                            k1 += j7;
-                           i += DrawingArea.width;
+                           i += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, i, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, i, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                      i1 += i8;
                      l += i7;
                      l1 += j8;
                      k1 += j7;
-                     i += DrawingArea.width;
+                     i += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -1880,13 +1880,13 @@ final class Texture extends DrawingArea {
             }
          }
       } else if(j <= k) {
-         if(j < DrawingArea.bottomY) {
-            if(k > DrawingArea.bottomY) {
-               k = DrawingArea.bottomY;
+         if(j < Rasterizer2D.bottomY) {
+            if(k > Rasterizer2D.bottomY) {
+               k = Rasterizer2D.bottomY;
             }
 
-            if(i > DrawingArea.bottomY) {
-               i = DrawingArea.bottomY;
+            if(i > Rasterizer2D.bottomY) {
+               i = Rasterizer2D.bottomY;
             }
 
             if(k < i) {
@@ -1926,24 +1926,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, j, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, j, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                            l += i7;
                            j1 += i8;
                            k1 += j7;
                            i2 += j8;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                      l += i7;
                      i1 += k7;
                      k1 += j7;
                      l1 += l7;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -1962,24 +1962,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, j, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, j, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                            l += i7;
                            j1 += i8;
                            k1 += j7;
                            i2 += j8;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                      l += i7;
                      i1 += k7;
                      k1 += j7;
                      l1 += l7;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -2022,24 +2022,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, j, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                            l += i8;
                            i1 += k7;
                            k1 += j8;
                            l1 += l7;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, j, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, j, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                      j1 += i7;
                      i1 += k7;
                      i2 += j7;
                      l1 += l7;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -2058,24 +2058,24 @@ final class Texture extends DrawingArea {
                               return;
                            }
 
-                           method379(DrawingArea.pixels, ai, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                           method379(Rasterizer2D.pixels, ai, j, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                            l += i8;
                            i1 += k7;
                            k1 += j8;
                            l1 += l7;
-                           j += DrawingArea.width;
+                           j += Rasterizer2D.width;
                            l4 += j5;
                            k5 += i6;
                            j6 += l6;
                         }
                      }
 
-                     method379(DrawingArea.pixels, ai, j, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                     method379(Rasterizer2D.pixels, ai, j, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                      j1 += i7;
                      i1 += k7;
                      i2 += j7;
                      l1 += l7;
-                     j += DrawingArea.width;
+                     j += Rasterizer2D.width;
                      l4 += j5;
                      k5 += i6;
                      j6 += l6;
@@ -2083,13 +2083,13 @@ final class Texture extends DrawingArea {
                }
             }
          }
-      } else if(k < DrawingArea.bottomY) {
-         if(i > DrawingArea.bottomY) {
-            i = DrawingArea.bottomY;
+      } else if(k < Rasterizer2D.bottomY) {
+         if(i > Rasterizer2D.bottomY) {
+            i = Rasterizer2D.bottomY;
          }
 
-         if(j > DrawingArea.bottomY) {
-            j = DrawingArea.bottomY;
+         if(j > Rasterizer2D.bottomY) {
+            j = Rasterizer2D.bottomY;
          }
 
          if(i < j) {
@@ -2129,24 +2129,24 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method379(DrawingArea.pixels, ai, k, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                        method379(Rasterizer2D.pixels, ai, k, i1 >> 16, l >> 16, l1 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                         i1 += k7;
                         l += i7;
                         l1 += l7;
                         k1 += j7;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
                      }
                   }
 
-                  method379(DrawingArea.pixels, ai, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                  method379(Rasterizer2D.pixels, ai, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                   i1 += k7;
                   j1 += i8;
                   l1 += l7;
                   i2 += j8;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                   l4 += j5;
                   k5 += i6;
                   j6 += l6;
@@ -2165,24 +2165,24 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method379(DrawingArea.pixels, ai, k, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                        method379(Rasterizer2D.pixels, ai, k, l >> 16, i1 >> 16, k1 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                         i1 += k7;
                         l += i7;
                         l1 += l7;
                         k1 += j7;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
                      }
                   }
 
-                  method379(DrawingArea.pixels, ai, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                  method379(Rasterizer2D.pixels, ai, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                   i1 += k7;
                   j1 += i8;
                   l1 += l7;
                   i2 += j8;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                   l4 += j5;
                   k5 += i6;
                   j6 += l6;
@@ -2225,24 +2225,24 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method379(DrawingArea.pixels, ai, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                        method379(Rasterizer2D.pixels, ai, k, i1 >> 16, j1 >> 16, l1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                         i1 += i7;
                         j1 += i8;
                         l1 += j7;
                         i2 += j8;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
                      }
                   }
 
-                  method379(DrawingArea.pixels, ai, k, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
+                  method379(Rasterizer2D.pixels, ai, k, l >> 16, j1 >> 16, k1 >> 8, i2 >> 8, l4, k5, j6, i5, l5, k6);
                   l += k7;
                   j1 += i8;
                   k1 += l7;
                   i2 += j8;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                   l4 += j5;
                   k5 += i6;
                   j6 += l6;
@@ -2261,24 +2261,24 @@ final class Texture extends DrawingArea {
                            return;
                         }
 
-                        method379(DrawingArea.pixels, ai, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
+                        method379(Rasterizer2D.pixels, ai, k, j1 >> 16, i1 >> 16, i2 >> 8, l1 >> 8, l4, k5, j6, i5, l5, k6);
                         i1 += i7;
                         j1 += i8;
                         l1 += j7;
                         i2 += j8;
-                        k += DrawingArea.width;
+                        k += Rasterizer2D.width;
                         l4 += j5;
                         k5 += i6;
                         j6 += l6;
                      }
                   }
 
-                  method379(DrawingArea.pixels, ai, k, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
+                  method379(Rasterizer2D.pixels, ai, k, j1 >> 16, l >> 16, i2 >> 8, k1 >> 8, l4, k5, j6, i5, l5, k6);
                   l += k7;
                   j1 += i8;
                   k1 += l7;
                   i2 += j8;
-                  k += DrawingArea.width;
+                  k += Rasterizer2D.width;
                   l4 += j5;
                   k5 += i6;
                   j6 += l6;
@@ -2296,8 +2296,8 @@ final class Texture extends DrawingArea {
          int k3;
          if(aBoolean1462) {
             j3 = (k1 - j1) / (i1 - l);
-            if(i1 > DrawingArea.centerX) {
-               i1 = DrawingArea.centerX;
+            if(i1 > Rasterizer2D.centerX) {
+               i1 = Rasterizer2D.centerX;
             }
 
             if(l < 0) {

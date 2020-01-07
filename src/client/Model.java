@@ -71,8 +71,8 @@ public final class Model extends Animable {
    public static int anInt1686;
    public static int anInt1687;
    public static final int[] anIntArray1688 = new int[1000];
-   public static int[] modelIntArray1 = Texture.anIntArray1470;
-   public static int[] modelIntArray2 = Texture.anIntArray1471;
+   public static int[] SINE = Texture.anIntArray1470;
+   public static int[] COSINE = Texture.anIntArray1471;
    private static int[] modelIntArray3 = Texture.anIntArray1482;
    private static int[] modelIntArray4 = Texture.anIntArray1469;
 
@@ -971,8 +971,8 @@ public final class Model extends Animable {
       anIntArray1675 = null;
       anIntArray1676 = null;
       anIntArray1677 = null;
-      modelIntArray1 = null;
-      modelIntArray2 = null;
+      SINE = null;
+      COSINE = null;
       modelIntArray3 = null;
       modelIntArray4 = null;
    }
@@ -2055,24 +2055,24 @@ public final class Model extends Animable {
                      int l7;
                      int j9;
                      if(i7 != 0) {
-                        l7 = modelIntArray1[i7];
-                        k8 = modelIntArray2[i7];
+                        l7 = SINE[i7];
+                        k8 = COSINE[i7];
                         j9 = this.anIntArray1628[element] * l7 + this.anIntArray1627[element] * k8 >> 16;
                         this.anIntArray1628[element] = this.anIntArray1628[element] * k8 - this.anIntArray1627[element] * l7 >> 16;
                         this.anIntArray1627[element] = j9;
                      }
 
                      if(k6 != 0) {
-                        l7 = modelIntArray1[k6];
-                        k8 = modelIntArray2[k6];
+                        l7 = SINE[k6];
+                        k8 = COSINE[k6];
                         j9 = this.anIntArray1628[element] * k8 - this.anIntArray1629[element] * l7 >> 16;
                         this.anIntArray1629[element] = this.anIntArray1628[element] * l7 + this.anIntArray1629[element] * k8 >> 16;
                         this.anIntArray1628[element] = j9;
                      }
 
                      if(l6 != 0) {
-                        l7 = modelIntArray1[l6];
-                        k8 = modelIntArray2[l6];
+                        l7 = SINE[l6];
+                        k8 = COSINE[l6];
                         j9 = this.anIntArray1629[element] * l7 + this.anIntArray1627[element] * k8 >> 16;
                         this.anIntArray1629[element] = this.anIntArray1629[element] * k8 - this.anIntArray1627[element] * l7 >> 16;
                         this.anIntArray1627[element] = j9;
@@ -2146,8 +2146,8 @@ public final class Model extends Animable {
    }
 
    public void method474(int i) {
-      int k = modelIntArray1[i];
-      int l = modelIntArray2[i];
+      int k = SINE[i];
+      int l = COSINE[i];
 
       for(int i1 = 0; i1 < this.anInt1626; ++i1) {
          int j1 = this.anIntArray1628[i1] * l - this.anIntArray1629[i1] * k >> 16;
@@ -2420,14 +2420,14 @@ public final class Model extends Animable {
       byte i = 0;
       int l1 = Texture.textureInt1;
       int i2 = Texture.textureInt2;
-      int j2 = modelIntArray1[i];
-      int k2 = modelIntArray2[i];
-      int l2 = modelIntArray1[j];
-      int i3 = modelIntArray2[j];
-      int j3 = modelIntArray1[k];
-      int k3 = modelIntArray2[k];
-      int l3 = modelIntArray1[l];
-      int i4 = modelIntArray2[l];
+      int j2 = SINE[i];
+      int k2 = COSINE[i];
+      int l2 = SINE[j];
+      int i3 = COSINE[j];
+      int j3 = SINE[k];
+      int k3 = COSINE[k];
+      int l3 = SINE[l];
+      int i4 = COSINE[l];
       int j4 = j1 * l3 + k1 * i4 >> 16;
 
       for(int _ex = 0; _ex < this.anInt1626; ++_ex) {
@@ -2484,16 +2484,16 @@ public final class Model extends Animable {
       if(i3 > 50 && k2 < 3500) {
          int j3 = l1 * l + j1 * i1 >> 16;
          int k3 = j3 - this.anInt1650 << 9;
-         if(k3 / i3 < DrawingArea.centerY) {
+         if(k3 / i3 < Rasterizer2D.centerY) {
             int l3 = j3 + this.anInt1650 << 9;
-            if(l3 / i3 > -DrawingArea.centerY) {
+            if(l3 / i3 > -Rasterizer2D.centerY) {
                int i4 = k1 * k - j2 * j >> 16;
                int j4 = this.anInt1650 * j >> 16;
                int k4 = i4 + j4 << 9;
-               if(k4 / i3 > -DrawingArea.anInt1387) {
+               if(k4 / i3 > -Rasterizer2D.anInt1387) {
                   int l4 = j4 + (super.modelHeight * k >> 16);
                   int i5 = i4 - l4 << 9;
-                  if(i5 / i3 < DrawingArea.anInt1387) {
+                  if(i5 / i3 < Rasterizer2D.anInt1387) {
                      int j5 = l2 + (super.modelHeight * j >> 16);
                      boolean flag = false;
                      if(k2 - j5 <= 50) {
@@ -2542,8 +2542,8 @@ public final class Model extends Animable {
                      l6 = 0;
                      int i7 = 0;
                      if(i != 0) {
-                        l6 = modelIntArray1[i];
-                        i7 = modelIntArray2[i];
+                        l6 = SINE[i];
+                        i7 = COSINE[i];
                      }
 
                      for(int _ex = 0; _ex < this.anInt1626; ++_ex) {
@@ -2627,7 +2627,7 @@ public final class Model extends Animable {
 
                if((k6 - ai2) * (anIntArray1666[i6] - anIntArray1666[j4]) - (anIntArray1666[k3] - anIntArray1666[j4]) * (ai3 - ai2) > 0) {
                   aBooleanArray1664[l2] = false;
-                  aBooleanArray1663[l2] = k6 < 0 || ai2 < 0 || ai3 < 0 || k6 > DrawingArea.centerX || ai2 > DrawingArea.centerX || ai3 > DrawingArea.centerX;
+                  aBooleanArray1663[l2] = k6 < 0 || ai2 < 0 || ai3 < 0 || k6 > Rasterizer2D.centerX || ai2 > Rasterizer2D.centerX || ai3 > Rasterizer2D.centerX;
                   i5 = (anIntArray1667[k3] + anIntArray1667[j4] + anIntArray1667[i6]) / 3 + this.anInt1653;
                   anIntArrayArray1672[i5][anIntArray1671[i5]++] = l2;
                }
@@ -2930,7 +2930,7 @@ public final class Model extends Animable {
          int j12;
          int j11;
          if(l == 3) {
-            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > DrawingArea.centerX || j4 > DrawingArea.centerX || j5 > DrawingArea.centerX) {
+            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > Rasterizer2D.centerX || j4 > Rasterizer2D.centerX || j5 > Rasterizer2D.centerX) {
                Texture.aBoolean1462 = true;
             }
 
@@ -2960,7 +2960,7 @@ public final class Model extends Animable {
          }
 
          if(l == 4) {
-            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > DrawingArea.centerX || j4 > DrawingArea.centerX || j5 > DrawingArea.centerX || anIntArray1678[3] < 0 || anIntArray1678[3] > DrawingArea.centerX) {
+            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > Rasterizer2D.centerX || j4 > Rasterizer2D.centerX || j5 > Rasterizer2D.centerX || anIntArray1678[3] < 0 || anIntArray1678[3] > Rasterizer2D.centerX) {
                Texture.aBoolean1462 = true;
             }
 

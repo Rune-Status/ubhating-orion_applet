@@ -16,8 +16,8 @@ final class MouseDetection implements Runnable {
          Object _ex = this.syncObject;
          synchronized(this.syncObject) {
             if(this.coordsIndex < 500) {
-               this.coordsX[this.coordsIndex] = this.clientInstance.mouseX;
-               this.coordsY[this.coordsIndex] = this.clientInstance.mouseY;
+               this.coordsX[this.coordsIndex] = this.clientInstance.cursor_x;
+               this.coordsY[this.coordsIndex] = this.clientInstance.cursor_y;
                ++this.coordsIndex;
             }
          }

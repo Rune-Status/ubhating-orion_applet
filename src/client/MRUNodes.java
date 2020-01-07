@@ -7,7 +7,7 @@ public final class MRUNodes {
    private final int initialCount;
    private int spaceLeft;
    private final NodeCache nodeCache;
-   private final NodeSubList nodeSubList = new NodeSubList();
+   private final LinkedList linkedList = new LinkedList();
 
 
    public MRUNodes(int i) {
@@ -19,7 +19,7 @@ public final class MRUNodes {
    public NodeSub insertFromCache(long l) {
       NodeSub nodeSub = (NodeSub)this.nodeCache.findNodeByID(l);
       if(nodeSub != null) {
-         this.nodeSubList.insertHead(nodeSub);
+         this.linkedList.insertHead(nodeSub);
       }
 
       return nodeSub;
@@ -28,11 +28,11 @@ public final class MRUNodes {
    public void removeFromCache(NodeSub nodeSub, long l) {
       try {
          if(this.spaceLeft == 0) {
-            NodeSub runtimeexception = this.nodeSubList.popTail();
+            NodeSub runtimeexception = this.linkedList.popTail();
             runtimeexception.unlink();
             runtimeexception.unlinkSub();
             if(runtimeexception == this.emptyNodeSub) {
-               NodeSub nodeSub_2 = this.nodeSubList.popTail();
+               NodeSub nodeSub_2 = this.linkedList.popTail();
                nodeSub_2.unlink();
                nodeSub_2.unlinkSub();
             }
@@ -41,7 +41,7 @@ public final class MRUNodes {
          }
 
          this.nodeCache.removeFromCache(nodeSub, l);
-         this.nodeSubList.insertHead(nodeSub);
+         this.linkedList.insertHead(nodeSub);
       } catch (RuntimeException var6) {
          SignLink.reporterror("47547, " + nodeSub + ", " + l + ", " + 2 + ", " + var6.toString());
          throw new RuntimeException();
@@ -50,7 +50,7 @@ public final class MRUNodes {
 
    public void unlinkAll() {
       while(true) {
-         NodeSub nodeSub = this.nodeSubList.popTail();
+         NodeSub nodeSub = this.linkedList.popTail();
          if(nodeSub == null) {
             this.spaceLeft = this.initialCount;
             return;

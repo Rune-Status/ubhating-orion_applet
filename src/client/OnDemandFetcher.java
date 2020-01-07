@@ -37,7 +37,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
    private final NodeList aClass19_1358 = new NodeList();
    private final byte[] gzipInputBuffer = new byte['\ufde8'];
    private int[] anIntArray1360;
-   private final NodeSubList nodeSubList = new NodeSubList();
+   private final LinkedList linkedList = new LinkedList();
    private InputStream inputStream;
    private Socket socket;
    //private final int[][] versions = new int[4][];
@@ -317,9 +317,9 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
    }
 
    public int getNodeCount() {
-      NodeSubList var1 = this.nodeSubList;
-      synchronized(this.nodeSubList) {
-         return this.nodeSubList.getNodeCount();
+      LinkedList var1 = this.linkedList;
+      synchronized(this.linkedList) {
+         return this.linkedList.getNodeCount();
       }
    }
 
@@ -405,10 +405,10 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
    /*public void method558(int i, int j) {
       if(i >= 0 && i <= this.versions.length && j >= 0 && j <= this.versions[i].length) {
          if(this.versions[i][j] != 0) {
-            NodeSubList var3 = this.nodeSubList;
-            synchronized(this.nodeSubList) {
+            LinkedList var3 = this.linkedList;
+            synchronized(this.linkedList) {
                OnDemandData onDemandData_1;
-               for(onDemandData_1 = (OnDemandData)this.nodeSubList.reverseGetFirst(); onDemandData_1 != null; onDemandData_1 = (OnDemandData)this.nodeSubList.reverseGetNext()) {
+               for(onDemandData_1 = (OnDemandData)this.linkedList.reverseGetFirst(); onDemandData_1 != null; onDemandData_1 = (OnDemandData)this.linkedList.reverseGetNext()) {
                   if(onDemandData_1.dataType == i && onDemandData_1.ID == j) {
                      return;
                   }
@@ -423,7 +423,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
                   this.aClass19_1370.insertHead(onDemandData_1);
                }
 
-               this.nodeSubList.insertHead(onDemandData_1);
+               this.linkedList.insertHead(onDemandData_1);
             }
          }
       }
@@ -435,9 +435,9 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 			return;
 		if(versions[i][j] == 0)
 			return;*/
-		synchronized(nodeSubList)
+		synchronized(linkedList)
 		{
-			for(OnDemandData onDemandData = (OnDemandData) nodeSubList.reverseGetFirst(); onDemandData != null; onDemandData = (OnDemandData) nodeSubList.reverseGetNext())
+			for(OnDemandData onDemandData = (OnDemandData) linkedList.reverseGetFirst(); onDemandData != null; onDemandData = (OnDemandData) linkedList.reverseGetNext())
 				if(onDemandData.dataType == i && onDemandData.ID == j)
 					return;
 
@@ -449,7 +449,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
 			{
 				aClass19_1370.insertHead(onDemandData_1);
 			}
-			nodeSubList.insertHead(onDemandData_1);
+			linkedList.insertHead(onDemandData_1);
 		}
 	}
 
@@ -613,8 +613,8 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
       if(onDemandData == null) {
          return null;
       } else {
-         NodeSubList i1 = this.nodeSubList;
-         synchronized(this.nodeSubList) {
+         LinkedList i1 = this.linkedList;
+         synchronized(this.linkedList) {
             onDemandData.unlinkSub();
          }
 

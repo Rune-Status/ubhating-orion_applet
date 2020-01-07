@@ -7,7 +7,7 @@ import java.awt.image.*;
 import java.io.File;
 import java.util.Hashtable;
 
-public final class Sprite extends DrawingArea {
+public final class Sprite extends Rasterizer2D {
 
     public static String location = SignLink.findcachedir() + "Sprites/";
 
@@ -16,12 +16,12 @@ public final class Sprite extends DrawingArea {
     public int myHeight;
     public int anInt1442;
     public int anInt1443;
-    public int anInt1444;
+    public int max_width;
     public int anInt1445;
 
     public Sprite(int i, int j) {
         this.myPixels = new int[i * j];
-        this.myWidth = this.anInt1444 = i;
+        this.myWidth = this.max_width = i;
         this.myHeight = this.anInt1445 = j;
         this.anInt1442 = this.anInt1443 = 0;
     }
@@ -84,7 +84,7 @@ public final class Sprite extends DrawingArea {
             ImageIcon sprite = new ImageIcon(image);
             myWidth = sprite.getIconWidth();
             myHeight = sprite.getIconHeight();
-            anInt1444 = myWidth;
+            max_width = myWidth;
             anInt1445 = myHeight;
             anInt1442 = 0;
             anInt1443 = 0;
@@ -107,7 +107,7 @@ public final class Sprite extends DrawingArea {
             mediatracker.waitForAll();
             this.myWidth = _ex.getWidth(component);
             this.myHeight = _ex.getHeight(component);
-            this.anInt1444 = this.myWidth;
+            this.max_width = this.myWidth;
             this.anInt1445 = this.myHeight;
             this.anInt1442 = 0;
             this.anInt1443 = 0;
@@ -219,39 +219,39 @@ public final class Sprite extends DrawingArea {
         k--;
         i += anInt1442;
         k += anInt1443;
-        int l = i + k * DrawingArea.width;
+        int l = i + k * Rasterizer2D.width;
         int i1 = 0;
         int j1 = tempHeight;
         int k1 = tempWidth;
-        int l1 = DrawingArea.width - k1;
+        int l1 = Rasterizer2D.width - k1;
         int i2 = 0;
-        if (k < DrawingArea.topY) {
-            int j2 = DrawingArea.topY - k;
+        if (k < Rasterizer2D.topY) {
+            int j2 = Rasterizer2D.topY - k;
             j1 -= j2;
-            k = DrawingArea.topY;
+            k = Rasterizer2D.topY;
             i1 += j2 * k1;
-            l += j2 * DrawingArea.width;
+            l += j2 * Rasterizer2D.width;
         }
-        if (k + j1 > DrawingArea.bottomY) {
-            j1 -= (k + j1) - DrawingArea.bottomY;
+        if (k + j1 > Rasterizer2D.bottomY) {
+            j1 -= (k + j1) - Rasterizer2D.bottomY;
         }
-        if (i < DrawingArea.topX) {
-            int k2 = DrawingArea.topX - i;
+        if (i < Rasterizer2D.topX) {
+            int k2 = Rasterizer2D.topX - i;
             k1 -= k2;
-            i = DrawingArea.topX;
+            i = Rasterizer2D.topX;
             i1 += k2;
             l += k2;
             i2 += k2;
             l1 += k2;
         }
-        if (i + k1 > DrawingArea.bottomX) {
-            int l2 = (i + k1) - DrawingArea.bottomX;
+        if (i + k1 > Rasterizer2D.bottomX) {
+            int l2 = (i + k1) - Rasterizer2D.bottomX;
             k1 -= l2;
             i2 += l2;
             l1 += l2;
         }
         if (!(k1 <= 0 || j1 <= 0)) {
-            method349(DrawingArea.pixels, tempArray, i1, l, k1, j1, l1, i2);
+            method349(Rasterizer2D.pixels, tempArray, i1, l, k1, j1, l1, i2);
         }
     }
 
@@ -259,7 +259,7 @@ public final class Sprite extends DrawingArea {
         Stream stream = new Stream(streamLoader.getDataForName(s + ".dat"));
         Stream stream_1 = new Stream(streamLoader.getDataForName("index.dat"));
         stream_1.currentOffset = stream.readUnsignedWord();
-        this.anInt1444 = stream_1.readUnsignedWord();
+        this.max_width = stream_1.readUnsignedWord();
         this.anInt1445 = stream_1.readUnsignedWord();
         int j = stream_1.readUnsignedByte();
         int[] ai = new int[j];
@@ -304,7 +304,7 @@ public final class Sprite extends DrawingArea {
     }
 
     public void method343() {
-        DrawingArea.initDrawingArea(this.myHeight, this.myWidth, this.myPixels);
+        Rasterizer2D.initDrawingArea(this.myHeight, this.myWidth, this.myPixels);
     }
 
     public void method344(int i, int j, int k) {
@@ -343,14 +343,14 @@ public final class Sprite extends DrawingArea {
 
     public void method345() {
         try {
-            int totalPixels[] = new int[anInt1444 * anInt1445];
+            int totalPixels[] = new int[max_width * anInt1445];
             for (int h = 0; h < myHeight; h++) {
                 for (int w = 0; w < myWidth; w++) {
-                    totalPixels[(h + anInt1443) * anInt1444 + (w + anInt1442)] = myPixels[h * myWidth + w];
+                    totalPixels[(h + anInt1443) * max_width + (w + anInt1442)] = myPixels[h * myWidth + w];
                 }
             }
             myPixels = totalPixels;
-            myWidth = anInt1444;
+            myWidth = max_width;
             myHeight = anInt1445;
             anInt1442 = 0;
             anInt1443 = 0;
@@ -364,44 +364,44 @@ public final class Sprite extends DrawingArea {
     public void method346(int i, int j) {
         i += this.anInt1442;
         j += this.anInt1443;
-        int l = i + j * DrawingArea.width;
+        int l = i + j * Rasterizer2D.width;
         int i1 = 0;
         int j1 = this.myHeight;
         int k1 = this.myWidth;
-        int l1 = DrawingArea.width - k1;
+        int l1 = Rasterizer2D.width - k1;
         int i2 = 0;
         int l2;
-        if (j < DrawingArea.topY) {
-            l2 = DrawingArea.topY - j;
+        if (j < Rasterizer2D.topY) {
+            l2 = Rasterizer2D.topY - j;
             j1 -= l2;
-            j = DrawingArea.topY;
+            j = Rasterizer2D.topY;
             i1 += l2 * k1;
-            l += l2 * DrawingArea.width;
+            l += l2 * Rasterizer2D.width;
         }
 
-        if (j + j1 > DrawingArea.bottomY) {
-            j1 -= j + j1 - DrawingArea.bottomY;
+        if (j + j1 > Rasterizer2D.bottomY) {
+            j1 -= j + j1 - Rasterizer2D.bottomY;
         }
 
-        if (i < DrawingArea.topX) {
-            l2 = DrawingArea.topX - i;
+        if (i < Rasterizer2D.topX) {
+            l2 = Rasterizer2D.topX - i;
             k1 -= l2;
-            i = DrawingArea.topX;
+            i = Rasterizer2D.topX;
             i1 += l2;
             l += l2;
             i2 += l2;
             l1 += l2;
         }
 
-        if (i + k1 > DrawingArea.bottomX) {
-            l2 = i + k1 - DrawingArea.bottomX;
+        if (i + k1 > Rasterizer2D.bottomX) {
+            l2 = i + k1 - Rasterizer2D.bottomX;
             k1 -= l2;
             i2 += l2;
             l1 += l2;
         }
 
         if (k1 > 0 && j1 > 0) {
-            this.method347(l, k1, j1, i2, i1, l1, this.myPixels, DrawingArea.pixels);
+            this.method347(l, k1, j1, i2, i1, l1, this.myPixels, Rasterizer2D.pixels);
         }
 
     }
@@ -433,44 +433,44 @@ public final class Sprite extends DrawingArea {
         short k = 128;
         i += this.anInt1442;
         j += this.anInt1443;
-        int i1 = i + j * DrawingArea.width;
+        int i1 = i + j * Rasterizer2D.width;
         int j1 = 0;
         int k1 = this.myHeight;
         int l1 = this.myWidth;
-        int i2 = DrawingArea.width - l1;
+        int i2 = Rasterizer2D.width - l1;
         int j2 = 0;
         int i3;
-        if (j < DrawingArea.topY) {
-            i3 = DrawingArea.topY - j;
+        if (j < Rasterizer2D.topY) {
+            i3 = Rasterizer2D.topY - j;
             k1 -= i3;
-            j = DrawingArea.topY;
+            j = Rasterizer2D.topY;
             j1 += i3 * l1;
-            i1 += i3 * DrawingArea.width;
+            i1 += i3 * Rasterizer2D.width;
         }
 
-        if (j + k1 > DrawingArea.bottomY) {
-            k1 -= j + k1 - DrawingArea.bottomY;
+        if (j + k1 > Rasterizer2D.bottomY) {
+            k1 -= j + k1 - Rasterizer2D.bottomY;
         }
 
-        if (i < DrawingArea.topX) {
-            i3 = DrawingArea.topX - i;
+        if (i < Rasterizer2D.topX) {
+            i3 = Rasterizer2D.topX - i;
             l1 -= i3;
-            i = DrawingArea.topX;
+            i = Rasterizer2D.topX;
             j1 += i3;
             i1 += i3;
             j2 += i3;
             i2 += i3;
         }
 
-        if (i + l1 > DrawingArea.bottomX) {
-            i3 = i + l1 - DrawingArea.bottomX;
+        if (i + l1 > Rasterizer2D.bottomX) {
+            i3 = i + l1 - Rasterizer2D.bottomX;
             l1 -= i3;
             j2 += i3;
             i2 += i3;
         }
 
         if (l1 > 0 && k1 > 0) {
-            this.method351(j1, l1, DrawingArea.pixels, this.myPixels, j2, k1, i2, k, i1);
+            this.method351(j1, l1, Rasterizer2D.pixels, this.myPixels, j2, k1, i2, k, i1);
         }
 
     }
@@ -478,44 +478,44 @@ public final class Sprite extends DrawingArea {
     public void drawSprite(int i, int k) {
         i += this.anInt1442;
         k += this.anInt1443;
-        int l = i + k * DrawingArea.width;
+        int l = i + k * Rasterizer2D.width;
         int i1 = 0;
         int j1 = this.myHeight;
         int k1 = this.myWidth;
-        int l1 = DrawingArea.width - k1;
+        int l1 = Rasterizer2D.width - k1;
         int i2 = 0;
         int l2;
-        if (k < DrawingArea.topY) {
-            l2 = DrawingArea.topY - k;
+        if (k < Rasterizer2D.topY) {
+            l2 = Rasterizer2D.topY - k;
             j1 -= l2;
-            k = DrawingArea.topY;
+            k = Rasterizer2D.topY;
             i1 += l2 * k1;
-            l += l2 * DrawingArea.width;
+            l += l2 * Rasterizer2D.width;
         }
 
-        if (k + j1 > DrawingArea.bottomY) {
-            j1 -= k + j1 - DrawingArea.bottomY;
+        if (k + j1 > Rasterizer2D.bottomY) {
+            j1 -= k + j1 - Rasterizer2D.bottomY;
         }
 
-        if (i < DrawingArea.topX) {
-            l2 = DrawingArea.topX - i;
+        if (i < Rasterizer2D.topX) {
+            l2 = Rasterizer2D.topX - i;
             k1 -= l2;
-            i = DrawingArea.topX;
+            i = Rasterizer2D.topX;
             i1 += l2;
             l += l2;
             i2 += l2;
             l1 += l2;
         }
 
-        if (i + k1 > DrawingArea.bottomX) {
-            l2 = i + k1 - DrawingArea.bottomX;
+        if (i + k1 > Rasterizer2D.bottomX) {
+            l2 = i + k1 - Rasterizer2D.bottomX;
             k1 -= l2;
             i2 += l2;
             l1 += l2;
         }
 
         if (k1 > 0 && j1 > 0) {
-            this.method349(DrawingArea.pixels, this.myPixels, i1, l, k1, j1, l1, i2);
+            this.method349(Rasterizer2D.pixels, this.myPixels, i1, l, k1, j1, l1, i2);
         }
 
     }
@@ -602,7 +602,7 @@ public final class Sprite extends DrawingArea {
             i3 = i3 * k >> 8;
             int j3 = (i2 << 16) + k2 * l2 + _ex * i3;
             int k3 = (i1 << 16) + k2 * i3 - _ex * l2;
-            int l3 = k1 + j1 * DrawingArea.width;
+            int l3 = k1 + j1 * Rasterizer2D.width;
 
             for (j1 = 0; j1 < i; ++j1) {
                 int i4 = ai1[j1];
@@ -611,14 +611,14 @@ public final class Sprite extends DrawingArea {
                 int l4 = k3 - l2 * i4;
 
                 for (k1 = -ai[j1]; k1 < 0; ++k1) {
-                    DrawingArea.pixels[j4++] = this.myPixels[(k4 >> 16) + (l4 >> 16) * this.myWidth];
+                    Rasterizer2D.pixels[j4++] = this.myPixels[(k4 >> 16) + (l4 >> 16) * this.myWidth];
                     k4 += i3;
                     l4 -= l2;
                 }
 
                 j3 += l2;
                 k3 += i3;
-                l3 += DrawingArea.width;
+                l3 += Rasterizer2D.width;
             }
         } catch (Exception var22) {
             ;
@@ -642,7 +642,7 @@ public final class Sprite extends DrawingArea {
             l2 = l2 * j1 >> 8;
             int i3 = (l << 16) + j2 * k2 + _ex * l2;
             int j3 = (j << 16) + j2 * l2 - _ex * k2;
-            int k3 = l1 + i * DrawingArea.width;
+            int k3 = l1 + i * Rasterizer2D.width;
 
             for (i = 0; i < k1; ++i) {
                 int l3 = k3;
@@ -652,7 +652,7 @@ public final class Sprite extends DrawingArea {
                 for (l1 = -k; l1 < 0; ++l1) {
                     int k4 = this.myPixels[(i4 >> 16) + (j4 >> 16) * this.myWidth];
                     if (k4 != 0) {
-                        DrawingArea.pixels[l3++] = k4;
+                        Rasterizer2D.pixels[l3++] = k4;
                     } else {
                         ++l3;
                     }
@@ -663,7 +663,7 @@ public final class Sprite extends DrawingArea {
 
                 i3 += k2;
                 j3 += l2;
-                k3 += DrawingArea.width;
+                k3 += Rasterizer2D.width;
             }
         } catch (Exception var21) {
             ;
@@ -674,44 +674,44 @@ public final class Sprite extends DrawingArea {
     public void method354(Background background, int i, int j) {
         j += this.anInt1442;
         i += this.anInt1443;
-        int k = j + i * DrawingArea.width;
+        int k = j + i * Rasterizer2D.width;
         int l = 0;
         int i1 = this.myHeight;
         int j1 = this.myWidth;
-        int k1 = DrawingArea.width - j1;
+        int k1 = Rasterizer2D.width - j1;
         int l1 = 0;
         int k2;
-        if (i < DrawingArea.topY) {
-            k2 = DrawingArea.topY - i;
+        if (i < Rasterizer2D.topY) {
+            k2 = Rasterizer2D.topY - i;
             i1 -= k2;
-            i = DrawingArea.topY;
+            i = Rasterizer2D.topY;
             l += k2 * j1;
-            k += k2 * DrawingArea.width;
+            k += k2 * Rasterizer2D.width;
         }
 
-        if (i + i1 > DrawingArea.bottomY) {
-            i1 -= i + i1 - DrawingArea.bottomY;
+        if (i + i1 > Rasterizer2D.bottomY) {
+            i1 -= i + i1 - Rasterizer2D.bottomY;
         }
 
-        if (j < DrawingArea.topX) {
-            k2 = DrawingArea.topX - j;
+        if (j < Rasterizer2D.topX) {
+            k2 = Rasterizer2D.topX - j;
             j1 -= k2;
-            j = DrawingArea.topX;
+            j = Rasterizer2D.topX;
             l += k2;
             k += k2;
             l1 += k2;
             k1 += k2;
         }
 
-        if (j + j1 > DrawingArea.bottomX) {
-            k2 = j + j1 - DrawingArea.bottomX;
+        if (j + j1 > Rasterizer2D.bottomX) {
+            k2 = j + j1 - Rasterizer2D.bottomX;
             j1 -= k2;
             l1 += k2;
             k1 += k2;
         }
 
         if (j1 > 0 && i1 > 0) {
-            this.method355(this.myPixels, j1, background.aByteArray1450, i1, DrawingArea.pixels, 0, k1, k, l1, l);
+            this.method355(this.myPixels, j1, background.aByteArray1450, i1, Rasterizer2D.pixels, 0, k1, k, l1, l);
         }
 
     }

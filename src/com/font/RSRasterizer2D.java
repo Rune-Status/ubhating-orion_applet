@@ -1,8 +1,8 @@
 package com.font;
 
-import client.DrawingArea;
+import client.Rasterizer2D;
 
-public class RSDrawingArea extends DrawingArea {
+public class RSRasterizer2D extends Rasterizer2D {
 
     public static int height;
     public static int bottomX;

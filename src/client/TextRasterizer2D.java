@@ -2,7 +2,7 @@ package client;
 
 import java.util.Random;
 
-public final class TextDrawingArea extends DrawingArea {
+public final class TextRasterizer2D extends Rasterizer2D {
 
    private final byte[][] aByteArrayArray1491 = new byte[256][];
    private final int[] anIntArray1492 = new int[256];
@@ -10,12 +10,12 @@ public final class TextDrawingArea extends DrawingArea {
    private final int[] anIntArray1494 = new int[256];
    private final int[] anIntArray1495 = new int[256];
    private final int[] anIntArray1496 = new int[256];
-   public int anInt1497;
+   public int base_char_height;
    private final Random aRandom1498 = new Random();
    private boolean aBoolean1499 = false;
 
 
-   public TextDrawingArea(boolean flag, String s, StreamLoader streamLoader) {
+   public TextRasterizer2D(boolean flag, String s, StreamLoader streamLoader) {
       Stream stream = new Stream(streamLoader.getDataForName(s + ".dat"));
       Stream stream_1 = new Stream(streamLoader.getDataForName("index.dat"));
       stream_1.currentOffset = stream.readUnsignedWord() + 4;
@@ -46,8 +46,8 @@ public final class TextDrawingArea extends DrawingArea {
             }
          }
 
-         if(j1 > this.anInt1497 && l < 128) {
-            this.anInt1497 = j1;
+         if(j1 > this.base_char_height && l < 128) {
+            this.base_char_height = j1;
          }
 
          this.anIntArray1494[l] = 1;
@@ -83,11 +83,11 @@ public final class TextDrawingArea extends DrawingArea {
    }
 
    public void method380(String s, int i, int j, int k) {
-      this.method385(j, s, k, i - this.method384(s));
+      this.method385(j, s, k, i - this.get_width(s));
    }
 
    public void drawText(int i, String s, int k, int l) {
-      this.method385(i, s, k, l - this.method384(s) / 2);
+      this.method385(i, s, k, l - this.get_width(s) / 2);
    }
 
    public void method382(int i, int j, String s, int l, boolean flag) {
@@ -112,7 +112,7 @@ public final class TextDrawingArea extends DrawingArea {
       }
    }
 
-   public int method384(String s) {
+   public int get_width(String s) {
       if(s == null) {
          return 0;
       } else {
@@ -128,7 +128,7 @@ public final class TextDrawingArea extends DrawingArea {
 
    public void method385(int i, String s, int j, int l) {
       if(s != null) {
-         j -= this.anInt1497;
+         j -= this.base_char_height;
 
          for(int i1 = 0; i1 < s.length(); ++i1) {
             char c = s.charAt(i1);
@@ -144,8 +144,8 @@ public final class TextDrawingArea extends DrawingArea {
 
    public void method386(int i, String s, int j, int k, int l) {
       if(s != null) {
-         j -= this.method384(s) / 2;
-         l -= this.anInt1497;
+         j -= this.get_width(s) / 2;
+         l -= this.base_char_height;
 
          for(int i1 = 0; i1 < s.length(); ++i1) {
             char c = s.charAt(i1);
@@ -161,8 +161,8 @@ public final class TextDrawingArea extends DrawingArea {
 
    public void method387(int i, String s, int j, int k, int l) {
       if(s != null) {
-         i -= this.method384(s) / 2;
-         k -= this.anInt1497;
+         i -= this.get_width(s) / 2;
+         k -= this.base_char_height;
 
          for(int i1 = 0; i1 < s.length(); ++i1) {
             char c = s.charAt(i1);
@@ -183,8 +183,8 @@ public final class TextDrawingArea extends DrawingArea {
             d = 0.0D;
          }
 
-         l -= this.method384(s) / 2;
-         k -= this.anInt1497;
+         l -= this.get_width(s) / 2;
+         k -= this.base_char_height;
 
          for(int k1 = 0; k1 < s.length(); ++k1) {
             char c = s.charAt(k1);
@@ -202,7 +202,7 @@ public final class TextDrawingArea extends DrawingArea {
       this.aBoolean1499 = false;
       int l = i;
       if(s != null) {
-         k -= this.anInt1497;
+         k -= this.base_char_height;
 
          for(int i1 = 0; i1 < s.length(); ++i1) {
             if(s.charAt(i1) == 64 && i1 + 4 < s.length() && s.charAt(i1 + 4) == 64) {
@@ -227,7 +227,7 @@ public final class TextDrawingArea extends DrawingArea {
          }
 
          if(this.aBoolean1499) {
-            DrawingArea.method339(k + (int)((double)this.anInt1497 * 0.7D), 8388608, i - l, l);
+            Rasterizer2D.method339(k + (int)((double)this.base_char_height * 0.7D), 8388608, i - l, l);
          }
 
       }
@@ -237,7 +237,7 @@ public final class TextDrawingArea extends DrawingArea {
       if(s != null) {
          this.aRandom1498.setSeed((long)k);
          int j1 = 192 + (this.aRandom1498.nextInt() & 31);
-         i1 -= this.anInt1497;
+         i1 -= this.base_char_height;
 
          for(int k1 = 0; k1 < s.length(); ++k1) {
             if(s.charAt(k1) == 64 && k1 + 4 < s.length() && s.charAt(k1 + 4) == 64) {
@@ -313,42 +313,42 @@ public final class TextDrawingArea extends DrawingArea {
    }
 
    private void method392(byte[] abyte0, int i, int j, int k, int l, int i1) {
-      int j1 = i + j * DrawingArea.width;
-      int k1 = DrawingArea.width - k;
+      int j1 = i + j * Rasterizer2D.width;
+      int k1 = Rasterizer2D.width - k;
       int l1 = 0;
       int i2 = 0;
       int l2;
-      if(j < DrawingArea.topY) {
-         l2 = DrawingArea.topY - j;
+      if(j < Rasterizer2D.topY) {
+         l2 = Rasterizer2D.topY - j;
          l -= l2;
-         j = DrawingArea.topY;
+         j = Rasterizer2D.topY;
          i2 += l2 * k;
-         j1 += l2 * DrawingArea.width;
+         j1 += l2 * Rasterizer2D.width;
       }
 
-      if(j + l >= DrawingArea.bottomY) {
-         l -= j + l - DrawingArea.bottomY + 1;
+      if(j + l >= Rasterizer2D.bottomY) {
+         l -= j + l - Rasterizer2D.bottomY + 1;
       }
 
-      if(i < DrawingArea.topX) {
-         l2 = DrawingArea.topX - i;
+      if(i < Rasterizer2D.topX) {
+         l2 = Rasterizer2D.topX - i;
          k -= l2;
-         i = DrawingArea.topX;
+         i = Rasterizer2D.topX;
          i2 += l2;
          j1 += l2;
          l1 += l2;
          k1 += l2;
       }
 
-      if(i + k >= DrawingArea.bottomX) {
-         l2 = i + k - DrawingArea.bottomX + 1;
+      if(i + k >= Rasterizer2D.bottomX) {
+         l2 = i + k - Rasterizer2D.bottomX + 1;
          k -= l2;
          l1 += l2;
          k1 += l2;
       }
 
       if(k > 0 && l > 0) {
-         this.method393(DrawingArea.pixels, abyte0, i1, i2, j1, k, l, k1, l1);
+         this.method393(Rasterizer2D.pixels, abyte0, i1, i2, j1, k, l, k1, l1);
       }
 
    }
@@ -400,42 +400,42 @@ public final class TextDrawingArea extends DrawingArea {
    }
 
    private void method394(int i, int j, byte[] abyte0, int k, int l, int i1, int j1) {
-      int k1 = j + l * DrawingArea.width;
-      int l1 = DrawingArea.width - k;
+      int k1 = j + l * Rasterizer2D.width;
+      int l1 = Rasterizer2D.width - k;
       int i2 = 0;
       int j2 = 0;
       int i3;
-      if(l < DrawingArea.topY) {
-         i3 = DrawingArea.topY - l;
+      if(l < Rasterizer2D.topY) {
+         i3 = Rasterizer2D.topY - l;
          i1 -= i3;
-         l = DrawingArea.topY;
+         l = Rasterizer2D.topY;
          j2 += i3 * k;
-         k1 += i3 * DrawingArea.width;
+         k1 += i3 * Rasterizer2D.width;
       }
 
-      if(l + i1 >= DrawingArea.bottomY) {
-         i1 -= l + i1 - DrawingArea.bottomY + 1;
+      if(l + i1 >= Rasterizer2D.bottomY) {
+         i1 -= l + i1 - Rasterizer2D.bottomY + 1;
       }
 
-      if(j < DrawingArea.topX) {
-         i3 = DrawingArea.topX - j;
+      if(j < Rasterizer2D.topX) {
+         i3 = Rasterizer2D.topX - j;
          k -= i3;
-         j = DrawingArea.topX;
+         j = Rasterizer2D.topX;
          j2 += i3;
          k1 += i3;
          i2 += i3;
          l1 += i3;
       }
 
-      if(j + k >= DrawingArea.bottomX) {
-         i3 = j + k - DrawingArea.bottomX + 1;
+      if(j + k >= Rasterizer2D.bottomX) {
+         i3 = j + k - Rasterizer2D.bottomX + 1;
          k -= i3;
          i2 += i3;
          l1 += i3;
       }
 
       if(k > 0 && i1 > 0) {
-         this.method395(abyte0, i1, k1, DrawingArea.pixels, j2, k, i2, l1, j1, i);
+         this.method395(abyte0, i1, k1, Rasterizer2D.pixels, j2, k, i2, l1, j1, i);
       }
    }
 

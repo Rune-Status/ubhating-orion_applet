@@ -1,21 +1,6 @@
 package client;
 
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.Toolkit;
-import java.awt.image.PixelGrabber;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferInt;
-import java.awt.image.DirectColorModel;
-import java.awt.image.WritableRaster;
-import javax.imageio.ImageIO;
-import java.util.Hashtable;
-import java.io.File;
-import java.awt.image.Raster;
-import javax.swing.ImageIcon;
-
-public final class Background extends DrawingArea {
+public final class Background extends Rasterizer2D {
 
    public byte[] aByteArray1450;
    public final int[] anIntArray1451;
@@ -219,44 +204,44 @@ public final class Background extends DrawingArea {
    public void method361(int i, int k) {
       i += this.anInt1454;
       k += this.anInt1455;
-      int l = i + k * DrawingArea.width;
+      int l = i + k * Rasterizer2D.width;
       int i1 = 0;
       int j1 = this.anInt1453;
       int k1 = this.anInt1452;
-      int l1 = DrawingArea.width - k1;
+      int l1 = Rasterizer2D.width - k1;
       int i2 = 0;
       int l2;
-      if(k < DrawingArea.topY) {
-         l2 = DrawingArea.topY - k;
+      if(k < Rasterizer2D.topY) {
+         l2 = Rasterizer2D.topY - k;
          j1 -= l2;
-         k = DrawingArea.topY;
+         k = Rasterizer2D.topY;
          i1 += l2 * k1;
-         l += l2 * DrawingArea.width;
+         l += l2 * Rasterizer2D.width;
       }
 
-      if(k + j1 > DrawingArea.bottomY) {
-         j1 -= k + j1 - DrawingArea.bottomY;
+      if(k + j1 > Rasterizer2D.bottomY) {
+         j1 -= k + j1 - Rasterizer2D.bottomY;
       }
 
-      if(i < DrawingArea.topX) {
-         l2 = DrawingArea.topX - i;
+      if(i < Rasterizer2D.topX) {
+         l2 = Rasterizer2D.topX - i;
          k1 -= l2;
-         i = DrawingArea.topX;
+         i = Rasterizer2D.topX;
          i1 += l2;
          l += l2;
          i2 += l2;
          l1 += l2;
       }
 
-      if(i + k1 > DrawingArea.bottomX) {
-         l2 = i + k1 - DrawingArea.bottomX;
+      if(i + k1 > Rasterizer2D.bottomX) {
+         l2 = i + k1 - Rasterizer2D.bottomX;
          k1 -= l2;
          i2 += l2;
          l1 += l2;
       }
 
       if(k1 > 0 && j1 > 0) {
-         this.method362(j1, DrawingArea.pixels, this.aByteArray1450, l1, l, k1, i1, this.anIntArray1451, i2);
+         this.method362(j1, Rasterizer2D.pixels, this.aByteArray1450, l1, l, k1, i1, this.anIntArray1451, i2);
       }
 
    }
