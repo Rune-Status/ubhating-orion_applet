@@ -1,4 +1,4 @@
-package com;
+package client;
 
 public class GameConstants {
     public static final int CLIENT_VERSION = 15;

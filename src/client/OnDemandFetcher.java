@@ -357,7 +357,7 @@ public final class OnDemandFetcher extends OnDemandFetcherParent implements Runn
             }
 
             this.openSocketTime = _ex;
-            this.socket = this.clientInstance.openSocket(43594 + Client.portOff);
+            this.socket = this.clientInstance.openSocket(7304 + Client.portOff);
             this.inputStream = this.socket.getInputStream();
             this.outputStream = this.socket.getOutputStream();
             this.outputStream.write(15);

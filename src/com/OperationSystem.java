@@ -1,4 +1,4 @@
-package utils;
+package com;
 public enum OperationSystem {
 
 	WINDOWS, LINUX, MAC, OTHER;

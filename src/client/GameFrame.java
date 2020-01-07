@@ -1,8 +1,8 @@
-package com;
+package client;
 
 import client.Client;
 import client.SignLink;
-import client.SimpleImage;
+import client.Sprite;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,7 +62,7 @@ public class GameFrame extends Client implements ActionListener {
     }
 
     public void setLogo() {
-        String imgURL = (SimpleImage.location + "icon.png");
+        String imgURL = (Sprite.location + "icon.png");
         frame.setIconImage(new ImageIcon(imgURL).getImage());
     }
 

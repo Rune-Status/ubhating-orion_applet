@@ -1,7 +1,7 @@
 package client;
 
 
-final class StreamLoader {
+public final class StreamLoader {
 
    private final byte[] aByteArray726;
    private final int dataSize;

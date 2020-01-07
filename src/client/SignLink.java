@@ -228,13 +228,13 @@ public final class SignLink
     }
 
     public static String findcachedir() {
-        File file = new File(System.getProperty("user.home") + "/.OSRSPK/");
+        File file = new File(System.getProperty("user.home") + "/OSRSPK/");
         if ((!file.exists()) &&
                 (!file.mkdir())) {
             return secondDir();
         }
 
-        return System.getProperty("user.home") + "/.OSRSPK/";
+        return System.getProperty("user.home") + "/OSRSPK/";
     }
 	
 //	public static String findcachedir() {
