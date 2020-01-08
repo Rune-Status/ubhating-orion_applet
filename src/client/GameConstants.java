@@ -1,11 +1,29 @@
 package client;
 
+/**
+ * Oldschool 2006
+ *
+ * @author trees
+ */
 public class GameConstants {
+
+    /**
+     * The client build version
+     */
+    public static boolean LOCAL_BUILD = false;
+
+    /**
+     * The client version (cache usage and notes)
+     */
     public static final int CLIENT_VERSION = 15;
-    public static boolean isHween = false;
-    public static boolean isWinter = false;
-    public static boolean developMode = false;
-    public static boolean isLocalClient = false;
+    /**
+     * Toggle combat health overlay
+     */
+    public static boolean toggle_gameframe_orbs = true;
+    /**
+     * Toggle combat health overlay
+     */
+    public static boolean toggle_combat_health_overlay = true;
     /**
      * Toggle item pile name highlights
      */
@@ -13,7 +31,7 @@ public class GameConstants {
     /**
      * Show item pile name highlights
      */
-    public static boolean filter_item_pile_names = false;
+    public static boolean filter_item_pile_names = true;
     /**
      * Dump the cache item images
      */

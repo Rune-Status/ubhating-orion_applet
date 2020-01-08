@@ -2,7 +2,7 @@ package client;
 
 import java.io.FileWriter;
 
-public final class EntityDef {
+public final class NpcDefinition {
 
    public int anInt55 = -1;
    private static int anInt56;
@@ -23,14 +23,14 @@ public final class EntityDef {
    public int anInt77 = -1;
    public long type = -1L;
    public int anInt79 = 32;
-   private static EntityDef[] cache;
+   private static NpcDefinition[] cache;
    public static Client clientInstance;
    public int anInt83 = -1;
-   public boolean aBoolean84 = true;
+   public boolean interactive = true;
    private int anInt85;
    private int anInt86 = 128;
-   public boolean aBoolean87 = true;
-   public int[] childrenIDs;
+   public boolean map_marker = true;
+   public int[] configs;
    public byte[] description;
    private int anInt91 = 128;
    private int anInt92;
@@ -46,7 +46,7 @@ public final class EntityDef {
 			Sprite sprite = (Sprite) mruNodes.insertFromCache(i);
 			if (sprite != null && sprite.max_width != j
 					&& sprite.max_width != -1) {
-				sprite.unlink();
+				sprite.remove();
 				sprite = null;
 			}
 			if (sprite != null)
@@ -58,7 +58,7 @@ public final class EntityDef {
 	   int offset2 = 0;
 	   int unknown1 = 0;
 		
-		EntityDef npc = forID(i);
+		NpcDefinition npc = forID(i);
 		if(npc.anIntArray94 == null)
 			return null;
 		/*
@@ -98,13 +98,13 @@ public final class EntityDef {
 		int ai1[] = Rasterizer2D.pixels;
 		int i2 = Rasterizer2D.width;
 		int j2 = Rasterizer2D.height;
-		int k2 = Rasterizer2D.topX;
-		int l2 = Rasterizer2D.bottomX;
-		int i3 = Rasterizer2D.topY;
-		int j3 = Rasterizer2D.bottomY;
+		int k2 = Rasterizer2D.clip_left;
+		int l2 = Rasterizer2D.clip_right;
+		int i3 = Rasterizer2D.clip_top;
+		int j3 = Rasterizer2D.clip_bottom;
 		Texture.aBoolean1464 = false;
 		Rasterizer2D.initDrawingArea(maxSize, maxSize, enabledSprite.myPixels);
-		Rasterizer2D.method336(maxSize, 0, 0, 0, maxSize);
+		Rasterizer2D.draw_filled_rect(maxSize, 0, 0, 0, maxSize);
 		Texture.method364();
 		double zoom = (520*Math.log(npc.aByte68))+520;
 		int k3 = (int) zoom;//zoom
@@ -190,7 +190,7 @@ public final class EntityDef {
 	}
    
 
-   public static EntityDef forID(int i) {
+   public static NpcDefinition forID(int i) {
       for(int entityDef = 0; entityDef < 20; ++entityDef) {
          if(cache[entityDef].type == (long)i) {
             return cache[entityDef];
@@ -198,7 +198,7 @@ public final class EntityDef {
       }
 
       anInt56 = (anInt56 + 1) % 20;
-      EntityDef var2 = cache[anInt56] = new EntityDef();
+      NpcDefinition var2 = cache[anInt56] = new NpcDefinition();
       stream.currentOffset = streamIndices[i];
       var2.type = (long)i;
       var2.readValues(stream);
@@ -591,7 +591,7 @@ Model 8: 185//boots
 		try {
 			FileWriter fw = new FileWriter(System.getProperty("user.home")+"/Desktop/Dumps/NPC Dump.txt");
 			for(int id = 0; id < totalNPCs; id++) {
-				EntityDef ed = EntityDef.forID(id);
+				NpcDefinition ed = NpcDefinition.forID(id);
 				fw.write("case "+id+":");
 				fw.write(System.getProperty("line.separator"));
 				fw.write("entityDef.name = \""+ed.name+"\";");
@@ -657,8 +657,8 @@ Model 8: 185//boots
 	}
 
    public Model method160() {
-      if(this.childrenIDs != null) {
-         EntityDef var5 = this.method161();
+      if(this.configs != null) {
+         NpcDefinition var5 = this.method161();
          return var5 == null?null:var5.method160();
       } else if(this.anIntArray73 == null) {
          return null;
@@ -698,7 +698,7 @@ Model 8: 185//boots
       }
    }
 
-   public EntityDef method161() {
+   public NpcDefinition method161() {
       int j = -1;
       if(this.anInt57 != -1) {
          VarBit varBit = VarBit.cache[this.anInt57];
@@ -711,7 +711,7 @@ Model 8: 185//boots
          j = clientInstance.variousSettings[this.anInt59];
       }
 
-      return j >= 0 && j < this.childrenIDs.length && this.childrenIDs[j] != -1?forID(this.childrenIDs[j]):null;
+      return j >= 0 && j < this.configs.length && this.configs[j] != -1?forID(this.configs[j]):null;
    }
 
    public static int totalNPCs;
@@ -719,20 +719,20 @@ Model 8: 185//boots
    public static void unpackConfig(StreamLoader streamLoader) {
       stream = new Stream(streamLoader.getDataForName("npc.dat"));
       Stream stream2 = new Stream(streamLoader.getDataForName("npc.idx"));
-      totalNPCs = stream2.readUnsignedWord();
+      totalNPCs = stream2.get_unsigned_short();
       streamIndices = new int[totalNPCs];
       int i = 2;
 
       int k;
       for(k = 0; k < totalNPCs; ++k) {
          streamIndices[k] = i;
-         i += stream2.readUnsignedWord();
+         i += stream2.get_unsigned_short();
       }
 
-      cache = new EntityDef[20];
+      cache = new NpcDefinition[20];
 
       for(k = 0; k < 20; ++k) {
-         cache[k] = new EntityDef();
+         cache[k] = new NpcDefinition();
       }
 
    }
@@ -745,8 +745,8 @@ Model 8: 185//boots
    }
 
    public Model method164(int j, int k, int[] ai) {
-      if(this.childrenIDs != null) {
-         EntityDef var8 = this.method161();
+      if(this.configs != null) {
+         NpcDefinition var8 = this.method161();
          return var8 == null?null:var8.method164(j, k, ai);
       } else {
          Model model = (Model)mruNodes.insertFromCache(this.type);
@@ -830,7 +830,7 @@ Model 8: 185//boots
             this.anIntArray94 = new int[i1];
 
             for(i2 = 0; i2 < i1; ++i2) {
-               this.anIntArray94[i2] = stream.readUnsignedWord();
+               this.anIntArray94[i2] = stream.get_unsigned_short();
             }
          } else if(i == 2) {
             this.name = stream.readString();
@@ -839,14 +839,14 @@ Model 8: 185//boots
          } else if(i == 12) {
             this.aByte68 = stream.readSignedByte();
          } else if(i == 13) {
-            this.anInt77 = stream.readUnsignedWord();
+            this.anInt77 = stream.get_unsigned_short();
          } else if(i == 14) {
-            this.anInt67 = stream.readUnsignedWord();
+            this.anInt67 = stream.get_unsigned_short();
          } else if(i == 17) {
-            this.anInt67 = stream.readUnsignedWord();
-            this.anInt58 = stream.readUnsignedWord();
-            this.anInt83 = stream.readUnsignedWord();
-            this.anInt55 = stream.readUnsignedWord();
+            this.anInt67 = stream.get_unsigned_short();
+            this.anInt58 = stream.get_unsigned_short();
+            this.anInt83 = stream.get_unsigned_short();
+            this.anInt55 = stream.get_unsigned_short();
          } else if(i >= 30 && i < 40) {
             if(this.actions == null) {
                this.actions = new String[5];
@@ -862,30 +862,30 @@ Model 8: 185//boots
             this.anIntArray70 = new int[i1];
 
             for(i2 = 0; i2 < i1; ++i2) {
-               this.anIntArray76[i2] = stream.readUnsignedWord();
-               this.anIntArray70[i2] = stream.readUnsignedWord();
+               this.anIntArray76[i2] = stream.get_unsigned_short();
+               this.anIntArray70[i2] = stream.get_unsigned_short();
             }
          } else if(i == 60) {
             i1 = stream.readUnsignedByte();
             this.anIntArray73 = new int[i1];
 
             for(i2 = 0; i2 < i1; ++i2) {
-               this.anIntArray73[i2] = stream.readUnsignedWord();
+               this.anIntArray73[i2] = stream.get_unsigned_short();
             }
          } else if(i == 90) {
-            stream.readUnsignedWord();
+            stream.get_unsigned_short();
          } else if(i == 91) {
-            stream.readUnsignedWord();
+            stream.get_unsigned_short();
          } else if(i == 92) {
-            stream.readUnsignedWord();
+            stream.get_unsigned_short();
          } else if(i == 93) {
-            this.aBoolean87 = false;
+            this.map_marker = false;
          } else if(i == 95) {
-            this.combatLevel = stream.readUnsignedWord();
+            this.combatLevel = stream.get_unsigned_short();
          } else if(i == 97) {
-            this.anInt91 = stream.readUnsignedWord();
+            this.anInt91 = stream.get_unsigned_short();
          } else if(i == 98) {
-            this.anInt86 = stream.readUnsignedWord();
+            this.anInt86 = stream.get_unsigned_short();
          } else if(i == 99) {
             this.aBoolean93 = true;
          } else if(i == 100) {
@@ -893,31 +893,31 @@ Model 8: 185//boots
          } else if(i == 101) {
             this.anInt92 = stream.readSignedByte() * 5;
          } else if(i == 102) {
-            this.headicon = stream.readUnsignedWord();
+            this.headicon = stream.get_unsigned_short();
          } else if(i == 103) {
-            this.anInt79 = stream.readUnsignedWord();
+            this.anInt79 = stream.get_unsigned_short();
          } else if(i == 106) {
-            this.anInt57 = stream.readUnsignedWord();
+            this.anInt57 = stream.get_unsigned_short();
             if(this.anInt57 == '\uffff') {
                this.anInt57 = -1;
             }
 
-            this.anInt59 = stream.readUnsignedWord();
+            this.anInt59 = stream.get_unsigned_short();
             if(this.anInt59 == '\uffff') {
                this.anInt59 = -1;
             }
 
             i1 = stream.readUnsignedByte();
-            this.childrenIDs = new int[i1 + 1];
+            this.configs = new int[i1 + 1];
 
             for(i2 = 0; i2 <= i1; ++i2) {
-               this.childrenIDs[i2] = stream.readUnsignedWord();
-               if(this.childrenIDs[i2] == '\uffff') {
-                  this.childrenIDs[i2] = -1;
+               this.configs[i2] = stream.get_unsigned_short();
+               if(this.configs[i2] == '\uffff') {
+                  this.configs[i2] = -1;
                }
             }
          } else if(i == 107) {
-            this.aBoolean84 = false;
+            this.interactive = false;
          }
       }
    }

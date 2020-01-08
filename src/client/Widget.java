@@ -53,7 +53,7 @@ public final class Widget {
    public int anInt233;
    public int mediaID;
    public boolean aBoolean235;
-   public int parentID;
+   public int parent;
    public int spellUsableOn;
    private static MRUNodes aMRUNodes_238;
    public int secondaryHoverColor;
@@ -103,29 +103,29 @@ public final class Widget {
    public static void unpack(StreamLoader streamLoader, TextRasterizer2D[] textDrawingAreas, StreamLoader streamLoader_1) {
       aMRUNodes_238 = new MRUNodes('\uc350');
       Stream stream = new Stream(streamLoader.getDataForName("data"));
-      //Stream stream = new Stream(FileOperations.ReadFile(SignLink.findcachedir() + "interfaces2.dat"));
+      //Stream outgoing = new Stream(FileOperations.ReadFile(SignLink.findcachedir() + "interfaces2.dat"));
       int i = -1;
-      int j = stream.readUnsignedWord();
+      int j = stream.get_unsigned_short();
       cache = new Widget[j];
 
       while(stream.currentOffset < stream.buffer.length) {
-         int k = stream.readUnsignedWord();
+         int k = stream.get_unsigned_short();
          if(k == '\uffff') {
-            i = stream.readUnsignedWord();
-            k = stream.readUnsignedWord();
+            i = stream.get_unsigned_short();
+            k = stream.get_unsigned_short();
          }
 
          Widget widget = cache[k] = new Widget();
          widget.id = k;
-         widget.parentID = i;
+         widget.parent = i;
          widget.type = stream.readUnsignedByte();
          widget.optionType = stream.readUnsignedByte();
-         widget.anInt214 = stream.readUnsignedWord();
-         int width = stream.readUnsignedWord();
+         widget.anInt214 = stream.get_unsigned_short();
+         int width = stream.get_unsigned_short();
          widget.width = width;
          if(widget.type == 3)
         	 widget.originalWidth = width;
-         widget.height = stream.readUnsignedWord();
+         widget.height = stream.get_unsigned_short();
          widget.opacity = (byte)stream.readUnsignedByte();
          widget.anInt230 = stream.readUnsignedByte();
          if(widget.anInt230 != 0) {
@@ -142,7 +142,7 @@ public final class Widget {
 
             for(k1 = 0; k1 < i1; ++k1) {
                widget.anIntArray245[k1] = stream.readUnsignedByte();
-               widget.anIntArray212[k1] = stream.readUnsignedWord();
+               widget.anIntArray212[k1] = stream.get_unsigned_short();
             }
          }
 
@@ -153,32 +153,32 @@ public final class Widget {
             widget.valueIndexArray = new int[k1][];
 
             for(l2 = 0; l2 < k1; ++l2) {
-               k4 = stream.readUnsignedWord();
+               k4 = stream.get_unsigned_short();
                widget.valueIndexArray[l2] = new int[k4];
 
                for(int s1 = 0; s1 < k4; ++s1) {
-                  widget.valueIndexArray[l2][s1] = stream.readUnsignedWord();
+                  widget.valueIndexArray[l2][s1] = stream.get_unsigned_short();
                }
             }
          }
 
          if(widget.type == 0) {
-            widget.scrollMax = stream.readUnsignedWord();
+            widget.scrollMax = stream.get_unsigned_short();
             widget.aBoolean266 = stream.readUnsignedByte() == 1;
-            l2 = stream.readUnsignedWord();
+            l2 = stream.get_unsigned_short();
             widget.children = new int[l2];
             widget.childX = new int[l2];
             widget.childY = new int[l2];
 
             for(k4 = 0; k4 < l2; ++k4) {
-               widget.children[k4] = stream.readUnsignedWord();
+               widget.children[k4] = stream.get_unsigned_short();
                widget.childX[k4] = stream.readSignedWord();
                widget.childY[k4] = stream.readSignedWord();
             }
          }
 
          if(widget.type == 1) {
-            stream.readUnsignedWord();
+            stream.get_unsigned_short();
             stream.readUnsignedByte();
          }
 
@@ -219,11 +219,11 @@ public final class Widget {
                if(widget.actions[l2].length() == 0) {
                   widget.actions[l2] = null;
                }
-				if(widget.parentID == 3824)
+				if(widget.parent == 3824)
 					widget.actions[4] = "Buy 100";
-				if(widget.parentID == 3822)
+				if(widget.parent == 3822)
 					widget.actions[4] = "Sell 100";
-				if(widget.parentID == 1644)
+				if(widget.parent == 1644)
 					widget.actions[2] = "Operate";
             }
          }
@@ -331,9 +331,9 @@ public final class Widget {
                widget.anInt258 = -1;
             }
 
-            widget.anInt269 = stream.readUnsignedWord();
-            widget.anInt270 = stream.readUnsignedWord();
-            widget.anInt271 = stream.readUnsignedWord();
+            widget.anInt269 = stream.get_unsigned_short();
+            widget.anInt270 = stream.get_unsigned_short();
+            widget.anInt271 = stream.get_unsigned_short();
          }
 
          if(widget.type == 7) {
@@ -363,7 +363,7 @@ public final class Widget {
          if(widget.optionType == 2 || widget.type == 2) {
             widget.selectedActionName = stream.readString();
             widget.spellName = stream.readString();
-            widget.spellUsableOn = stream.readUnsignedWord();
+            widget.spellUsableOn = stream.get_unsigned_short();
          }
 
          if(widget.type == 8) {
@@ -405,7 +405,7 @@ public final class Widget {
          }
 
          if(i == 2) {
-            model = EntityDef.forID(j).method160();
+            model = NpcDefinition.forID(j).method160();
          }
 
          if(i == 3) {

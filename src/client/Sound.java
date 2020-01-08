@@ -11,7 +11,7 @@ final class Sound {
 
    public static void unpack(Stream stream) {
       while(true) {
-         int j = stream.readUnsignedWord();
+         int j = stream.get_unsigned_short();
          if(j == '\uffff') {
             return;
          }
@@ -104,8 +104,8 @@ final class Sound {
          }
       }
 
-      this.anInt483 = class3_sub12.readUnsignedWord();
-      this.anInt482 = class3_sub12.readUnsignedWord();
+      this.anInt483 = class3_sub12.get_unsigned_short();
+      this.anInt482 = class3_sub12.get_unsigned_short();
    }
 
    private Sound() {}

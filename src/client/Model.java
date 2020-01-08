@@ -85,8 +85,8 @@ public final class Model extends Animable {
 		Stream nc6 = new Stream(abyte0);
 		Stream nc7 = new Stream(abyte0);
 		nc1.currentOffset = abyte0.length - 23;
-		int numVertices = nc1.readUnsignedWord();
-		int numTriangles = nc1.readUnsignedWord();
+		int numVertices = nc1.get_unsigned_short();
+		int numTriangles = nc1.get_unsigned_short();
 		int numTexTriangles = nc1.readUnsignedByte();
 		Class21 ModelDef_1 = aClass21Array1661[modelID] = new Class21();
 		ModelDef_1.aByteArray368 = abyte0;
@@ -100,11 +100,11 @@ public final class Model extends Animable {
 		int k2 = nc1.readUnsignedByte();
 		int l2 = nc1.readUnsignedByte();
 		int i3 = nc1.readUnsignedByte();
-		int j3 = nc1.readUnsignedWord();
-		int k3 = nc1.readUnsignedWord();
-		int l3 = nc1.readUnsignedWord();
-		int i4 = nc1.readUnsignedWord();
-		int j4 = nc1.readUnsignedWord();
+		int j3 = nc1.get_unsigned_short();
+		int k3 = nc1.get_unsigned_short();
+		int l3 = nc1.get_unsigned_short();
+		int i4 = nc1.get_unsigned_short();
+		int j4 = nc1.get_unsigned_short();
 		int k4 = 0;
 		int l4 = 0;
 		int i5 = 0;
@@ -264,7 +264,7 @@ public final class Model extends Animable {
 		nc6.currentOffset = l7;
 		nc7.currentOffset = i8;
 		for (int i12 = 0; i12 < numTriangles; i12++) {
-			triangleColours2[i12] = nc1.readUnsignedWord();
+			triangleColours2[i12] = nc1.get_unsigned_short();
 			if (l1 == 1) {
 				anIntArray1637[i12] = nc2.readSignedByte();
 				if (anIntArray1637[i12] == 2)
@@ -282,7 +282,7 @@ public final class Model extends Animable {
 			if (k2 == 1)
 				anIntArray1656[i12] = nc5.readUnsignedByte();
 			if (l2 == 1)
-				D[i12] = (short) (nc6.readUnsignedWord() - 1);
+				D[i12] = (short) (nc6.get_unsigned_short() - 1);
 			if (x != null)
 				if (D[i12] != -1)
 					x[i12] = (byte) (nc7.readUnsignedByte() - 1);
@@ -292,7 +292,7 @@ public final class Model extends Animable {
 		///fix's triangle issue, but fucked up - no need, loading all 474- models
 		/*try {
 		for(int i12 = 0; i12 < numTriangles; i12++) {
-			triangleColours2[i12] = nc1.readUnsignedWord();
+			triangleColours2[i12] = nc1.get_unsigned_short();
 			if(l1 == 1){
 				anIntArray1637[i12] = nc2.readSignedByte();
 			}
@@ -307,12 +307,12 @@ public final class Model extends Animable {
 			if(k2 == 1)
 				anIntArray1656[i12] = nc5.readUnsignedByte();
 			if(l2 == 1)
-				D[i12] = (short)(nc6.readUnsignedWord() - 1);
-			if(x != null)
+				D[i12] = (short)(nc6.get_unsigned_short() - 1);
+			if(world_x != null)
 				if(D[i12] != -1)
-					x[i12] = (byte)(nc7.readUnsignedByte() -1);
+					world_x[i12] = (byte)(nc7.readUnsignedByte() -1);
 			else
-				x[i12] = -1;
+				world_x[i12] = -1;
 		}
 		} catch (Exception ex) {
 		}*/
@@ -371,28 +371,28 @@ public final class Model extends Animable {
 		for (int k14 = 0; k14 < numTexTriangles; k14++) {
 			int i15 = O[k14] & 0xff;
 			if (i15 == 0) {
-				texTrianglesPoint1[k14] = nc1.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc1.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc1.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc1.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc1.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc1.get_unsigned_short();
 			}
 			if (i15 == 1) {
-				texTrianglesPoint1[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc2.readUnsignedWord();
-				kb[k14] = nc3.readUnsignedWord();
-				N[k14] = nc3.readUnsignedWord();
-				y[k14] = nc3.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc2.get_unsigned_short();
+				kb[k14] = nc3.get_unsigned_short();
+				N[k14] = nc3.get_unsigned_short();
+				y[k14] = nc3.get_unsigned_short();
 				gb[k14] = nc4.readSignedByte();
 				lb[k14] = nc5.readSignedByte();
 				F[k14] = nc6.readSignedByte();
 			}
 			if (i15 == 2) {
-				texTrianglesPoint1[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc2.readUnsignedWord();
-				kb[k14] = nc3.readUnsignedWord();
-				N[k14] = nc3.readUnsignedWord();
-				y[k14] = nc3.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc2.get_unsigned_short();
+				kb[k14] = nc3.get_unsigned_short();
+				N[k14] = nc3.get_unsigned_short();
+				y[k14] = nc3.get_unsigned_short();
 				gb[k14] = nc4.readSignedByte();
 				lb[k14] = nc5.readSignedByte();
 				F[k14] = nc6.readSignedByte();
@@ -400,12 +400,12 @@ public final class Model extends Animable {
 				J[k14] = nc6.readSignedByte();
 			}
 			if (i15 == 3) {
-				texTrianglesPoint1[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc2.readUnsignedWord();
-				kb[k14] = nc3.readUnsignedWord();
-				N[k14] = nc3.readUnsignedWord();
-				y[k14] = nc3.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc2.get_unsigned_short();
+				kb[k14] = nc3.get_unsigned_short();
+				N[k14] = nc3.get_unsigned_short();
+				y[k14] = nc3.get_unsigned_short();
 				gb[k14] = nc4.readSignedByte();
 				lb[k14] = nc5.readSignedByte();
 				F[k14] = nc6.readSignedByte();
@@ -435,8 +435,8 @@ public final class Model extends Animable {
 		Stream nc6 = new Stream(abyte0);
 		Stream nc7 = new Stream(abyte0);
 		nc1.currentOffset = abyte0.length - 23;
-		int numVertices = nc1.readUnsignedWord();
-		int numTriangles = nc1.readUnsignedWord();
+		int numVertices = nc1.get_unsigned_short();
+		int numTriangles = nc1.get_unsigned_short();
 		int numTexTriangles = nc1.readUnsignedByte();
 		Class21 ModelDef_1 = aClass21Array1661[modelID] = new Class21();
 		ModelDef_1.aByteArray368 = abyte0;
@@ -463,11 +463,11 @@ public final class Model extends Animable {
 		int k2 = nc1.readUnsignedByte();
 		int l2 = nc1.readUnsignedByte();
 		int i3 = nc1.readUnsignedByte();
-		int j3 = nc1.readUnsignedWord();
-		int k3 = nc1.readUnsignedWord();
-		int l3 = nc1.readUnsignedWord();
-		int i4 = nc1.readUnsignedWord();
-		int j4 = nc1.readUnsignedWord();
+		int j3 = nc1.get_unsigned_short();
+		int k3 = nc1.get_unsigned_short();
+		int l3 = nc1.get_unsigned_short();
+		int i4 = nc1.get_unsigned_short();
+		int j4 = nc1.get_unsigned_short();
 		int k4 = 0;
 		int l4 = 0;
 		int i5 = 0;
@@ -635,7 +635,7 @@ public final class Model extends Animable {
 		nc6.currentOffset = l7;
 		nc7.currentOffset = i8;
 		for (int i12 = 0; i12 < numTriangles; i12++) {
-			triangleColours2[i12] = nc1.readUnsignedWord();
+			triangleColours2[i12] = nc1.get_unsigned_short();
 			if (l1 == 1) {
 				anIntArray1637[i12] = nc2.readSignedByte();
 				if (anIntArray1637[i12] == 2)
@@ -653,7 +653,7 @@ public final class Model extends Animable {
 			if (k2 == 1)
 				anIntArray1656[i12] = nc5.readUnsignedByte();
 			if (l2 == 1)
-				D[i12] = (short) (nc6.readUnsignedWord() - 1);
+				D[i12] = (short) (nc6.get_unsigned_short() - 1);
 			if (x != null)
 				if (D[i12] != -1)
 					x[i12] = (byte) (nc7.readUnsignedByte() - 1);
@@ -715,21 +715,21 @@ public final class Model extends Animable {
 		for (int k14 = 0; k14 < numTexTriangles; k14++) {
 			int i15 = O[k14] & 0xff;
 			if (i15 == 0) {
-				texTrianglesPoint1[k14] = nc1.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc1.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc1.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc1.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc1.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc1.get_unsigned_short();
 			}
 			if (i15 == 1) {
-				texTrianglesPoint1[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc2.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc2.get_unsigned_short();
 				if (newformat < 15) {
-					kb[k14] = nc3.readUnsignedWord();
+					kb[k14] = nc3.get_unsigned_short();
 					if (newformat >= 14)
 						N[k14] = nc3.v(-1);
 					else
-						N[k14] = nc3.readUnsignedWord();
-					y[k14] = nc3.readUnsignedWord();
+						N[k14] = nc3.get_unsigned_short();
+					y[k14] = nc3.get_unsigned_short();
 				} else {
 					kb[k14] = nc3.v(-1);
 					N[k14] = nc3.v(-1);
@@ -740,20 +740,20 @@ public final class Model extends Animable {
 				F[k14] = nc6.readSignedByte();
 			}
 			if (i15 == 2) {
-				texTrianglesPoint1[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc2.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc2.get_unsigned_short();
 				if (newformat >= 15) {
 					kb[k14] = nc3.v(-1);
 					N[k14] = nc3.v(-1);
 					y[k14] = nc3.v(-1);
 				} else {
-					kb[k14] = nc3.readUnsignedWord();
+					kb[k14] = nc3.get_unsigned_short();
 					if (newformat < 14)
-						N[k14] = nc3.readUnsignedWord();
+						N[k14] = nc3.get_unsigned_short();
 					else
 						N[k14] = nc3.v(-1);
-					y[k14] = nc3.readUnsignedWord();
+					y[k14] = nc3.get_unsigned_short();
 				}
 				gb[k14] = nc4.readSignedByte();
 				lb[k14] = nc5.readSignedByte();
@@ -762,16 +762,16 @@ public final class Model extends Animable {
 				J[k14] = nc6.readSignedByte();
 			}
 			if (i15 == 3) {
-				texTrianglesPoint1[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint2[k14] = nc2.readUnsignedWord();
-				texTrianglesPoint3[k14] = nc2.readUnsignedWord();
+				texTrianglesPoint1[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint2[k14] = nc2.get_unsigned_short();
+				texTrianglesPoint3[k14] = nc2.get_unsigned_short();
 				if (newformat < 15) {
-					kb[k14] = nc3.readUnsignedWord();
+					kb[k14] = nc3.get_unsigned_short();
 					if (newformat < 14)
-						N[k14] = nc3.readUnsignedWord();
+						N[k14] = nc3.get_unsigned_short();
 					else
 						N[k14] = nc3.v(-1);
-					y[k14] = nc3.readUnsignedWord();
+					y[k14] = nc3.get_unsigned_short();
 				} else {
 					kb[k14] = nc3.v(-1);
 					N[k14] = nc3.v(-1);
@@ -887,7 +887,7 @@ public final class Model extends Animable {
 		stream_3.currentOffset = class21.anInt382;
 		stream_4.currentOffset = class21.anInt383;
 		for (int l1 = 0; l1 < anInt1630; l1++) {
-			anIntArray1640[l1] = stream.readUnsignedWord();
+			anIntArray1640[l1] = stream.get_unsigned_short();
 			if (anIntArray1637 != null)
 				anIntArray1637[l1] = stream_1.readUnsignedByte();
 			if (anIntArray1638 != null)
@@ -948,9 +948,9 @@ public final class Model extends Animable {
 		}
 		stream.currentOffset = class21.anInt384;
 		for (int j4 = 0; j4 < anInt1642; j4++) {
-			anIntArray1643[j4] = stream.readUnsignedWord();
-			anIntArray1644[j4] = stream.readUnsignedWord();
-			anIntArray1645[j4] = stream.readUnsignedWord();
+			anIntArray1643[j4] = stream.get_unsigned_short();
+			anIntArray1644[j4] = stream.get_unsigned_short();
+			anIntArray1645[j4] = stream.get_unsigned_short();
 		}
 	}
    
@@ -993,18 +993,18 @@ public final class Model extends Animable {
          stream.currentOffset = abyte0.length - 18;
          Class21 class21_1 = aClass21Array1661[j] = new Class21();
          class21_1.aByteArray368 = abyte0;
-         class21_1.anInt369 = stream.readUnsignedWord();
-         class21_1.anInt370 = stream.readUnsignedWord();
+         class21_1.anInt369 = stream.get_unsigned_short();
+         class21_1.anInt370 = stream.get_unsigned_short();
          class21_1.anInt371 = stream.readUnsignedByte();
          int k = stream.readUnsignedByte();
          int l = stream.readUnsignedByte();
          int i1 = stream.readUnsignedByte();
          int j1 = stream.readUnsignedByte();
          int k1 = stream.readUnsignedByte();
-         int l1 = stream.readUnsignedWord();
-         int i2 = stream.readUnsignedWord();
-         int j2 = stream.readUnsignedWord();
-         int k2 = stream.readUnsignedWord();
+         int l1 = stream.get_unsigned_short();
+         int i2 = stream.get_unsigned_short();
+         int j2 = stream.get_unsigned_short();
+         int k2 = stream.get_unsigned_short();
          byte l2 = 0;
          class21_1.anInt372 = l2;
          int l21 = l2 + class21_1.anInt369;
@@ -1134,8 +1134,8 @@ public final class Model extends Animable {
       }
 
       this.anIntArray1640 = new int[this.anInt1630];
-      Stream stream = new Stream(class21.aByteArray368);
-      stream.currentOffset = class21.anInt372;
+      Stream outgoing = new Stream(class21.aByteArray368);
+      outgoing.currentOffset = class21.anInt372;
       Stream stream_1 = new Stream(class21.aByteArray368);
       stream_1.currentOffset = class21.anInt373;
       Stream stream_2 = new Stream(class21.aByteArray368);
@@ -1154,7 +1154,7 @@ public final class Model extends Animable {
       int k3;
       int j4;
       for(j2 = 0; j2 < this.anInt1626; ++j2) {
-         l2 = stream.readUnsignedByte();
+         l2 = outgoing.readUnsignedByte();
          j3 = 0;
          if((l2 & 1) != 0) {
             j3 = stream_1.method421();
@@ -1181,14 +1181,14 @@ public final class Model extends Animable {
          }
       }
 
-      stream.currentOffset = class21.anInt379;
+      outgoing.currentOffset = class21.anInt379;
       stream_1.currentOffset = class21.anInt380;
       stream_2.currentOffset = class21.anInt381;
       stream_3.currentOffset = class21.anInt382;
       stream_4.currentOffset = class21.anInt383;
 	  
       for(j2 = 0; j2 < this.anInt1630; ++j2) {
-         this.anIntArray1640[j2] = stream.readUnsignedWord();
+         this.anIntArray1640[j2] = outgoing.get_unsigned_short();
 		 if(this.anIntArray1640[j2] == 8){
 			this.anIntArray1640[j2] = 40;
 		 }
@@ -1211,7 +1211,7 @@ public final class Model extends Animable {
 	  if(this.anIntArray1639 == null)
 		this.anIntArray1639 = new int[this.anInt1630];
 
-      stream.currentOffset = class21.anInt377;
+      outgoing.currentOffset = class21.anInt377;
       stream_1.currentOffset = class21.anInt378;
       j2 = 0;
       l2 = 0;
@@ -1221,9 +1221,9 @@ public final class Model extends Animable {
       for(j4 = 0; j4 < this.anInt1630; ++j4) {
          int i4 = stream_1.readUnsignedByte();
          if(i4 == 1) {
-            j2 = stream.method421() + k3;
-            l2 = stream.method421() + j2;
-            j3 = stream.method421() + l2;
+            j2 = outgoing.method421() + k3;
+            l2 = outgoing.method421() + j2;
+            j3 = outgoing.method421() + l2;
             k3 = j3;
             this.anIntArray1631[j4] = j2;
             this.anIntArray1632[j4] = l2;
@@ -1232,7 +1232,7 @@ public final class Model extends Animable {
 
          if(i4 == 2) {
             l2 = j3;
-            j3 = stream.method421() + k3;
+            j3 = outgoing.method421() + k3;
             k3 = j3;
             this.anIntArray1631[j4] = j2;
             this.anIntArray1632[j4] = l2;
@@ -1241,7 +1241,7 @@ public final class Model extends Animable {
 
          if(i4 == 3) {
             j2 = j3;
-            j3 = stream.method421() + k3;
+            j3 = outgoing.method421() + k3;
             k3 = j3;
             this.anIntArray1631[j4] = j2;
             this.anIntArray1632[j4] = l2;
@@ -1252,7 +1252,7 @@ public final class Model extends Animable {
             int k4 = j2;
             j2 = l2;
             l2 = k4;
-            j3 = stream.method421() + k3;
+            j3 = outgoing.method421() + k3;
             k3 = j3;
             this.anIntArray1631[j4] = j2;
             this.anIntArray1632[j4] = k4;
@@ -1260,12 +1260,12 @@ public final class Model extends Animable {
          }
       }
 
-      stream.currentOffset = class21.anInt384;
+      outgoing.currentOffset = class21.anInt384;
 
       for(j4 = 0; j4 < this.anInt1642; ++j4) {
-         this.anIntArray1643[j4] = stream.readUnsignedWord();
-         this.anIntArray1644[j4] = stream.readUnsignedWord();
-         this.anIntArray1645[j4] = stream.readUnsignedWord();
+         this.anIntArray1643[j4] = outgoing.get_unsigned_short();
+         this.anIntArray1644[j4] = outgoing.get_unsigned_short();
+         this.anIntArray1645[j4] = outgoing.get_unsigned_short();
       }
 
    }*/
@@ -2484,9 +2484,9 @@ public final class Model extends Animable {
       if(i3 > 50 && k2 < 3500) {
          int j3 = l1 * l + j1 * i1 >> 16;
          int k3 = j3 - this.anInt1650 << 9;
-         if(k3 / i3 < Rasterizer2D.centerY) {
+         if(k3 / i3 < Rasterizer2D.viewport_center_y) {
             int l3 = j3 + this.anInt1650 << 9;
-            if(l3 / i3 > -Rasterizer2D.centerY) {
+            if(l3 / i3 > -Rasterizer2D.viewport_center_y) {
                int i4 = k1 * k - j2 * j >> 16;
                int j4 = this.anInt1650 * j >> 16;
                int k4 = i4 + j4 << 9;
@@ -2627,7 +2627,7 @@ public final class Model extends Animable {
 
                if((k6 - ai2) * (anIntArray1666[i6] - anIntArray1666[j4]) - (anIntArray1666[k3] - anIntArray1666[j4]) * (ai3 - ai2) > 0) {
                   aBooleanArray1664[l2] = false;
-                  aBooleanArray1663[l2] = k6 < 0 || ai2 < 0 || ai3 < 0 || k6 > Rasterizer2D.centerX || ai2 > Rasterizer2D.centerX || ai3 > Rasterizer2D.centerX;
+                  aBooleanArray1663[l2] = k6 < 0 || ai2 < 0 || ai3 < 0 || k6 > Rasterizer2D.center_x || ai2 > Rasterizer2D.center_x || ai3 > Rasterizer2D.center_x;
                   i5 = (anIntArray1667[k3] + anIntArray1667[j4] + anIntArray1667[i6]) / 3 + this.anInt1653;
                   anIntArrayArray1672[i5][anIntArray1671[i5]++] = l2;
                }
@@ -2930,7 +2930,7 @@ public final class Model extends Animable {
          int j12;
          int j11;
          if(l == 3) {
-            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > Rasterizer2D.centerX || j4 > Rasterizer2D.centerX || j5 > Rasterizer2D.centerX) {
+            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > Rasterizer2D.center_x || j4 > Rasterizer2D.center_x || j5 > Rasterizer2D.center_x) {
                Texture.aBoolean1462 = true;
             }
 
@@ -2960,7 +2960,7 @@ public final class Model extends Animable {
          }
 
          if(l == 4) {
-            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > Rasterizer2D.centerX || j4 > Rasterizer2D.centerX || j5 > Rasterizer2D.centerX || anIntArray1678[3] < 0 || anIntArray1678[3] > Rasterizer2D.centerX) {
+            if(j3 < 0 || j4 < 0 || j5 < 0 || j3 > Rasterizer2D.center_x || j4 > Rasterizer2D.center_x || j5 > Rasterizer2D.center_x || anIntArray1678[3] < 0 || anIntArray1678[3] > Rasterizer2D.center_x) {
                Texture.aBoolean1462 = true;
             }
 

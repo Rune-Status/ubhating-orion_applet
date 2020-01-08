@@ -6,12 +6,12 @@ public class Rasterizer2D extends NodeSub {
    public static int[] pixels;
    public static int width;
    public static int height;
-   public static int topY;
-   public static int bottomY;
-   public static int topX;
-   public static int bottomX;
-   public static int centerX;
-   public static int centerY;
+   public static int clip_top;
+   public static int clip_bottom;
+   public static int clip_left;
+   public static int clip_right;
+   public static int center_x;
+   public static int viewport_center_y;
    public static int anInt1387;
 
 
@@ -23,40 +23,38 @@ public class Rasterizer2D extends NodeSub {
    }
 
    public static void defaultDrawingAreaSize() {
-      topX = 0;
-      topY = 0;
-      bottomX = width;
-      bottomY = height;
-      //centerX = bottomX - 1;
-	  centerX = bottomX;
-      centerY = bottomX / 2;
+      clip_left = 0;
+      clip_top = 0;
+      clip_right = width;
+      clip_bottom = height;
+      center_x = clip_right;
+      viewport_center_y = clip_right / 2;
    }
 
-   public static void set_clip(int i, int j, int k, int l) {
-      if(j < 0) {
-         j = 0;
+   public static void set_clip(int height, int x, int width, int y) {
+      if(x < 0) {
+         x = 0;
       }
 
-      if(l < 0) {
-         l = 0;
+      if(y < 0) {
+         y = 0;
       }
 
-      if(k > width) {
-         k = width;
+      if(width > Rasterizer2D.width) {
+         width = Rasterizer2D.width;
       }
 
-      if(i > height) {
-         i = height;
+      if(height > Rasterizer2D.height) {
+         height = Rasterizer2D.height;
       }
 
-      topX = j;
-      topY = l;
-      bottomX = k;
-      bottomY = i;
-      //centerX = bottomX - 1;
-	  centerX = bottomX;
-      centerY = bottomX / 2;
-      anInt1387 = bottomY / 2;
+      clip_left = x;
+      clip_top = y;
+      clip_right = width;
+      clip_bottom = height;
+	  center_x = clip_right;
+      viewport_center_y = clip_right / 2;
+      anInt1387 = clip_bottom / 2;
    }
 
    public static void setAllPixelsToZero() {
@@ -68,34 +66,34 @@ public class Rasterizer2D extends NodeSub {
 
    }
 
-   public static void method335(int i, int j, int k, int l, int i1, int k1) {
-      if(k1 < topX) {
-         k -= topX - k1;
-         k1 = topX;
+   public static void draw_filled_rect(int color, int y, int width, int height, int alpha, int x) {
+      if(x < clip_left) {
+         width -= clip_left - x;
+         x = clip_left;
       }
 
-      if(j < topY) {
-         l -= topY - j;
-         j = topY;
+      if(y < clip_top) {
+         height -= clip_top - y;
+         y = clip_top;
       }
 
-      if(k1 + k > bottomX) {
-         k = bottomX - k1;
+      if(x + width > clip_right) {
+         width = clip_right - x;
       }
 
-      if(j + l > bottomY) {
-         l = bottomY - j;
+      if(y + height > clip_bottom) {
+         height = clip_bottom - y;
       }
 
-      int l1 = 256 - i1;
-      int i2 = (i >> 16 & 255) * i1;
-      int j2 = (i >> 8 & 255) * i1;
-      int k2 = (i & 255) * i1;
-      int k3 = width - k;
-      int l3 = k1 + j * width;
+      int l1 = 256 - alpha;
+      int i2 = (color >> 16 & 255) * alpha;
+      int j2 = (color >> 8 & 255) * alpha;
+      int k2 = (color & 255) * alpha;
+      int k3 = Rasterizer2D.width - width;
+      int l3 = x + y * Rasterizer2D.width;
 
-      for(int i4 = 0; i4 < l; ++i4) {
-         for(int j4 = -k; j4 < 0; ++j4) {
+      for(int i4 = 0; i4 < height; ++i4) {
+         for(int j4 = -width; j4 < 0; ++j4) {
             int l2 = (pixels[l3] >> 16 & 255) * l1;
             int i3 = (pixels[l3] >> 8 & 255) * l1;
             int j3 = (pixels[l3] & 255) * l1;
@@ -108,23 +106,23 @@ public class Rasterizer2D extends NodeSub {
 
    }
 
-   public static void method336(int i, int j, int k, int l, int i1) {
-      if(k < topX) {
-         i1 -= topX - k;
-         k = topX;
+   public static void draw_filled_rect(int i, int j, int k, int l, int i1) {
+      if(k < clip_left) {
+         i1 -= clip_left - k;
+         k = clip_left;
       }
 
-      if(j < topY) {
-         i -= topY - j;
-         j = topY;
+      if(j < clip_top) {
+         i -= clip_top - j;
+         j = clip_top;
       }
 
-      if(k + i1 > bottomX) {
-         i1 = bottomX - k;
+      if(k + i1 > clip_right) {
+         i1 = clip_right - k;
       }
 
-      if(j + i > bottomY) {
-         i = bottomY - j;
+      if(j + i > clip_bottom) {
+         i = clip_bottom - j;
       }
 
       int k1 = width - i1;
@@ -158,14 +156,14 @@ public class Rasterizer2D extends NodeSub {
    }
 
    public static void method339(int i, int j, int k, int l) {
-      if(i >= topY && i < bottomY) {
-         if(l < topX) {
-            k -= topX - l;
-            l = topX;
+      if(i >= clip_top && i < clip_bottom) {
+         if(l < clip_left) {
+            k -= clip_left - l;
+            l = clip_left;
          }
 
-         if(l + k > bottomX) {
-            k = bottomX - l;
+         if(l + k > clip_right) {
+            k = clip_right - l;
          }
 
          int i1 = l + i * width;
@@ -178,14 +176,14 @@ public class Rasterizer2D extends NodeSub {
    }
 
    private static void method340(int i, int j, int k, int l, int i1) {
-      if(k >= topY && k < bottomY) {
-         if(i1 < topX) {
-            j -= topX - i1;
-            i1 = topX;
+      if(k >= clip_top && k < clip_bottom) {
+         if(i1 < clip_left) {
+            j -= clip_left - i1;
+            i1 = clip_left;
          }
 
-         if(i1 + j > bottomX) {
-            j = bottomX - i1;
+         if(i1 + j > clip_right) {
+            j = clip_right - i1;
          }
 
          int j1 = 256 - l;
@@ -206,14 +204,14 @@ public class Rasterizer2D extends NodeSub {
    }
 
    public static void method341(int i, int j, int k, int l) {
-      if(l >= topX && l < bottomX) {
-         if(i < topY) {
-            k -= topY - i;
-            i = topY;
+      if(l >= clip_left && l < clip_right) {
+         if(i < clip_top) {
+            k -= clip_top - i;
+            i = clip_top;
          }
 
-         if(i + k > bottomY) {
-            k = bottomY - i;
+         if(i + k > clip_bottom) {
+            k = clip_bottom - i;
          }
 
          int j1 = l + i * width;
@@ -226,14 +224,14 @@ public class Rasterizer2D extends NodeSub {
    }
 
    private static void method342(int i, int j, int k, int l, int i1) {
-      if(j >= topX && j < bottomX) {
-         if(l < topY) {
-            i1 -= topY - l;
-            l = topY;
+      if(j >= clip_left && j < clip_right) {
+         if(l < clip_top) {
+            i1 -= clip_top - l;
+            l = clip_top;
          }
 
-         if(l + i1 > bottomY) {
-            i1 = bottomY - l;
+         if(l + i1 > clip_bottom) {
+            i1 = clip_bottom - l;
          }
 
          int j1 = 256 - k;

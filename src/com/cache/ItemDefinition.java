@@ -93,14 +93,14 @@ public final class ItemDefinition {
    public static void unpackConfig(StreamLoader streamLoader) {
       stream = new Stream(streamLoader.getDataForName("obj.dat"));
       Stream stream = new Stream(streamLoader.getDataForName("obj.idx"));
-      totalItems = stream.readUnsignedWord();
+      totalItems = stream.get_unsigned_short();
       streamIndices = new int[totalItems];
       int i = 2;
 
       int k;
       for(k = 0; k < totalItems; ++k) {
          streamIndices[k] = i;
-         i += stream.readUnsignedWord();
+         i += stream.get_unsigned_short();
       }
 
       cache = new ItemDefinition[10];
@@ -563,7 +563,7 @@ Alphas:
       if(k == 0) {
          Sprite itemDef = (Sprite)mruNodes1.insertFromCache((long)i);
          if(itemDef != null && itemDef.anInt1445 != j && itemDef.anInt1445 != -1) {
-            itemDef.unlink();
+            itemDef.remove();
             itemDef = null;
          }
 
@@ -610,13 +610,13 @@ Alphas:
          int[] ai1 = Rasterizer2D.pixels;
          int i2 = Rasterizer2D.width;
          int j2 = Rasterizer2D.height;
-         int k2 = Rasterizer2D.topX;
-         int l2 = Rasterizer2D.bottomX;
-         int i3 = Rasterizer2D.topY;
-         int j3 = Rasterizer2D.bottomY;
+         int k2 = Rasterizer2D.clip_left;
+         int l2 = Rasterizer2D.clip_right;
+         int i3 = Rasterizer2D.clip_top;
+         int j3 = Rasterizer2D.clip_bottom;
          Texture.aBoolean1464 = false;
          Rasterizer2D.initDrawingArea(32, 32, sprite2.myPixels);
-         Rasterizer2D.method336(32, 0, 0, 0, 32);
+         Rasterizer2D.draw_filled_rect(32, 0, 0, 0, 32);
          Texture.method364();
          int k3 = var22.modelZoom;
          if(k == -1) {
@@ -795,29 +795,29 @@ Alphas:
          }
 
          if(i == 1) {
-            this.modelID = stream.readUnsignedWord();
+            this.modelID = stream.get_unsigned_short();
          } else if(i == 2) {
             this.name = stream.readString();
          } else if(i == 3) {
             this.description = stream.readBytes();
          } else if(i == 4) {
-            this.modelZoom = stream.readUnsignedWord();
+            this.modelZoom = stream.get_unsigned_short();
          } else if(i == 5) {
-            this.modelRotation1 = stream.readUnsignedWord();
+            this.modelRotation1 = stream.get_unsigned_short();
          } else if(i == 6) {
-            this.modelRotation2 = stream.readUnsignedWord();
+            this.modelRotation2 = stream.get_unsigned_short();
          } else if(i == 7) {
-            this.modelOffset1 = stream.readUnsignedWord();
+            this.modelOffset1 = stream.get_unsigned_short();
             if(this.modelOffset1 > 32767) {
                this.modelOffset1 -= 65536;
             }
          } else if(i == 8) {
-            this.modelOffset2 = stream.readUnsignedWord();
+            this.modelOffset2 = stream.get_unsigned_short();
             if(this.modelOffset2 > 32767) {
                this.modelOffset2 -= 65536;
             }
          } else if(i == 10) {
-            stream.readUnsignedWord();
+            stream.get_unsigned_short();
          } else if(i == 11) {
             this.stackable = true;
          } else if(i == 12) {
@@ -825,15 +825,15 @@ Alphas:
          } else if(i == 16) {
             this.membersObject = true;
          } else if(i == 23) {
-            this.anInt165 = stream.readUnsignedWord();
+            this.anInt165 = stream.get_unsigned_short();
             this.aByte205 = stream.readSignedByte();
          } else if(i == 24) {
-            this.anInt188 = stream.readUnsignedWord();
+            this.anInt188 = stream.get_unsigned_short();
          } else if(i == 25) {
-            this.anInt200 = stream.readUnsignedWord();
+            this.anInt200 = stream.get_unsigned_short();
             this.aByte154 = stream.readSignedByte();
          } else if(i == 26) {
-            this.anInt164 = stream.readUnsignedWord();
+            this.anInt164 = stream.get_unsigned_short();
          } else if(i >= 30 && i < 35) {
             if(this.groundActions == null) {
                this.groundActions = new String[5];
@@ -855,41 +855,41 @@ Alphas:
             this.modifiedModelColors = new int[j];
 
             for(int k = 0; k < j; ++k) {
-               this.originalModelColors[k] = stream.readUnsignedWord();
-               this.modifiedModelColors[k] = stream.readUnsignedWord();
+               this.originalModelColors[k] = stream.get_unsigned_short();
+               this.modifiedModelColors[k] = stream.get_unsigned_short();
             }
          } else if(i == 78) {
-            this.anInt185 = stream.readUnsignedWord();
+            this.anInt185 = stream.get_unsigned_short();
          } else if(i == 79) {
-            this.anInt162 = stream.readUnsignedWord();
+            this.anInt162 = stream.get_unsigned_short();
          } else if(i == 90) {
-            this.anInt175 = stream.readUnsignedWord();
+            this.anInt175 = stream.get_unsigned_short();
          } else if(i == 91) {
-            this.anInt197 = stream.readUnsignedWord();
+            this.anInt197 = stream.get_unsigned_short();
          } else if(i == 92) {
-            this.anInt166 = stream.readUnsignedWord();
+            this.anInt166 = stream.get_unsigned_short();
          } else if(i == 93) {
-            this.anInt173 = stream.readUnsignedWord();
+            this.anInt173 = stream.get_unsigned_short();
          } else if(i == 95) {
-            this.anInt204 = stream.readUnsignedWord();
+            this.anInt204 = stream.get_unsigned_short();
          } else if(i == 97) {
-            this.certID = stream.readUnsignedWord();
+            this.certID = stream.get_unsigned_short();
          } else if(i == 98) {
-            this.certTemplateID = stream.readUnsignedWord();
+            this.certTemplateID = stream.get_unsigned_short();
          } else if(i >= 100 && i < 110) {
             if(this.stackIDs == null) {
                this.stackIDs = new int[10];
                this.stackAmounts = new int[10];
             }
 
-            this.stackIDs[i - 100] = stream.readUnsignedWord();
-            this.stackAmounts[i - 100] = stream.readUnsignedWord();
+            this.stackIDs[i - 100] = stream.get_unsigned_short();
+            this.stackAmounts[i - 100] = stream.get_unsigned_short();
          } else if(i == 110) {
-            this.anInt167 = stream.readUnsignedWord();
+            this.anInt167 = stream.get_unsigned_short();
          } else if(i == 111) {
-            this.anInt192 = stream.readUnsignedWord();
+            this.anInt192 = stream.get_unsigned_short();
          } else if(i == 112) {
-            this.anInt191 = stream.readUnsignedWord();
+            this.anInt191 = stream.get_unsigned_short();
          } else if(i == 113) {
             this.anInt196 = stream.readSignedByte();
          } else if(i == 114) {
@@ -902,8 +902,8 @@ Alphas:
             this.alphaLevel = new int[j];
 
             for(int k = 0; k < j; ++k) {
-               this.alphaColor[k] = stream.readUnsignedWord();
-               this.alphaLevel[k] = stream.readUnsignedWord();
+               this.alphaColor[k] = stream.get_unsigned_short();
+               this.alphaLevel[k] = stream.get_unsigned_short();
             }
          } else if(i == 177) {
              this.isOnGe = true;

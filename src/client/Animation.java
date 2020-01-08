@@ -23,7 +23,7 @@ public final class Animation {
 
    public static void unpackConfig(StreamLoader streamLoader) {
       Stream stream = new Stream(streamLoader.getDataForName("seq.dat"));
-      int length = stream.readUnsignedWord();
+      int length = stream.get_unsigned_short();
       if(anims == null) {
          anims = new Animation[length];
       }
@@ -96,25 +96,25 @@ public final class Animation {
             this.anIntArray355 = new int[this.anInt352];
 
             for(k = 0; k < this.anInt352; ++k) {
-               this.anIntArray353[k] = stream.readUnsignedWord();
-               this.anIntArray354[k] = stream.readUnsignedWord();
+               this.anIntArray353[k] = stream.get_unsigned_short();
+               this.anIntArray354[k] = stream.get_unsigned_short();
                if(this.anIntArray354[k] == '\uffff') {
                   this.anIntArray354[k] = -1;
                }
 
-               this.anIntArray355[k] = stream.readUnsignedWord();
+               this.anIntArray355[k] = stream.get_unsigned_short();
             }
          } else if(i == 2) {
-            this.anInt356 = stream.readUnsignedWord();
+            this.anInt356 = stream.get_unsigned_short();
          } else if(i != 3) {
             if(i == 4) {
                this.aBoolean358 = true;
             } else if(i == 5) {
                this.anInt359 = stream.readUnsignedByte();
             } else if(i == 6) {
-               this.anInt360 = stream.readUnsignedWord();
+               this.anInt360 = stream.get_unsigned_short();
             } else if(i == 7) {
-               this.anInt361 = stream.readUnsignedWord();
+               this.anInt361 = stream.get_unsigned_short();
             } else if(i == 8) {
                this.anInt362 = stream.readUnsignedByte();
             } else if(i == 9) {

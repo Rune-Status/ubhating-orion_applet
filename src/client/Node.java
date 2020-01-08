@@ -8,15 +8,6 @@ public class Node {
     public Node next;
 
     public final void remove() {
-        if (next != null) {
-            next.prev = prev;
-            prev.next = next;
-            prev = null;
-            next = null;
-        }
-    }
-
-    public final void unlink() {
         if (this.next != null) {
             this.next.prev = this.prev;
             this.prev.next = this.next;

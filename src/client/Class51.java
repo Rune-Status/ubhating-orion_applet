@@ -48,8 +48,8 @@ final class Class51 {
       this.anIntArray853 = new int[this.anInt857];
 
       for(int i = 0; i < this.anInt857; ++i) {
-         this.anIntArray854[i] = class3_sub12.readUnsignedWord();
-         this.anIntArray853[i] = class3_sub12.readUnsignedWord();
+         this.anIntArray854[i] = class3_sub12.get_unsigned_short();
+         this.anIntArray853[i] = class3_sub12.get_unsigned_short();
       }
 
    }

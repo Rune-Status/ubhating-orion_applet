@@ -8,7 +8,7 @@ public final class Player extends Entity {
    public int privelage;
    public boolean isDonor = false;
    private long aLong1697 = -1L;
-   public EntityDef desc;
+   public NpcDefinition desc;
    boolean aBoolean1699 = false;
    final int[] anIntArray1700 = new int[5];
    public int team;
@@ -76,7 +76,7 @@ public final class Player extends Entity {
 
                   if(Client.loopCycle >= this.anInt1707 && Client.loopCycle < this.anInt1708) {
                      Model model_11 = this.aModel_1714;
-                     model_11.method475(this.anInt1711 - super.x, this.anInt1712 - this.anInt1709, this.anInt1713 - super.y);
+                     model_11.method475(this.anInt1711 - super.world_x, this.anInt1712 - this.anInt1709, this.anInt1713 - super.world_y);
                      if(super.turnDirection == 512) {
                         model_11.method473();
                         model_11.method473();
@@ -101,7 +101,7 @@ public final class Player extends Entity {
                         model_11.method473();
                      }
 
-                     model_11.method475(super.x - this.anInt1711, this.anInt1709 - this.anInt1712, super.y - this.anInt1713);
+                     model_11.method475(super.world_x - this.anInt1711, this.anInt1709 - this.anInt1712, super.world_y - this.anInt1713);
                   }
                }
 
@@ -133,8 +133,8 @@ public final class Player extends Entity {
             int i1 = stream.readUnsignedByte();
             this.equipment[i2] = (j1 << 8) + i1;
             if(i2 == 0 && this.equipment[0] == '\uffff') {
-               int pnpc = stream.readUnsignedWord();
-				this.desc = EntityDef.forID(pnpc);
+               int pnpc = stream.get_unsigned_short();
+				this.desc = NpcDefinition.forID(pnpc);
 				isNpc = true;
 				super.anInt1511 = this.desc.anInt77;//stand
 				super.anInt1554 = this.desc.anInt67;//walk
@@ -163,7 +163,7 @@ public final class Player extends Entity {
 
       for(i2 = 0; i2 < 5; ++i2) {
          j1 = stream.readUnsignedByte();
-         if(j1 < 0 || j1 >= Client.anIntArrayArray1003[i2].length) {
+         if(j1 < 0 || j1 >= Client.APPEARANCE_COLORS[i2].length) {
             j1 = 0;
          }
 
@@ -171,45 +171,45 @@ public final class Player extends Entity {
       }
 
 	  if(isNpc){
-			stream.readUnsignedWord();
-			stream.readUnsignedWord();
-			stream.readUnsignedWord();
-			stream.readUnsignedWord();
-			stream.readUnsignedWord();
-			stream.readUnsignedWord();
-			stream.readUnsignedWord();
+			stream.get_unsigned_short();
+			stream.get_unsigned_short();
+			stream.get_unsigned_short();
+			stream.get_unsigned_short();
+			stream.get_unsigned_short();
+			stream.get_unsigned_short();
+			stream.get_unsigned_short();
 		}else{
-      super.anInt1511 = stream.readUnsignedWord();
+      super.anInt1511 = stream.get_unsigned_short();
       if(super.anInt1511 == '\uffff') {
          super.anInt1511 = -1;
       }
 
-      super.anInt1512 = stream.readUnsignedWord();
+      super.anInt1512 = stream.get_unsigned_short();
       if(super.anInt1512 == '\uffff') {
          super.anInt1512 = -1;
       }
 
-      super.anInt1554 = stream.readUnsignedWord();
+      super.anInt1554 = stream.get_unsigned_short();
       if(super.anInt1554 == '\uffff') {
          super.anInt1554 = -1;
       }
 
-      super.anInt1555 = stream.readUnsignedWord();
+      super.anInt1555 = stream.get_unsigned_short();
       if(super.anInt1555 == '\uffff') {
          super.anInt1555 = -1;
       }
 
-      super.anInt1556 = stream.readUnsignedWord();
+      super.anInt1556 = stream.get_unsigned_short();
       if(super.anInt1556 == '\uffff') {
          super.anInt1556 = -1;
       }
 
-      super.anInt1557 = stream.readUnsignedWord();
+      super.anInt1557 = stream.get_unsigned_short();
       if(super.anInt1557 == '\uffff') {
          super.anInt1557 = -1;
       }
 
-      super.anInt1505 = stream.readUnsignedWord();
+      super.anInt1505 = stream.get_unsigned_short();
       if(super.anInt1505 == '\uffff') {
          super.anInt1505 = -1;
 		}
@@ -217,7 +217,7 @@ public final class Player extends Entity {
 
       this.name = TextClass.fixName(TextClass.nameForLong(stream.readQWord()));
       this.combatLevel = stream.readUnsignedByte();
-      this.skill = stream.readUnsignedWord();
+      this.skill = stream.get_unsigned_short();
       this.visible = true;
       this.aLong1718 = 0L;
 
@@ -299,7 +299,7 @@ public final class Player extends Entity {
                   j3 = j1;
                }
 
-               if(j3 >= 256 && j3 < 512 && !IDK.cache[j3 - 256].method537()) {
+               if(j3 >= 256 && j3 < 512 && !IdentityKit.cache[j3 - 256].method537()) {
                   model_2 = true;
                }
 
@@ -335,7 +335,7 @@ public final class Player extends Entity {
 
                Model model_4;
                if(i3 >= 256 && i3 < 512) {
-                  model_4 = IDK.cache[i3 - 256].method538();
+                  model_4 = IdentityKit.cache[i3 - 256].method538();
                   if(model_4 != null) {
                      var16[j2++] = model_4;
                   }
@@ -353,7 +353,7 @@ public final class Player extends Entity {
 
             for(j3 = 0; j3 < 5; ++j3) {
                if(this.anIntArray1700[j3] != 0) {
-                  var14.method476(Client.anIntArrayArray1003[j3][0], Client.anIntArrayArray1003[j3][this.anIntArray1700[j3]]);
+                  var14.method476(Client.APPEARANCE_COLORS[j3][0], Client.APPEARANCE_COLORS[j3][this.anIntArray1700[j3]]);
                   if(j3 == 1) {
                      var14.method476(Client.anIntArray1204[0], Client.anIntArray1204[this.anIntArray1700[j3]]);
                   }
@@ -385,7 +385,7 @@ public final class Player extends Entity {
       }
    }
 
-   public boolean isVisible() {
+   public boolean visible() {
       return this.visible;
    }
 
@@ -400,7 +400,7 @@ public final class Player extends Entity {
          int k;
          for(int aclass30_sub2_sub4_sub6s = 0; aclass30_sub2_sub4_sub6s < 12; ++aclass30_sub2_sub4_sub6s) {
             k = this.equipment[aclass30_sub2_sub4_sub6s];
-            if(k >= 256 && k < 512 && !IDK.cache[k - 256].method539()) {
+            if(k >= 256 && k < 512 && !IdentityKit.cache[k - 256].method539()) {
                flag = true;
             }
 
@@ -420,7 +420,7 @@ public final class Player extends Entity {
                j1 = this.equipment[model];
                Model model_2;
                if(j1 >= 256 && j1 < 512) {
-                  model_2 = IDK.cache[j1 - 256].method540();
+                  model_2 = IdentityKit.cache[j1 - 256].method540();
                   if(model_2 != null) {
                      var7[k++] = model_2;
                   }
@@ -438,7 +438,7 @@ public final class Player extends Entity {
 
             for(j1 = 0; j1 < 5; ++j1) {
                if(this.anIntArray1700[j1] != 0) {
-                  var8.method476(Client.anIntArrayArray1003[j1][0], Client.anIntArrayArray1003[j1][this.anIntArray1700[j1]]);
+                  var8.method476(Client.APPEARANCE_COLORS[j1][0], Client.APPEARANCE_COLORS[j1][this.anIntArray1700[j1]]);
                   if(j1 == 1) {
                      var8.method476(Client.anIntArray1204[0], Client.anIntArray1204[this.anIntArray1700[j1]]);
                   }

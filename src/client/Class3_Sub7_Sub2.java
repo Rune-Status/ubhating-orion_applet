@@ -355,13 +355,13 @@ final class Class3_Sub7_Sub2 extends Class3_Sub7 {
                this.method395(is, i_63_, 0, i_58_, 0);
                if(this.anInt1820 < 0) {
                   this.anInt1820 = 0;
-                  this.unlink();
+                  this.remove();
                }
             } else {
                this.method398(is, i_63_, i_61_, i_58_, 0);
                if(this.anInt1820 >= i_61_) {
                   this.anInt1820 = i_61_ - 1;
-                  this.unlink();
+                  this.remove();
                }
             }
 
@@ -394,7 +394,7 @@ final class Class3_Sub7_Sub2 extends Class3_Sub7 {
          }
 
          if(this.anInt1825 == Integer.MIN_VALUE) {
-            this.unlink();
+            this.remove();
             return i_67_;
          }
 
@@ -439,7 +439,7 @@ final class Class3_Sub7_Sub2 extends Class3_Sub7 {
       if(this.anInt1819 > 0) {
          if(i >= this.anInt1819) {
             if(this.anInt1825 == Integer.MIN_VALUE) {
-               this.unlink();
+               this.remove();
                i = this.anInt1819;
             } else {
                this.anInt1822 = this.anInt1825;
@@ -562,11 +562,11 @@ final class Class3_Sub7_Sub2 extends Class3_Sub7 {
          if(this.anInt1826 < 0) {
             if(this.anInt1820 < 0) {
                this.anInt1820 = 0;
-               this.unlink();
+               this.remove();
             }
          } else if(this.anInt1820 >= i_79_) {
             this.anInt1820 = i_79_ - 1;
-            this.unlink();
+            this.remove();
          }
       }
 
@@ -601,7 +601,7 @@ final class Class3_Sub7_Sub2 extends Class3_Sub7 {
          }
 
          if(this.anInt1825 == Integer.MIN_VALUE) {
-            this.unlink();
+            this.remove();
             return i_85_;
          }
 

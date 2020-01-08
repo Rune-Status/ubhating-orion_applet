@@ -35,7 +35,7 @@ final class NodeCache {
    public void removeFromCache(Node node, long l) {
       try {
          if(node.next != null) {
-            node.unlink();
+            node.remove();
          }
 
          Node runtimeexception = this.cache[(int)(l & (long)(this.size - 1))];

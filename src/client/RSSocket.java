@@ -44,7 +44,7 @@ final class RSSocket implements Runnable {
             this.socket.close();
          }
       } catch (IOException var4) {
-         System.out.println("Error closing stream");
+         System.out.println("Error closing outgoing");
       }
 
       this.isWriter = false;

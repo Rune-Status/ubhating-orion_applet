@@ -12,16 +12,16 @@ public final class Stream extends NodeSub {
    private static final int[] anIntArray1409 = new int[]{0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, '\uffff', 131071, 262143, 524287, 1048575, 2097151, 4194303, 8388607, 16777215, 33554431, 67108863, 134217727, 268435455, 536870911, 1073741823, Integer.MAX_VALUE, -1};
    public ISAACRandomGen encryption;
    private static int anInt1412;
-   private static final NodeList nodeList = new NodeList();
+   private static final LinkedList LINKED_LIST = new LinkedList();
 
 
    public static Stream create() {
-      NodeList stream_1 = nodeList;
-      synchronized(nodeList) {
+      LinkedList stream_1 = LINKED_LIST;
+      synchronized(LINKED_LIST) {
          Stream stream = null;
          if(anInt1412 > 0) {
             --anInt1412;
-            stream = (Stream)nodeList.popHead();
+            stream = (Stream) LINKED_LIST.popHead();
          }
 
          if(stream != null) {
@@ -130,7 +130,7 @@ public final class Stream extends NodeSub {
       return this.buffer[this.currentOffset++];
    }
 
-   public int readUnsignedWord() {
+   public int get_unsigned_short() {
       this.currentOffset += 2;
       return ((this.buffer[this.currentOffset - 2] & 255) << 8) + (this.buffer[this.currentOffset - 1] & 255);
    }
@@ -224,12 +224,12 @@ public final class Stream extends NodeSub {
    
    public int method421() {
       int i = this.buffer[this.currentOffset] & 255;
-      return i < 128?this.readUnsignedByte() - 64:this.readUnsignedWord() - '\uc000';
+      return i < 128?this.readUnsignedByte() - 64:this.get_unsigned_short() - '\uc000';
    }
 
    public int method422() {
       int i = this.buffer[this.currentOffset] & 255;
-      return i < 128?this.readUnsignedByte():this.readUnsignedWord() - '\u8000';
+      return i < 128?this.readUnsignedByte():this.get_unsigned_short() - '\u8000';
    }
 
    public void doKeys() {

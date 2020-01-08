@@ -122,7 +122,7 @@ final class Class3_Sub7_Sub1 extends Class3_Sub7 {
    }
 
    private final void method385(Class3_Sub5 class3_sub5) {
-      class3_sub5.unlink();
+      class3_sub5.remove();
       class3_sub5.method371();
       Node class3 = this.aClass60_1811.head.next;
       if(class3 == this.aClass60_1811.head) {

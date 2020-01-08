@@ -1,67 +1,164 @@
 package client;
 
 
-final class LinkedList {
+public class LinkedList {
 
-   private final NodeSub head = new NodeSub();
-   private NodeSub current;
+    private final Node head = new Node();
+    private Node current;
 
 
-   public LinkedList() {
-      this.head.prevNodeSub = this.head;
-      this.head.nextNodeSub = this.head;
-   }
+    public LinkedList() {
+        this.head.prev = this.head;
+        this.head.next = this.head;
+    }
 
-   public void insertHead(NodeSub nodeSub) {
-      if(nodeSub.nextNodeSub != null) {
-         nodeSub.unlinkSub();
-      }
+    public Node get() {
+        Node node = head.next;
+        if (node == head) {
+            return null;
+        } else {
+            node.remove();
+            return node;
+        }
+    }
 
-      nodeSub.nextNodeSub = this.head.nextNodeSub;
-      nodeSub.prevNodeSub = this.head;
-      nodeSub.nextNodeSub.prevNodeSub = nodeSub;
-      nodeSub.prevNodeSub.nextNodeSub = nodeSub;
-   }
+    public Node previous() {
+        Node node = current;
+        if (node == head) {
+            current = null;
+            return null;
+        }
+        current = node.next;
+        return node;
+    }
 
-   public NodeSub popTail() {
-      NodeSub nodeSub = this.head.prevNodeSub;
-      if(nodeSub == this.head) {
-         return null;
-      } else {
-         nodeSub.unlinkSub();
-         return nodeSub;
-      }
-   }
+    public Node pop() {
+        Node node = head.prev;
+        if (node == head) {
+            return null;
+        } else {
+            node.remove();
+            return node;
+        }
+    }
 
-   public NodeSub reverseGetFirst() {
-      NodeSub nodeSub = this.head.prevNodeSub;
-      if(nodeSub == this.head) {
-         this.current = null;
-         return null;
-      } else {
-         this.current = nodeSub.prevNodeSub;
-         return nodeSub;
-      }
-   }
+    public Node first() {
+        Node node = head.prev;
+        if (node == head) {
+            current = null;
+            return null;
+        } else {
+            current = node.prev;
+            return node;
+        }
+    }
 
-   public NodeSub reverseGetNext() {
-      NodeSub nodeSub = this.current;
-      if(nodeSub == this.head) {
-         this.current = null;
-         return null;
-      } else {
-         this.current = nodeSub.prevNodeSub;
-         return nodeSub;
-      }
-   }
+    public Node last() {
+        Node node = head.next;
+        if (node == head) {
+            current = null;
+            return null;
+        } else {
+            current = node.next;
+            return node;
+        }
+    }
 
-   public int getNodeCount() {
-      int i = 0;
+    public Node next() {
+        Node node = current;
+        if (node == head) {
+            current = null;
+            return null;
+        } else {
+            current = node.prev;
+            return node;
+        }
+    }
 
-      for(NodeSub nodeSub = this.head.prevNodeSub; nodeSub != this.head; nodeSub = nodeSub.prevNodeSub) {
-         ++i;
-      }
+    public void insertBack(Node node) {
+        if (node.next != null) {
+            node.remove();
+        }
 
-      return i;
-   }
+        node.next = this.head.next;
+        node.prev = this.head;
+        node.next.prev = node;
+        node.prev.next = node;
+    }
+
+    public void insertTail(Node node) {
+        if (node.next != null) {
+            node.remove();
+        }
+
+        node.next = this.head;
+        node.prev = this.head.prev;
+        node.next.prev = node;
+        node.prev.next = node;
+    }
+
+    public Node popHead() {
+        Node node = this.head.prev;
+        if (node == this.head) {
+            return null;
+        } else {
+            node.remove();
+            return node;
+        }
+    }
+
+    public Node reverseGetFirst() {
+        Node node = this.head.prev;
+        if (node == this.head) {
+            this.current = null;
+            return null;
+        } else {
+            this.current = node.prev;
+            return node;
+        }
+    }
+
+    public Node getFirst() {
+        Node node = this.head.next;
+        if (node == this.head) {
+            this.current = null;
+            return null;
+        } else {
+            this.current = node.next;
+            return node;
+        }
+    }
+
+    public Node reverseGetNext() {
+        Node node = this.current;
+        if (node == this.head) {
+            this.current = null;
+            return null;
+        } else {
+            this.current = node.prev;
+            return node;
+        }
+    }
+
+    public Node getNext() {
+        Node node = this.current;
+        if (node == this.head) {
+            this.current = null;
+            return null;
+        } else {
+            this.current = node.next;
+            return node;
+        }
+    }
+
+    public void clear() {
+        if (head.prev == head)
+            return;
+        do {
+            Node node = head.prev;
+            if (node == head)
+                return;
+            node.remove();
+        } while (true);
+    }
 }

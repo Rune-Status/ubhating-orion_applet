@@ -132,14 +132,14 @@ public final class ObjectDef {
       Stream stream = new Stream(streamLoader.getDataForName("loc.idx"));
 	  //FileOperations.WriteFile("C:\\Users\\Cody Pate\\Desktop\\RSPS\\2006Scape\\data\\world\\loc.dat", streamLoader.getDataForName("loc.dat"));
 	 // FileOperations.WriteFile("C:\\Users\\Cody Pate\\Desktop\\RSPS\\2006Scape\\data\\world\\loc.idx", streamLoader.getDataForName("loc.idx"));
-      int totalObjects = stream.readUnsignedWord();
+      int totalObjects = stream.get_unsigned_short();
       streamIndices = new int[totalObjects];
       int i = 2;
 
       int k;
       for(k = 0; k < totalObjects; ++k) {
          streamIndices[k] = i;
-         i += stream.readUnsignedWord();
+         i += stream.get_unsigned_short();
       }
 
       cache = new ObjectDef[20];
@@ -405,7 +405,7 @@ public final class ObjectDef {
                   this.anIntArray773 = new int[j1];
 
                   for(j2 = 0; j2 < j1; ++j2) {
-                     this.anIntArray773[j2] = stream.readUnsignedWord();
+                     this.anIntArray773[j2] = stream.get_unsigned_short();
                      this.anIntArray776[j2] = stream.readUnsignedByte();
                   }
                }
@@ -424,7 +424,7 @@ public final class ObjectDef {
                   this.anIntArray773 = new int[j1];
 
                   for(j2 = 0; j2 < j1; ++j2) {
-                     this.anIntArray773[j2] = stream.readUnsignedWord();
+                     this.anIntArray773[j2] = stream.get_unsigned_short();
                   }
                }
             }
@@ -448,7 +448,7 @@ public final class ObjectDef {
          } else if(j == 23) {
             this.aBoolean764 = true;
          } else if(j == 24) {
-            this.anInt781 = stream.readUnsignedWord();
+            this.anInt781 = stream.get_unsigned_short();
             if(this.anInt781 == '\uffff') {
                this.anInt781 = -1;
             }
@@ -473,23 +473,23 @@ public final class ObjectDef {
             this.originalModelColors = new int[j1];
 
             for(j2 = 0; j2 < j1; ++j2) {
-               this.modifiedModelColors[j2] = stream.readUnsignedWord();
-               this.originalModelColors[j2] = stream.readUnsignedWord();
+               this.modifiedModelColors[j2] = stream.get_unsigned_short();
+               this.originalModelColors[j2] = stream.get_unsigned_short();
             }
          } else if(j == 60) {
-            this.anInt746 = stream.readUnsignedWord();
+            this.anInt746 = stream.get_unsigned_short();
          } else if(j == 62) {
             this.aBoolean751 = true;
          } else if(j == 64) {
             this.aBoolean779 = false;
          } else if(j == 65) {
-            this.anInt748 = stream.readUnsignedWord();
+            this.anInt748 = stream.get_unsigned_short();
          } else if(j == 66) {
-            this.anInt772 = stream.readUnsignedWord();
+            this.anInt772 = stream.get_unsigned_short();
          } else if(j == 67) {
-            this.anInt740 = stream.readUnsignedWord();
+            this.anInt740 = stream.get_unsigned_short();
          } else if(j == 68) {
-            this.anInt758 = stream.readUnsignedWord();
+            this.anInt758 = stream.get_unsigned_short();
          } else if(j == 69) {
             this.anInt768 = stream.readUnsignedByte();
          } else if(j == 70) {
@@ -504,12 +504,12 @@ public final class ObjectDef {
             this.aBoolean766 = true;
          } else if(j != 75) {
             if(j == 77) {
-               this.anInt774 = stream.readUnsignedWord();
+               this.anInt774 = stream.get_unsigned_short();
                if(this.anInt774 == '\uffff') {
                   this.anInt774 = -1;
                }
 
-               this.anInt749 = stream.readUnsignedWord();
+               this.anInt749 = stream.get_unsigned_short();
                if(this.anInt749 == '\uffff') {
                   this.anInt749 = -1;
                }
@@ -518,7 +518,7 @@ public final class ObjectDef {
                this.childrenIDs = new int[j1 + 1];
 
                for(j2 = 0; j2 <= j1; ++j2) {
-                  this.childrenIDs[j2] = stream.readUnsignedWord();
+                  this.childrenIDs[j2] = stream.get_unsigned_short();
                   if(this.childrenIDs[j2] == '\uffff') {
                      this.childrenIDs[j2] = -1;
                   }

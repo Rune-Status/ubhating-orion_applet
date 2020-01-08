@@ -1,28 +1,28 @@
 package client;
 
 
-public final class IDK {
+public final class IdentityKit {
 
    public static int length;
-   public static IDK[] cache;
+   public static IdentityKit[] cache;
    public int anInt657 = -1;
    private int[] anIntArray658;
    private final int[] anIntArray659 = new int[6];
    private final int[] anIntArray660 = new int[6];
    private final int[] anIntArray661 = new int[]{-1, -1, -1, -1, -1};
-   public boolean aBoolean662 = false;
+   public boolean valid = false;
 
 
    public static void unpackConfig(StreamLoader streamLoader) {
       Stream stream = new Stream(streamLoader.getDataForName("idk.dat"));
-      length = stream.readUnsignedWord();
+      length = stream.get_unsigned_short();
       if(cache == null) {
-         cache = new IDK[length];
+         cache = new IdentityKit[length];
       }
 
       for(int j = 0; j < length; ++j) {
          if(cache[j] == null) {
-            cache[j] = new IDK();
+            cache[j] = new IdentityKit();
          }
 
          cache[j].readValues(stream);
@@ -44,16 +44,16 @@ public final class IDK {
             this.anIntArray658 = new int[j];
 
             for(int k = 0; k < j; ++k) {
-               this.anIntArray658[k] = stream.readUnsignedWord();
+               this.anIntArray658[k] = stream.get_unsigned_short();
             }
          } else if(i == 3) {
-            this.aBoolean662 = true;
+            this.valid = true;
          } else if(i >= 40 && i < 50) {
-            this.anIntArray659[i - 40] = stream.readUnsignedWord();
+            this.anIntArray659[i - 40] = stream.get_unsigned_short();
          } else if(i >= 50 && i < 60) {
-            this.anIntArray660[i - 50] = stream.readUnsignedWord();
+            this.anIntArray660[i - 50] = stream.get_unsigned_short();
          } else if(i >= 60 && i < 70) {
-            this.anIntArray661[i - 60] = stream.readUnsignedWord();
+            this.anIntArray661[i - 60] = stream.get_unsigned_short();
          } else {
             System.out.println("Error unrecognised config code: " + i);
          }

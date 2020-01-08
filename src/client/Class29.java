@@ -30,8 +30,8 @@ final class Class29 {
       this.anIntArray537 = new int[this.anInt535];
 
       for(int i = 0; i < this.anInt535; ++i) {
-         this.anIntArray536[i] = stream.readUnsignedWord();
-         this.anIntArray537[i] = stream.readUnsignedWord();
+         this.anIntArray536[i] = stream.get_unsigned_short();
+         this.anIntArray537[i] = stream.get_unsigned_short();
       }
 
    }

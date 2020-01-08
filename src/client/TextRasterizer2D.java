@@ -18,7 +18,7 @@ public final class TextRasterizer2D extends Rasterizer2D {
    public TextRasterizer2D(boolean flag, String s, StreamLoader streamLoader) {
       Stream stream = new Stream(streamLoader.getDataForName(s + ".dat"));
       Stream stream_1 = new Stream(streamLoader.getDataForName("index.dat"));
-      stream_1.currentOffset = stream.readUnsignedWord() + 4;
+      stream_1.currentOffset = stream.get_unsigned_short() + 4;
       int k = stream_1.readUnsignedByte();
       if(k > 0) {
          stream_1.currentOffset += 3 * (k - 1);
@@ -27,8 +27,8 @@ public final class TextRasterizer2D extends Rasterizer2D {
       for(int l = 0; l < 256; ++l) {
          this.anIntArray1494[l] = stream_1.readUnsignedByte();
          this.anIntArray1495[l] = stream_1.readUnsignedByte();
-         int i1 = this.anIntArray1492[l] = stream_1.readUnsignedWord();
-         int j1 = this.anIntArray1493[l] = stream_1.readUnsignedWord();
+         int i1 = this.anIntArray1492[l] = stream_1.get_unsigned_short();
+         int j1 = this.anIntArray1493[l] = stream_1.get_unsigned_short();
          int k1 = stream_1.readUnsignedByte();
          int l1 = i1 * j1;
          this.aByteArrayArray1491[l] = new byte[l1];
@@ -318,30 +318,30 @@ public final class TextRasterizer2D extends Rasterizer2D {
       int l1 = 0;
       int i2 = 0;
       int l2;
-      if(j < Rasterizer2D.topY) {
-         l2 = Rasterizer2D.topY - j;
+      if(j < Rasterizer2D.clip_top) {
+         l2 = Rasterizer2D.clip_top - j;
          l -= l2;
-         j = Rasterizer2D.topY;
+         j = Rasterizer2D.clip_top;
          i2 += l2 * k;
          j1 += l2 * Rasterizer2D.width;
       }
 
-      if(j + l >= Rasterizer2D.bottomY) {
-         l -= j + l - Rasterizer2D.bottomY + 1;
+      if(j + l >= Rasterizer2D.clip_bottom) {
+         l -= j + l - Rasterizer2D.clip_bottom + 1;
       }
 
-      if(i < Rasterizer2D.topX) {
-         l2 = Rasterizer2D.topX - i;
+      if(i < Rasterizer2D.clip_left) {
+         l2 = Rasterizer2D.clip_left - i;
          k -= l2;
-         i = Rasterizer2D.topX;
+         i = Rasterizer2D.clip_left;
          i2 += l2;
          j1 += l2;
          l1 += l2;
          k1 += l2;
       }
 
-      if(i + k >= Rasterizer2D.bottomX) {
-         l2 = i + k - Rasterizer2D.bottomX + 1;
+      if(i + k >= Rasterizer2D.clip_right) {
+         l2 = i + k - Rasterizer2D.clip_right + 1;
          k -= l2;
          l1 += l2;
          k1 += l2;
@@ -405,30 +405,30 @@ public final class TextRasterizer2D extends Rasterizer2D {
       int i2 = 0;
       int j2 = 0;
       int i3;
-      if(l < Rasterizer2D.topY) {
-         i3 = Rasterizer2D.topY - l;
+      if(l < Rasterizer2D.clip_top) {
+         i3 = Rasterizer2D.clip_top - l;
          i1 -= i3;
-         l = Rasterizer2D.topY;
+         l = Rasterizer2D.clip_top;
          j2 += i3 * k;
          k1 += i3 * Rasterizer2D.width;
       }
 
-      if(l + i1 >= Rasterizer2D.bottomY) {
-         i1 -= l + i1 - Rasterizer2D.bottomY + 1;
+      if(l + i1 >= Rasterizer2D.clip_bottom) {
+         i1 -= l + i1 - Rasterizer2D.clip_bottom + 1;
       }
 
-      if(j < Rasterizer2D.topX) {
-         i3 = Rasterizer2D.topX - j;
+      if(j < Rasterizer2D.clip_left) {
+         i3 = Rasterizer2D.clip_left - j;
          k -= i3;
-         j = Rasterizer2D.topX;
+         j = Rasterizer2D.clip_left;
          j2 += i3;
          k1 += i3;
          i2 += i3;
          l1 += i3;
       }
 
-      if(j + k >= Rasterizer2D.bottomX) {
-         i3 = j + k - Rasterizer2D.bottomX + 1;
+      if(j + k >= Rasterizer2D.clip_right) {
+         i3 = j + k - Rasterizer2D.clip_right + 1;
          k -= i3;
          i2 += i3;
          l1 += i3;

@@ -20,7 +20,7 @@ public final class SpotAnim {
 
    public static void unpackConfig(StreamLoader streamLoader) {
       Stream stream = new Stream(streamLoader.getDataForName("spotanim.dat"));
-      int length = stream.readUnsignedWord();
+      int length = stream.get_unsigned_short();
       if(cache == null) {
          cache = new SpotAnim[length];
       }
@@ -44,26 +44,26 @@ public final class SpotAnim {
          }
 
          if(i == 1) {
-            this.anInt405 = stream.readUnsignedWord();
+            this.anInt405 = stream.get_unsigned_short();
          } else if(i == 2) {
-            this.anInt406 = stream.readUnsignedWord();
+            this.anInt406 = stream.get_unsigned_short();
             if(Animation.anims != null) {
                this.aAnimation_407 = Animation.anims[this.anInt406];
             }
          } else if(i == 4) {
-            this.anInt410 = stream.readUnsignedWord();
+            this.anInt410 = stream.get_unsigned_short();
          } else if(i == 5) {
-            this.anInt411 = stream.readUnsignedWord();
+            this.anInt411 = stream.get_unsigned_short();
          } else if(i == 6) {
-            this.anInt412 = stream.readUnsignedWord();
+            this.anInt412 = stream.get_unsigned_short();
          } else if(i == 7) {
             this.anInt413 = stream.readUnsignedByte();
          } else if(i == 8) {
             this.anInt414 = stream.readUnsignedByte();
          } else if(i >= 40 && i < 50) {
-            this.anIntArray408[i - 40] = stream.readUnsignedWord();
+            this.anIntArray408[i - 40] = stream.get_unsigned_short();
          } else if(i >= 50 && i < 60) {
-            this.anIntArray409[i - 50] = stream.readUnsignedWord();
+            this.anIntArray409[i - 50] = stream.get_unsigned_short();
          } else {
             System.out.println("Error unrecognised spotanim config code: " + i);
          }

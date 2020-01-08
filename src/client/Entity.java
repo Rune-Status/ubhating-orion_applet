@@ -37,7 +37,7 @@ public class Entity extends Animable {
    int anInt1530;
    int message_effect;
    public int loopCycleStatus = -1000;
-   public int currentHealth;
+   public int health;
    public int maxHealth;
    int message_cycle = 100;
    int anInt1537;
@@ -53,8 +53,8 @@ public class Entity extends Animable {
    int anInt1547;
    int anInt1548;
    int anInt1549;
-   public int x;
-   public int y;
+   public int world_x;
+   public int world_y;
    int anInt1552;
    final boolean[] aBooleanArray1553 = new boolean[10];
    int anInt1554 = -1;
@@ -94,8 +94,8 @@ public class Entity extends Animable {
       this.anInt1503 = 0;
       this.smallX[0] = i;
       this.smallY[0] = j;
-      this.x = this.smallX[0] * 128 + this.anInt1540 * 64;
-      this.y = this.smallY[0] * 128 + this.anInt1540 * 64;
+      this.world_x = this.smallX[0] * 128 + this.anInt1540 * 64;
+      this.world_y = this.smallY[0] * 128 + this.anInt1540 * 64;
    }
 
    public final void method446() {
@@ -173,7 +173,7 @@ public class Entity extends Animable {
       this.aBooleanArray1553[0] = flag;
    }
 
-   public boolean isVisible() {
+   public boolean visible() {
       return false;
    }
 

@@ -1,7 +1,7 @@
 package client;
 
 
-public final class OnDemandData extends NodeSub {
+public final class Resource extends NodeSub {
 
    int dataType;
    byte[] buffer;

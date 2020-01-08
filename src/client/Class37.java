@@ -18,24 +18,24 @@ final class Class37 {
       this.anIntArray646[0] = i >> 4;
       this.anIntArray646[1] = i & 15;
       if(i != 0) {
-         this.anIntArray643[0] = class3_sub12.readUnsignedWord();
-         this.anIntArray643[1] = class3_sub12.readUnsignedWord();
+         this.anIntArray643[0] = class3_sub12.get_unsigned_short();
+         this.anIntArray643[1] = class3_sub12.get_unsigned_short();
          int i_0_ = class3_sub12.readUnsignedByte();
 
          int i_3_;
          int i_4_;
          for(i_3_ = 0; i_3_ < 2; ++i_3_) {
             for(i_4_ = 0; i_4_ < this.anIntArray646[i_3_]; ++i_4_) {
-               this.anIntArrayArrayArray644[i_3_][0][i_4_] = class3_sub12.readUnsignedWord();
-               this.anIntArrayArrayArray647[i_3_][0][i_4_] = class3_sub12.readUnsignedWord();
+               this.anIntArrayArrayArray644[i_3_][0][i_4_] = class3_sub12.get_unsigned_short();
+               this.anIntArrayArrayArray647[i_3_][0][i_4_] = class3_sub12.get_unsigned_short();
             }
          }
 
          for(i_3_ = 0; i_3_ < 2; ++i_3_) {
             for(i_4_ = 0; i_4_ < this.anIntArray646[i_3_]; ++i_4_) {
                if((i_0_ & 1 << i_3_ * 4 << i_4_) != 0) {
-                  this.anIntArrayArrayArray644[i_3_][1][i_4_] = class3_sub12.readUnsignedWord();
-                  this.anIntArrayArrayArray647[i_3_][1][i_4_] = class3_sub12.readUnsignedWord();
+                  this.anIntArrayArrayArray644[i_3_][1][i_4_] = class3_sub12.get_unsigned_short();
+                  this.anIntArrayArrayArray647[i_3_][1][i_4_] = class3_sub12.get_unsigned_short();
                } else {
                   this.anIntArrayArrayArray644[i_3_][1][i_4_] = this.anIntArrayArrayArray644[i_3_][0][i_4_];
                   this.anIntArrayArrayArray647[i_3_][1][i_4_] = this.anIntArrayArrayArray647[i_3_][0][i_4_];

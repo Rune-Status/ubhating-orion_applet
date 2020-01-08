@@ -354,13 +354,13 @@ public final class Texture extends Rasterizer2D {
       }
 
       if(i <= j && i <= k) {
-         if(i < Rasterizer2D.bottomY) {
-            if(j > Rasterizer2D.bottomY) {
-               j = Rasterizer2D.bottomY;
+         if(i < Rasterizer2D.clip_bottom) {
+            if(j > Rasterizer2D.clip_bottom) {
+               j = Rasterizer2D.clip_bottom;
             }
 
-            if(k > Rasterizer2D.bottomY) {
-               k = Rasterizer2D.bottomY;
+            if(k > Rasterizer2D.clip_bottom) {
+               k = Rasterizer2D.clip_bottom;
             }
 
             if(j < k) {
@@ -526,13 +526,13 @@ public final class Texture extends Rasterizer2D {
             }
          }
       } else if(j <= k) {
-         if(j < Rasterizer2D.bottomY) {
-            if(k > Rasterizer2D.bottomY) {
-               k = Rasterizer2D.bottomY;
+         if(j < Rasterizer2D.clip_bottom) {
+            if(k > Rasterizer2D.clip_bottom) {
+               k = Rasterizer2D.clip_bottom;
             }
 
-            if(i > Rasterizer2D.bottomY) {
-               i = Rasterizer2D.bottomY;
+            if(i > Rasterizer2D.clip_bottom) {
+               i = Rasterizer2D.clip_bottom;
             }
 
             if(k < i) {
@@ -697,13 +697,13 @@ public final class Texture extends Rasterizer2D {
                }
             }
          }
-      } else if(k < Rasterizer2D.bottomY) {
-         if(i > Rasterizer2D.bottomY) {
-            i = Rasterizer2D.bottomY;
+      } else if(k < Rasterizer2D.clip_bottom) {
+         if(i > Rasterizer2D.clip_bottom) {
+            i = Rasterizer2D.clip_bottom;
          }
 
-         if(j > Rasterizer2D.bottomY) {
-            j = Rasterizer2D.bottomY;
+         if(j > Rasterizer2D.clip_bottom) {
+            j = Rasterizer2D.clip_bottom;
          }
 
          if(i < j) {
@@ -875,8 +875,8 @@ public final class Texture extends Rasterizer2D {
 		int k;
 		int l1 = 0;
 		if (aBoolean1462) {
-			if (i1 > Rasterizer2D.centerX)
-				i1 = Rasterizer2D.centerX;
+			if (i1 > Rasterizer2D.center_x)
+				i1 = Rasterizer2D.center_x;
 			if (l < 0) {
 				j1 -= l * l1;
 				l = 0;
@@ -989,8 +989,8 @@ public final class Texture extends Rasterizer2D {
                i2 = 0;
             }
 
-            if(i1 > Rasterizer2D.centerX) {
-               i1 = Rasterizer2D.centerX;
+            if(i1 > Rasterizer2D.center_x) {
+               i1 = Rasterizer2D.center_x;
             }
 
             if(l < 0) {
@@ -1077,8 +1077,8 @@ public final class Texture extends Rasterizer2D {
       } else if(l < i1) {
          i2 = (k1 - j1) / (i1 - l);
          if(aBoolean1462) {
-            if(i1 > Rasterizer2D.centerX) {
-               i1 = Rasterizer2D.centerX;
+            if(i1 > Rasterizer2D.center_x) {
+               i1 = Rasterizer2D.center_x;
             }
 
             if(l < 0) {
@@ -1133,13 +1133,13 @@ public final class Texture extends Rasterizer2D {
       }
 
       if(i <= j && i <= k) {
-         if(i < Rasterizer2D.bottomY) {
-            if(j > Rasterizer2D.bottomY) {
-               j = Rasterizer2D.bottomY;
+         if(i < Rasterizer2D.clip_bottom) {
+            if(j > Rasterizer2D.clip_bottom) {
+               j = Rasterizer2D.clip_bottom;
             }
 
-            if(k > Rasterizer2D.bottomY) {
-               k = Rasterizer2D.bottomY;
+            if(k > Rasterizer2D.clip_bottom) {
+               k = Rasterizer2D.clip_bottom;
             }
 
             if(j < k) {
@@ -1279,13 +1279,13 @@ public final class Texture extends Rasterizer2D {
             }
          }
       } else if(j <= k) {
-         if(j < Rasterizer2D.bottomY) {
-            if(k > Rasterizer2D.bottomY) {
-               k = Rasterizer2D.bottomY;
+         if(j < Rasterizer2D.clip_bottom) {
+            if(k > Rasterizer2D.clip_bottom) {
+               k = Rasterizer2D.clip_bottom;
             }
 
-            if(i > Rasterizer2D.bottomY) {
-               i = Rasterizer2D.bottomY;
+            if(i > Rasterizer2D.clip_bottom) {
+               i = Rasterizer2D.clip_bottom;
             }
 
             if(k < i) {
@@ -1424,13 +1424,13 @@ public final class Texture extends Rasterizer2D {
                }
             }
          }
-      } else if(k < Rasterizer2D.bottomY) {
-         if(i > Rasterizer2D.bottomY) {
-            i = Rasterizer2D.bottomY;
+      } else if(k < Rasterizer2D.clip_bottom) {
+         if(i > Rasterizer2D.clip_bottom) {
+            i = Rasterizer2D.clip_bottom;
          }
 
-         if(j > Rasterizer2D.bottomY) {
-            j = Rasterizer2D.bottomY;
+         if(j > Rasterizer2D.clip_bottom) {
+            j = Rasterizer2D.clip_bottom;
          }
 
          if(i < j) {
@@ -1573,8 +1573,8 @@ public final class Texture extends Rasterizer2D {
 
    private static void method377(int[] ai, int i, int j, int l, int i1) {
       if(aBoolean1462) {
-         if(i1 > Rasterizer2D.centerX) {
-            i1 = Rasterizer2D.centerX;
+         if(i1 > Rasterizer2D.center_x) {
+            i1 = Rasterizer2D.center_x;
          }
 
          if(l < 0) {
@@ -1676,13 +1676,13 @@ public final class Texture extends Rasterizer2D {
 
       int l9;
       if(i <= j && i <= k) {
-         if(i < Rasterizer2D.bottomY) {
-            if(j > Rasterizer2D.bottomY) {
-               j = Rasterizer2D.bottomY;
+         if(i < Rasterizer2D.clip_bottom) {
+            if(j > Rasterizer2D.clip_bottom) {
+               j = Rasterizer2D.clip_bottom;
             }
 
-            if(k > Rasterizer2D.bottomY) {
-               k = Rasterizer2D.bottomY;
+            if(k > Rasterizer2D.clip_bottom) {
+               k = Rasterizer2D.clip_bottom;
             }
 
             if(j < k) {
@@ -1880,13 +1880,13 @@ public final class Texture extends Rasterizer2D {
             }
          }
       } else if(j <= k) {
-         if(j < Rasterizer2D.bottomY) {
-            if(k > Rasterizer2D.bottomY) {
-               k = Rasterizer2D.bottomY;
+         if(j < Rasterizer2D.clip_bottom) {
+            if(k > Rasterizer2D.clip_bottom) {
+               k = Rasterizer2D.clip_bottom;
             }
 
-            if(i > Rasterizer2D.bottomY) {
-               i = Rasterizer2D.bottomY;
+            if(i > Rasterizer2D.clip_bottom) {
+               i = Rasterizer2D.clip_bottom;
             }
 
             if(k < i) {
@@ -2083,13 +2083,13 @@ public final class Texture extends Rasterizer2D {
                }
             }
          }
-      } else if(k < Rasterizer2D.bottomY) {
-         if(i > Rasterizer2D.bottomY) {
-            i = Rasterizer2D.bottomY;
+      } else if(k < Rasterizer2D.clip_bottom) {
+         if(i > Rasterizer2D.clip_bottom) {
+            i = Rasterizer2D.clip_bottom;
          }
 
-         if(j > Rasterizer2D.bottomY) {
-            j = Rasterizer2D.bottomY;
+         if(j > Rasterizer2D.clip_bottom) {
+            j = Rasterizer2D.clip_bottom;
          }
 
          if(i < j) {
@@ -2296,8 +2296,8 @@ public final class Texture extends Rasterizer2D {
          int k3;
          if(aBoolean1462) {
             j3 = (k1 - j1) / (i1 - l);
-            if(i1 > Rasterizer2D.centerX) {
-               i1 = Rasterizer2D.centerX;
+            if(i1 > Rasterizer2D.center_x) {
+               i1 = Rasterizer2D.center_x;
             }
 
             if(l < 0) {

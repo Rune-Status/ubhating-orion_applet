@@ -45,7 +45,7 @@ final class WorldController {
    private static Class47[][] aClass47ArrayArray474 = new Class47[anInt472][500];
    private static int anInt475;
    private static final Class47[] aClass47Array476 = new Class47[500];
-   private static NodeList aClass19_477 = new NodeList();
+   private static LinkedList aClass19_477 = new LinkedList();
    private static final int[] anIntArray478 = new int[]{19, 55, 38, 155, 255, 110, 137, 205, 76};
    private static final int[] anIntArray479 = new int[]{160, 192, 80, 96, 0, 144, 80, 48, 160};
    private static final int[] anIntArray480 = new int[]{76, 8, 137, 4, 0, 1, 38, 2, 19};
@@ -1183,7 +1183,7 @@ final class WorldController {
    }
 
    private void method314(Ground class30_sub3, boolean flag) {
-      aClass19_477.insertHead(class30_sub3);
+      aClass19_477.insertBack(class30_sub3);
 
       while(true) {
          Ground class30_sub3_1 = (Ground)aClass19_477.popHead();
@@ -1401,28 +1401,28 @@ final class WorldController {
                   if(i < anInt453 && (k5 & 4) != 0) {
                      var37 = aclass30_sub3[i + 1][j];
                      if(var37 != null && var37.aBoolean1323) {
-                        aClass19_477.insertHead(var37);
+                        aClass19_477.insertBack(var37);
                      }
                   }
 
                   if(j < anInt454 && (k5 & 2) != 0) {
                      var37 = aclass30_sub3[i][j + 1];
                      if(var37 != null && var37.aBoolean1323) {
-                        aClass19_477.insertHead(var37);
+                        aClass19_477.insertBack(var37);
                      }
                   }
 
                   if(i > anInt453 && (k5 & 1) != 0) {
                      var37 = aclass30_sub3[i - 1][j];
                      if(var37 != null && var37.aBoolean1323) {
-                        aClass19_477.insertHead(var37);
+                        aClass19_477.insertBack(var37);
                      }
                   }
 
                   if(j > anInt454 && (k5 & 8) != 0) {
                      var37 = aclass30_sub3[i][j - 1];
                      if(var37 != null && var37.aBoolean1323) {
-                        aClass19_477.insertHead(var37);
+                        aClass19_477.insertBack(var37);
                      }
                   }
                }
@@ -1547,9 +1547,9 @@ final class WorldController {
                         for(j6 = var35.anInt525; j6 <= var35.anInt526; ++j6) {
                            Ground var38 = aclass30_sub3[k5][j6];
                            if(var38.anInt1325 != 0) {
-                              aClass19_477.insertHead(var38);
+                              aClass19_477.insertBack(var38);
                            } else if((k5 != i || j6 != j) && var38.aBoolean1323) {
-                              aClass19_477.insertHead(var38);
+                              aClass19_477.insertBack(var38);
                            }
                         }
                      }
@@ -1661,35 +1661,35 @@ final class WorldController {
                if(k < this.anInt437 - 1) {
                   var31 = this.groundArray[k + 1][i][j];
                   if(var31 != null && var31.aBoolean1323) {
-                     aClass19_477.insertHead(var31);
+                     aClass19_477.insertBack(var31);
                   }
                }
 
                if(i < anInt453) {
                   var31 = aclass30_sub3[i + 1][j];
                   if(var31 != null && var31.aBoolean1323) {
-                     aClass19_477.insertHead(var31);
+                     aClass19_477.insertBack(var31);
                   }
                }
 
                if(j < anInt454) {
                   var31 = aclass30_sub3[i][j + 1];
                   if(var31 != null && var31.aBoolean1323) {
-                     aClass19_477.insertHead(var31);
+                     aClass19_477.insertBack(var31);
                   }
                }
 
                if(i > anInt453) {
                   var31 = aclass30_sub3[i - 1][j];
                   if(var31 != null && var31.aBoolean1323) {
-                     aClass19_477.insertHead(var31);
+                     aClass19_477.insertBack(var31);
                   }
                }
 
                if(j > anInt454) {
                   var31 = aclass30_sub3[i][j - 1];
                   if(var31 != null && var31.aBoolean1323) {
-                     aClass19_477.insertHead(var31);
+                     aClass19_477.insertBack(var31);
                   }
                }
             }
@@ -1748,7 +1748,7 @@ final class WorldController {
                   Texture.anInt1465 = 0;
                   int j7;
                   if((i6 - k6) * (l5 - l6) - (j6 - l6) * (k5 - k6) > 0) {
-                     Texture.aBoolean1462 = i6 < 0 || k6 < 0 || k5 < 0 || i6 > Rasterizer2D.centerX || k6 > Rasterizer2D.centerX || k5 > Rasterizer2D.centerX;
+                     Texture.aBoolean1462 = i6 < 0 || k6 < 0 || k5 < 0 || i6 > Rasterizer2D.center_x || k6 > Rasterizer2D.center_x || k5 > Rasterizer2D.center_x;
                      if(aBoolean467 && this.method318(anInt468, anInt469, j6, l6, l5, i6, k6, k5)) {
                         anInt470 = j1;
                         anInt471 = k1;
@@ -1771,7 +1771,7 @@ final class WorldController {
                   }
 
                   if((i5 - k5) * (l6 - l5) - (j5 - l5) * (k6 - k5) > 0) {
-                     Texture.aBoolean1462 = i5 < 0 || k5 < 0 || k6 < 0 || i5 > Rasterizer2D.centerX || k5 > Rasterizer2D.centerX || k6 > Rasterizer2D.centerX;
+                     Texture.aBoolean1462 = i5 < 0 || k5 < 0 || k6 < 0 || i5 > Rasterizer2D.center_x || k5 > Rasterizer2D.center_x || k6 > Rasterizer2D.center_x;
                      if(aBoolean467 && this.method318(anInt468, anInt469, j5, l5, l6, i5, k5, k6)) {
                         anInt470 = j1;
                         anInt471 = k1;
@@ -1843,7 +1843,7 @@ final class WorldController {
          int i5 = Class40.anIntArray689[j3];
          int j5 = Class40.anIntArray689[l3];
          if((i4 - j4) * (j5 - i5) - (l4 - i5) * (k4 - j4) > 0) {
-            Texture.aBoolean1462 = i4 < 0 || j4 < 0 || k4 < 0 || i4 > Rasterizer2D.centerX || j4 > Rasterizer2D.centerX || k4 > Rasterizer2D.centerX;
+            Texture.aBoolean1462 = i4 < 0 || j4 < 0 || k4 < 0 || i4 > Rasterizer2D.center_x || j4 > Rasterizer2D.center_x || k4 > Rasterizer2D.center_x;
             if(aBoolean467 && this.method318(anInt468, anInt469, l4, i5, j5, i4, j4, k4)) {
                anInt470 = i;
                anInt471 = i1;

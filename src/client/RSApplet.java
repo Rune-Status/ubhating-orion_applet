@@ -626,7 +626,7 @@ public class RSApplet extends Applet implements Runnable, MouseWheelListener, Mo
 				scrollPos = Client.anInt1211 - 110;
 			if(Client.anInt1089 != scrollPos) {
 				Client.anInt1089 = scrollPos;
-				Client.inputTaken = true;
+				Client.update_chat_producer = true;
 			}
 		}
 	}

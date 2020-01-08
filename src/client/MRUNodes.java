@@ -7,7 +7,7 @@ public final class MRUNodes {
    private final int initialCount;
    private int spaceLeft;
    private final NodeCache nodeCache;
-   private final LinkedList linkedList = new LinkedList();
+   private final Queue requests = new Queue();
 
 
    public MRUNodes(int i) {
@@ -19,7 +19,7 @@ public final class MRUNodes {
    public NodeSub insertFromCache(long l) {
       NodeSub nodeSub = (NodeSub)this.nodeCache.findNodeByID(l);
       if(nodeSub != null) {
-         this.linkedList.insertHead(nodeSub);
+         this.requests.insert(nodeSub);
       }
 
       return nodeSub;
@@ -28,12 +28,12 @@ public final class MRUNodes {
    public void removeFromCache(NodeSub nodeSub, long l) {
       try {
          if(this.spaceLeft == 0) {
-            NodeSub runtimeexception = this.linkedList.popTail();
-            runtimeexception.unlink();
+            NodeSub runtimeexception = this.requests.popTail();
+            runtimeexception.remove();
             runtimeexception.unlinkSub();
             if(runtimeexception == this.emptyNodeSub) {
-               NodeSub nodeSub_2 = this.linkedList.popTail();
-               nodeSub_2.unlink();
+               NodeSub nodeSub_2 = this.requests.popTail();
+               nodeSub_2.remove();
                nodeSub_2.unlinkSub();
             }
          } else {
@@ -41,7 +41,7 @@ public final class MRUNodes {
          }
 
          this.nodeCache.removeFromCache(nodeSub, l);
-         this.linkedList.insertHead(nodeSub);
+         this.requests.insert(nodeSub);
       } catch (RuntimeException var6) {
          SignLink.reporterror("47547, " + nodeSub + ", " + l + ", " + 2 + ", " + var6.toString());
          throw new RuntimeException();
@@ -50,13 +50,13 @@ public final class MRUNodes {
 
    public void unlinkAll() {
       while(true) {
-         NodeSub nodeSub = this.linkedList.popTail();
+         NodeSub nodeSub = this.requests.popTail();
          if(nodeSub == null) {
             this.spaceLeft = this.initialCount;
             return;
          }
 
-         nodeSub.unlink();
+         nodeSub.remove();
          nodeSub.unlinkSub();
       }
    }

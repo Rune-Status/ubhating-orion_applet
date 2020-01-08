@@ -17,7 +17,7 @@ public final class Flo {
 
    public static void unpackConfig(StreamLoader streamLoader) {
       Stream stream = new Stream(streamLoader.getDataForName("flo.dat"));
-      int cacheSize = stream.readUnsignedWord();
+      int cacheSize = stream.get_unsigned_short();
       if(cache == null) {
          cache = new Flo[cacheSize];
       }

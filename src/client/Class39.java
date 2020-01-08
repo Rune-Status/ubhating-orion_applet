@@ -81,24 +81,24 @@ final class Class39 {
       this.anIntArray665[0] = i >> 4;
       this.anIntArray665[1] = i & 15;
       if(i != 0) {
-         this.anIntArray668[0] = stream.readUnsignedWord();
-         this.anIntArray668[1] = stream.readUnsignedWord();
+         this.anIntArray668[0] = stream.get_unsigned_short();
+         this.anIntArray668[1] = stream.get_unsigned_short();
          int j = stream.readUnsignedByte();
 
          int i1;
          int j1;
          for(i1 = 0; i1 < 2; ++i1) {
             for(j1 = 0; j1 < this.anIntArray665[i1]; ++j1) {
-               this.anIntArrayArrayArray666[i1][0][j1] = stream.readUnsignedWord();
-               this.anIntArrayArrayArray667[i1][0][j1] = stream.readUnsignedWord();
+               this.anIntArrayArrayArray666[i1][0][j1] = stream.get_unsigned_short();
+               this.anIntArrayArrayArray667[i1][0][j1] = stream.get_unsigned_short();
             }
          }
 
          for(i1 = 0; i1 < 2; ++i1) {
             for(j1 = 0; j1 < this.anIntArray665[i1]; ++j1) {
                if((j & 1 << i1 * 4 << j1) != 0) {
-                  this.anIntArrayArrayArray666[i1][1][j1] = stream.readUnsignedWord();
-                  this.anIntArrayArrayArray667[i1][1][j1] = stream.readUnsignedWord();
+                  this.anIntArrayArrayArray666[i1][1][j1] = stream.get_unsigned_short();
+                  this.anIntArrayArrayArray667[i1][1][j1] = stream.get_unsigned_short();
                } else {
                   this.anIntArrayArrayArray666[i1][1][j1] = this.anIntArrayArrayArray666[i1][0][j1];
                   this.anIntArrayArrayArray667[i1][1][j1] = this.anIntArrayArrayArray667[i1][0][j1];

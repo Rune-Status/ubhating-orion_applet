@@ -67,8 +67,8 @@ final class Class11 {
    final void method525(byte[] is) {
       this.aClass3_Sub12_211.buffer = is;
       this.aClass3_Sub12_211.currentOffset = 10;
-      int i = this.aClass3_Sub12_211.readUnsignedWord();
-      this.anInt213 = this.aClass3_Sub12_211.readUnsignedWord();
+      int i = this.aClass3_Sub12_211.get_unsigned_short();
+      this.anInt213 = this.aClass3_Sub12_211.get_unsigned_short();
       this.anInt218 = 500000;
       this.anIntArray217 = new int[i];
 

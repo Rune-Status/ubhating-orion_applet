@@ -27,7 +27,7 @@ public final class StreamLoader {
          this.aBoolean732 = false;
       }
 
-      this.dataSize = stream.readUnsignedWord();
+      this.dataSize = stream.get_unsigned_short();
       this.anIntArray728 = new int[this.dataSize];
       this.anIntArray729 = new int[this.dataSize];
       this.anIntArray730 = new int[this.dataSize];

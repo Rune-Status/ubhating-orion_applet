@@ -18,7 +18,7 @@ final class Sounds {
       Class6.method166();
 
       while(true) {
-         int j = stream.readUnsignedWord();
+         int j = stream.get_unsigned_short();
          if(j == '\uffff') {
             return;
          }
@@ -48,8 +48,8 @@ final class Sounds {
          }
       }
 
-      this.anInt330 = stream.readUnsignedWord();
-      this.anInt331 = stream.readUnsignedWord();
+      this.anInt330 = stream.get_unsigned_short();
+      this.anInt331 = stream.get_unsigned_short();
    }
 
    private int method243() {

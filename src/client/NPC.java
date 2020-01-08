@@ -3,7 +3,7 @@ package client;
 
 public final class NPC extends Entity {
 
-   public EntityDef desc;
+   public NpcDefinition desc;
 
 
    private Model method450() {
@@ -65,7 +65,7 @@ public final class NPC extends Entity {
       }
    }
 
-   public boolean isVisible() {
+   public boolean visible() {
       return this.desc != null;
    }
 

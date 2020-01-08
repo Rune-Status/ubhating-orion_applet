@@ -76,8 +76,8 @@ final class Soundtrack {
 
       this.anInt406 = class3_sub12.method422();
       this.anInt418 = class3_sub12.method422();
-      this.anInt408 = class3_sub12.readUnsignedWord();
-      this.anInt400 = class3_sub12.readUnsignedWord();
+      this.anInt408 = class3_sub12.get_unsigned_short();
+      this.anInt400 = class3_sub12.get_unsigned_short();
       this.aClass37_410 = new Class37();
       this.aClass51_417 = new Class51();
       this.aClass37_410.method717(class3_sub12, this.aClass51_417);

@@ -62,7 +62,7 @@ final class Censor {
       anIntArray620 = new int[stream.readDWord()];
 
       for(int i = 0; i < anIntArray620.length; ++i) {
-         anIntArray620[i] = stream.readUnsignedWord();
+         anIntArray620[i] = stream.get_unsigned_short();
       }
 
    }

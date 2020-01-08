@@ -34,14 +34,14 @@ final class Deque {
       if(node == this.head) {
          return null;
       } else {
-         node.unlink();
+         node.remove();
          return node;
       }
    }
 
    final void insertFront(Node node) {
       if(node.prev != null) {
-         node.unlink();
+         node.remove();
       }
 
       node.next = this.head.next;
@@ -52,7 +52,7 @@ final class Deque {
 
    final void insertBack(Node node) {
       if(node.prev != null) {
-         node.unlink();
+         node.remove();
       }
 
       node.next = this.head;
@@ -63,7 +63,7 @@ final class Deque {
 
    final void method894(Node class3, Node class3_27_) {
       if(class3.prev != null) {
-         class3.unlink();
+         class3.remove();
       }
 
       class3.next = class3_27_;
@@ -90,7 +90,7 @@ final class Deque {
             return;
          }
 
-         node.unlink();
+         node.remove();
       }
    }
 
@@ -99,7 +99,7 @@ final class Deque {
       if(node == this.head) {
          return null;
       } else {
-         node.unlink();
+         node.remove();
          return node;
       }
    }

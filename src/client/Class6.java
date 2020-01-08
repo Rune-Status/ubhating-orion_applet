@@ -304,8 +304,8 @@ final class Class6 {
 
       this.anInt109 = stream.method422();
       this.anInt110 = stream.method422();
-      this.anInt113 = stream.readUnsignedWord();
-      this.anInt114 = stream.readUnsignedWord();
+      this.anInt113 = stream.get_unsigned_short();
+      this.anInt114 = stream.get_unsigned_short();
       this.aClass39_111 = new Class39();
       this.aClass29_112 = new Class29();
       this.aClass39_111.method545(stream, this.aClass29_112);
